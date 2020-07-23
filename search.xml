@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>写在前面</title>
-    <url>/2020/072355009.html</url>
-    <content><![CDATA[<p>昨天被学弟问到怎么好久不更hexo的博客了, 我一时语塞, 只能回可能是太忙了吧..(其实就是懒</p>
-<p>本来想着就在博客园凑合写一写, 可谁让我偏偏又是个偏执怪</p>
-<p>博客园优化弄了一下午是在弄不下去了, 这突然想起来自己以前写的工程目录, 何止是丑陋,简直是丑陋…</p>
-<p>好吧, 干脆全部推到重来算求, 重新拾起hexo</p>
-<p>熬夜一天半算是整理出大概的样子, 也不知道还会不会更新, 看心情吧~~</p>
-<blockquote>
-<p>已更新</p>
-<ul>
-<li>avatar logo</li>
-<li>首页轮播图 按天换==</li>
-<li>首页隐藏音乐播放器</li>
-<li>点击特效</li>
-<li>MathJax</li>
-<li>文章置顶和打赏</li>
-<li>友链页面</li>
-<li>留言面板</li>
-<li>关于我页面</li>
-<li>busuanzi统计</li>
-<li>Gitalk评论</li>
-<li>页脚</li>
-<li>链接URL优化</li>
-<li>时间线归档</li>
-<li>底部标志更新</li>
-<li>音乐歌单更新</li>
-</ul>
-</blockquote>
-<p>因为换了主题, 以前的markdown格式不兼容, 所以文章都被我下了, 不知道会不会再传 0.0</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Codeforces 658(div2)</title>
     <url>/2020/07231255.html</url>
     <content><![CDATA[<h4 id="A-Common-Subsequence"><a href="#A-Common-Subsequence" class="headerlink" title="A  Common Subsequence"></a>A  Common Subsequence</h4><p>签到</p>
@@ -414,6 +382,38 @@ int main()
     // system("pause");
 }
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>写在前面</title>
+    <url>/2020/072355009.html</url>
+    <content><![CDATA[<p>昨天被学弟问到怎么好久不更hexo的博客了, 我一时语塞, 只能回可能是太忙了吧..(其实就是懒</p>
+<p>本来想着就在博客园凑合写一写, 可谁让我偏偏又是个偏执怪</p>
+<p>博客园优化弄了一下午是在弄不下去了, 这突然想起来自己以前写的工程目录, 何止是丑陋,简直是丑陋…</p>
+<p>好吧, 干脆全部推到重来算求, 重新拾起hexo</p>
+<p>熬夜一天半算是整理出大概的样子, 也不知道还会不会更新, 看心情吧~~</p>
+<blockquote>
+<p>已更新</p>
+<ul>
+<li>avatar logo</li>
+<li>首页轮播图 按天换==</li>
+<li>首页隐藏音乐播放器</li>
+<li>点击特效</li>
+<li>MathJax</li>
+<li>文章置顶和打赏</li>
+<li>友链页面</li>
+<li>留言面板</li>
+<li>关于我页面</li>
+<li>busuanzi统计</li>
+<li>Gitalk评论</li>
+<li>页脚</li>
+<li>链接URL优化</li>
+<li>时间线归档</li>
+<li>底部标志更新</li>
+<li>音乐歌单更新</li>
+</ul>
+</blockquote>
+<p>因为换了主题, 以前的markdown格式不兼容, 所以文章都被我下了, 不知道会不会再传 0.0</p>
 ]]></content>
   </entry>
 </search>
