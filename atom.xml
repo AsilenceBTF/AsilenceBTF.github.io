@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-07-23T05:29:41.337Z</updated>
+  <updated>2020-07-23T10:32:38.073Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>写在前面</title>
-    <link href="http://www.asilencebtf.top/2020/072355009.html"/>
-    <id>http://www.asilencebtf.top/2020/072355009.html</id>
-    <published>2020-07-23T05:29:05.000Z</published>
-    <updated>2020-07-23T05:29:41.337Z</updated>
+    <title>Codeforces 658(div2)</title>
+    <link href="http://www.asilencebtf.top/2020/07231255.html"/>
+    <id>http://www.asilencebtf.top/2020/07231255.html</id>
+    <published>2020-07-23T10:14:06.000Z</published>
+    <updated>2020-07-23T10:32:38.073Z</updated>
     
     <summary type="html">
     
@@ -29,8 +29,36 @@
       
         
         
-          &lt;p&gt;zhende&lt;/p&gt;
-
+          &lt;h4 id=&quot;A-Common-Subsequence&quot;&gt;&lt;a href=&quot;#A-Common-Subsequence&quot; class=&quot;headerlink&quot; title=&quot;A  Common Subsequence&quot;&gt;&lt;/a&gt;A  Common
+        
+      
+    
+    </summary>
+    
+    
+      <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
+    
+    
+      <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>写在前面</title>
+    <link href="http://www.asilencebtf.top/2020/072355009.html"/>
+    <id>http://www.asilencebtf.top/2020/072355009.html</id>
+    <published>2020-07-23T05:29:05.000Z</published>
+    <updated>2020-07-23T10:33:17.004Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;昨天被学弟问到怎么好久不更hexo的博客了, 我一时语塞, 只能回可能是太忙了吧..(其实就是懒&lt;/p&gt;
+&lt;p&gt;本来想着就在博客园凑合写一写, 可谁让我偏偏又是个偏执怪&lt;/p&gt;
+&lt;p&gt;博客园优化弄了一下午是在弄不下去了, 这突然想起来自己以前写的工程目录,
         
       
     
