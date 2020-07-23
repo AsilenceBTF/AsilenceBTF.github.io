@@ -483,41 +483,40 @@
 #define INF 0x3f3f3f3f
 typedef long long ll;
 
-const int N = 4050;
-int a[N], pre[N], preidx[N], dp[N];
+const int N = 5e5 + 105;
+
 void solve(){
-    int n; cin >> n;
-    int m = n + n;
+    int n, m;
+    cin >> n >> m;
+    set<int>se;
+    for(int i = 1; i <= n; ++i){
+        int x; cin >> x;
+        se.insert(x);
+    }
+    int k = 0, flag = 0;
     for(int i = 1; i <= m; ++i){
-        cin >> a[i];
-        pre[i] = a[i];
-        preidx[i] = i;
-        if(pre[i - 1] > pre[i]){
-            pre[i] = pre[i - 1];
-            preidx[i] = preidx[i - 1];
-        } dp[i] = 0;
-    }
-    vector<int> v;
-    for(int i = 2; i <= m; ++i){
-        if(preidx[i] == i){
-            v.push_back(preidx[i] - preidx[i - 1]); 
+        int x;
+        cin >> x;
+        if(se.count(x) > 0){
+            k = 1; flag = x;
         }
     }
-    for(auto it : v){
-        for(int j = n; j >= it; --j){
-            dp[j] = max(dp[j], dp[j - it] + it);
-        }
+    if(k){
+        cout << "YES" << endl;
+        cout << k << " " << flag << endl;
+    }else{
+        cout << "NO" << endl;
     }
-    if(dp[n] == n) cout << "YES" << endl;
-    else cout << "NO" << endl;
 }
 int main(){
-    int  _ = 1;
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Sequential-Nim"><a href="#B-Sequential-Nim" class="headerlink" title="B  Sequential Nim"></a>B  Sequential Nim</h4><blockquote>
 <p>结论: 首先碰到 &gt; 1 的数的人胜利</p>
 </blockquote>
