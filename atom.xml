@@ -84,7 +84,7 @@
           &lt;blockquote&gt;
 &lt;p&gt;这是一个测试页面&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre class=&quot;line-numbers language-c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;
+&lt;pre class=&quot;line-numbers language-lang-c++&quot;&gt;&lt;code class=&quot;language-lang-c++&quot;&gt;
 #define sz(x)
         
       
