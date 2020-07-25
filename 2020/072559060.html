@@ -436,7 +436,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="A-Common-Prefixes"><a href="#A-Common-Prefixes" class="headerlink" title="A  Common Prefixes"></a>A  Common Prefixes</h4><p>懒得想就暴力两层</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -465,11 +465,12 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B1-Koa-and-the-Beach-Easy-Version"><a href="#B1-Koa-and-the-Beach-Easy-Version" class="headerlink" title="B1  Koa and the Beach (Easy Version)"></a>B1  Koa and the Beach (Easy Version)</h4><p><img src="https://i.loli.net/2020/07/25/9KN4cCmMLSr28Wd.png" alt="tem3.png"></p>
 <p>万万没想到, $O(n*n*k*t)$的dp还真就是$1e9$  (狗头)</p>
 <p>对着时间线和位置暴力dp, 注意自己所在的位置也是可以转移的</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -517,18 +518,19 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-String-Transformation-1"><a href="#C-String-Transformation-1" class="headerlink" title="C  String Transformation 1"></a>C  String Transformation 1</h4><p>题意读的爆炸, 球球了, 别再出阅读理解了</p>
 <blockquote>
 <p>每次选任意个一样的字母x, 全部替换成y (y &gt; x)</p>
 </blockquote>
-<p>最后能否将$A -&gt; B$</p>
+<p>最后能否将$A \Rightarrow  B$</p>
 <p>因为是从小到大变, 出现$ ai &gt; bi$ 就-1好了</p>
 <p>记录一下每个字母的所有目标字母</p>
 <p>从小到大枚举贪心,  如果没有出现已经改变过的(当前字母), 就直接改变到目标字母, ++ans</p>
 <p>否则, 就加到已经改变的字母上, 攒到一起最后更改</p>
 <p>样例把人误导了  :no_mouth:  </p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -572,7 +574,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-GameGame"><a href="#D-GameGame" class="headerlink" title="D  GameGame"></a>D  GameGame</h4><p>学弟给了波思路, 还是没切出来, wtcl  :sob: </p>
 <p>很容易想到只要枚举最高位的情况就行</p>
 <p>但是这里的最高位不是实际最高位, 而是有效最高位</p>
@@ -581,10 +584,10 @@ int main(){
 </blockquote>
 <p>这里的最高位就不是2贡献的, 因为2最高位个数是偶数, 最后一定会抵消</p>
 <p>那么最高位个数一定是奇数</p>
-<p>注意 游戏是你先手, 所以最终你拿到的数字个数一定是$ \lceil n / 2\rceil $</p>
+<p>注意 游戏是你先手, 所以最终你拿到的数字个数一定是$ \lceil n / 2 \rceil $</p>
 <p>利用这个特点我们需要让对手拿到偶数个最高位</p>
-<p>那么必输的情况只有一种$ one%4 == 3 \and zero%2 == 0$</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<p>那么必输的情况只有一种$one\\%4 == 3 \bigwedge  zero\\%2 == 0$</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
