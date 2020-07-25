@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-07-24T03:29:55.143Z</updated>
+  <updated>2020-07-25T06:45:18.516Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Codeforces-659-div2</title>
+    <link href="http://www.asilencebtf.top/2020/072559060.html"/>
+    <id>http://www.asilencebtf.top/2020/072559060.html</id>
+    <published>2020-07-25T06:16:35.000Z</published>
+    <updated>2020-07-25T06:45:18.516Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;A-Common-Prefixes&quot;&gt;&lt;a href=&quot;#A-Common-Prefixes&quot; class=&quot;headerlink&quot; title=&quot;A  Common Prefixes&quot;&gt;&lt;/a&gt;A  Common
+        
+      
+    
+    </summary>
+    
+    
+      <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
+    
+    
+      <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+      <category term="枚举" scheme="http://www.asilencebtf.top/tags/%E6%9E%9A%E4%B8%BE/"/>
+    
+      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+  </entry>
   
   <entry>
     <title>Codeforces 658(div2)</title>

@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Codeforces 658(div2), AsilenceBTF&#39;s Blog">
+    <meta name="keywords" content="Codeforces-659-div2, AsilenceBTF&#39;s Blog">
     <meta name="description" content="人生当苦无妨,良人当归即好">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Codeforces 658(div2) | AsilenceBTF&#39;s Blog</title>
+    <title>Codeforces-659-div2 | AsilenceBTF&#39;s Blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon2.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Codeforces 658(div2)</h1>
+                    <h1 class="description center-align post-title">Codeforces-659-div2</h1>
                 </div>
             </div>
         </div>
@@ -375,6 +375,14 @@
                                 <span class="chip bg-color">dp</span>
                             </a>
                         
+                            <a href="/tags/%E6%9E%9A%E4%B8%BE/">
+                                <span class="chip bg-color">枚举</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                                <span class="chip bg-color">贪心</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -396,7 +404,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-07-23
+                    2020-07-25
                 </div>
                 
 
@@ -405,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    76
+                    108
                 </div>
                 
 
@@ -427,73 +435,99 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="A-Common-Subsequence"><a href="#A-Common-Subsequence" class="headerlink" title="A  Common Subsequence"></a>A  Common Subsequence</h4><p>签到</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
-#define sz(x) int(x.size())
+                <h4 id="A-Common-Prefixes"><a href="#A-Common-Prefixes" class="headerlink" title="A  Common Prefixes"></a>A  Common Prefixes</h4><p>懒得想就暴力两层</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
 typedef long long ll;
 
-const int N = 5e5 + 105;
-
+const int N = 1e5 + 105;
+int a[150];
 void solve(){
-    int n, m;
-    cin >> n >> m;
-    set<int>se;
+    int n; cin >> n;
+    for(int i = 1; i <= n; ++i) cin >> a[i];
+    string s = string(150, 'a');
+    cout << s << endl;
     for(int i = 1; i <= n; ++i){
-        int x; cin >> x;
-        se.insert(x);
+        for(int j = 0; j < a[i]; ++j){
+            cout << s[j];
+        }
+        for(int j = a[i]; j < 150; ++j){
+            s[j]++;
+            if(s[j] > 'z') s[j] = 'a';
+            cout << s[j];
+        }cout<<endl;
     }
-    int k = 0, flag = 0;
-    for(int i = 1; i <= m; ++i){
-        int x;
-        cin >> x;
-        if(se.count(x) > 0){
-            k = 1; flag = x;
+}
+int main(){
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B1-Koa-and-the-Beach-Easy-Version"><a href="#B1-Koa-and-the-Beach-Easy-Version" class="headerlink" title="B1  Koa and the Beach (Easy Version)"></a>B1  Koa and the Beach (Easy Version)</h4><p><img src="/2020/072559060.htm/tem3.png"></p>
+<p>万万没想到, $O(n*n*k*t)$的dp还真就是$1e9$  (狗头)</p>
+<p>对着时间线和位置暴力dp, 注意自己所在的位置也是可以转移的</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 10050;
+int d[150], n, l, k, t[300];
+bool dp[105][N << 1];
+void solve(){
+    cin >> n >> k >> l;
+    for(int i = 1; i <= n; ++i)
+        cin >> d[i];
+    for(int i = 0; i < k + k; ++i){
+        t[i] = i;
+        if(i > k) t[i] = k - (i - k);
+    }
+    for(int j = 0; j <= 2*n*k + 1; ++j){
+        for(int i = 1; i <= n; ++i){
+            dp[i][j] = false;
+            dp[0][j] = true;
+        }
+        dp[n + 1][j] = false;
+    }
+    d[n + 1] = -3000;
+    bool flag = false;
+    for(int i = 1; i <= n; ++i){
+        for(int j = 0; j <= 2*n*k; ++j){
+            if(dp[i - 1][j] && d[i] + t[(j + 1)%(k + k)] <= l){
+                dp[i][j + 1] = true;
+            }else if(dp[i][j] && d[i] + t[(j + 1)%(k + k)] <= l){
+                dp[i][j + 1] = true;
+            }
+            if(dp[n][j + 1]) flag = true;
         }
     }
-    if(k){
+    if(flag){
         cout << "YES" << endl;
-        cout << k << " " << flag << endl;
     }else{
         cout << "NO" << endl;
     }
 }
 int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0),  cin.tie(0);
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Sequential-Nim"><a href="#B-Sequential-Nim" class="headerlink" title="B  Sequential Nim"></a>B  Sequential Nim</h4><blockquote>
-<p>结论: 首先碰到 &gt; 1 的数的人胜利</p>
-</blockquote>
-<p>证明的话只要分三种情况</p>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-String-Transformation-1"><a href="#C-String-Transformation-1" class="headerlink" title="C  String Transformation 1"></a>C  String Transformation 1</h4><p>题意读的爆炸, 球球了, 别再出阅读理解了</p>
 <blockquote>
-<ol>
-<li><p>序列为3 3 3 3</p>
-<p>轮流拿 2 1 2 1 2 1 3</p>
-</li>
-</ol>
+<p>每次选任意个一样的字母x, 全部替换成y (y &gt; x)</p>
 </blockquote>
-<blockquote>
-<ol start="2">
-<li><p>序列为3 1 3 3</p>
-<p>轮流拿 3 1 2 1 3</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li><p>序列为 3 1 1 3</p>
-<p>轮流拿 2 1 1 1 3</p>
-</li>
-</ol>
-</blockquote>
-<p>以上三种序列足以覆盖所有情况</p>
+<p>最后能否将$A -&gt; B$</p>
+<p>因为是从小到大变, 出现$ ai &gt; bi$ 就-1好了</p>
+<p>记录一下每个字母的所有目标字母</p>
+<p>从小到大枚举贪心,  如果没有出现已经改变过的(当前字母), 就直接改变到目标字母, ++ans</p>
+<p>否则, 就加到已经改变的字母上, 攒到一起最后更改</p>
+<p>样例把人误导了  :no_mouth:  </p>
 <pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
@@ -501,124 +535,96 @@ int main(){
 typedef long long ll;
 
 const int N = 1e5 + 105;
-int a[N];
 void solve(){
+    set<int>se[28];
+    for(int i = 0; i < 26; ++i) se[i].clear();
     int n;
     cin >> n;
-    int one = 0, idx = 0;
-    for(int i = 1; i <= n; ++i){
-        cin >> a[i];
-        if(a[i] == 1) one++;
-        else{
-            if(idx == 0) idx = i;
+    string a, b;
+    cin >> a >> b;
+    for(int i = 0; i < n; ++i){
+        if(a[i] > b[i]){
+            cout << -1 << endl; return;
+        }
+        if(a[i] == b[i]) continue;
+        se[a[i] - 'a'].insert(b[i] - 'a');
+    }
+    ll ans = 0;
+    for(int i = 0; i < 26; ++i){
+        int vis[26] = {0};
+        for(auto it : se[i]){
+            int flag = 0;
+            for(int k = i + 1; k < it; ++k){
+                if(vis[k]){
+                    se[k].insert(it);
+                    flag = 1; break;
+                }
+            }
+            if(flag) continue;
+            vis[it] = 1;
+            ans ++;
         }
     }
-    if(one == 0){
-        cout << "First" << endl; return;
-    }else if(one == n){
-        if(n&1) cout << "First" << endl;
-        else cout << "Second" << endl;
-    }else{
-        if(idx&1) cout << "First" << endl;
-        else cout << "Second" << endl;
-    }
-
-}
-int main(){c++
-    cin.tie(0);
-    ios::sync_with_stdio(0);
+    cout << ans << endl;
+}   
+int main(){
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Prefix-Flip"><a href="#C-Prefix-Flip" class="headerlink" title="C  Prefix Flip"></a>C  Prefix Flip</h4><p>若串首字符不等于目标字符, 则直接翻转</p>
-<p>若串首字符等于目标字符, 则先翻转串首, 在翻转</p>
-<p>这样构造一定小于$2n$</p>
-<p>双指针记录一下串首和串尾的位置和翻转情况即可</p>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-GameGame"><a href="#D-GameGame" class="headerlink" title="D  GameGame"></a>D  GameGame</h4><p>学弟给了波思路, 还是没切出来, wtcl  :sob: </p>
+<p>很容易想到只要枚举最高位的情况就行</p>
+<p>但是这里的最高位不是实际最高位, 而是有效最高位</p>
+<blockquote>
+<p>例如 2 2 1 1 1</p>
+</blockquote>
+<p>这里的最高位就不是2贡献的, 因为2最高位个数是偶数, 最后一定会抵消</p>
+<p>那么最高位个数一定是奇数</p>
+<p>注意 游戏是你先手, 所以最终你拿到的数字个数一定是$ \lceil n / 2\rceil $</p>
+<p>利用这个特点我们需要让对手拿到偶数个最高位</p>
+<p>那么必输的情况只有一种$ one%4 == 3 \and zero%2 == 0$</p>
 <pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
 typedef long long ll;
 
-const int N = 1e5 + 105;
 void solve(){
-    int n, l, r, f = 0; cin >> n;
-    string s, t;
-    cin >> s >> t;
-    if(s == t){
-        cout << 0 << endl; return;
+    int n; cin >> n;
+    vector<int> a(n + 1);
+    int d = 0;
+    for(int i = 1; i <= n; ++i){
+        cin >> a[i];
+        d ^= a[i];
     }
-    l = 0, r = n - 1;
-    vector<int> ans;
-    for(int i = n - 1; i >= 0; --i){
-        if((s[l] == t[i] && f%2 == 0) || (s[l] != t[i] && f%2 == 1)){
-            ans.push_back(1);
+    if(d == 0){
+        cout << "DRAW" << endl; return;
+    }
+    for(int i = 31; i >= 0; --i){
+        if(d >> i & 1){
+            int one = 0, zero = 0;
+            for(int j = 1; j <= n; ++j){
+                if(a[j] >> i & 1) ++one;
+                else ++zero;
+            }
+            if(one % 4 == 3 && zero % 2 == 0){
+                cout << "LOSE" << endl;
+            }else{
+                cout << "WIN" << endl;
+            }
+            break;
         }
-        ans.push_back(i + 1);
-        f++;
-        swap(l, r);
-        if(f&1) ++r;
-        else --r;
     }
-    cout << sz(ans) << " ";
-    for(auto it : ans) cout << it << " ";
-    cout << endl;
 }
 int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
+    ios::sync_with_stdio(0),  cin.tie(0);
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Unmerge"><a href="#D-Unmerge" class="headerlink" title="D  Unmerge"></a>D  Unmerge</h4><p>01背包变形</p>
-<p>观察发现, 两个前缀最大之间的数是可以连续的存在一个序列里的</p>
-<p>预处理出所有这样的段</p>
-<p>dp一下能不能组成长度为n的序列即可</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
-#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 4050;
-int a[N], pre[N], preidx[N], dp[N];
-void solve(){
-    int n; cin >> n;
-    int m = n + n;
-    for(int i = 1; i <= m; ++i){
-        cin >> a[i];
-        pre[i] = a[i];
-        preidx[i] = i;
-        if(pre[i - 1] > pre[i]){
-            pre[i] = pre[i - 1];
-            preidx[i] = preidx[i - 1];
-        } dp[i] = 0;
-    }
-    vector<int> v;
-    for(int i = 2; i <= m; ++i){
-        if(preidx[i] == i){
-            v.push_back(preidx[i] - preidx[i - 1]); 
-        }
-    }
-    for(auto it : v){
-        for(int j = n; j >= it; --j){
-            dp[j] = max(dp[j], dp[j - it] + it);
-        }
-    }
-    if(dp[n] == n) cout << "YES" << endl;
-    else cout << "NO" << endl;
 }
-int main(){
-    int  _ = 1;
-    cin >> _;c++
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -644,7 +650,7 @@ int main(){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.asilencebtf.top/2020/07231255.html">http://www.asilencebtf.top/2020/07231255.html</a>
+                    <a href="http://www.asilencebtf.top/2020/072559060.html">http://www.asilencebtf.top/2020/072559060.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -684,6 +690,14 @@ int main(){
                             
                                 <a href="/tags/dp/">
                                     <span class="chip bg-color">dp</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9E%9A%E4%B8%BE/">
+                                    <span class="chip bg-color">枚举</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                                    <span class="chip bg-color">贪心</span>
                                 </a>
                             
                         </div>
@@ -854,7 +868,7 @@ int main(){
         repo: 'AsilenceBTF.github.io',
         owner: 'AsilenceBTF',
         admin: "AsilenceBTF",
-        id: '2020-07-23T18-14-06',
+        id: '2020-07-25T14-16-35',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -878,9 +892,10 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/072559060.html">
                     <div class="card-image">
@@ -898,9 +913,9 @@ int main(){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -913,6 +928,7 @@ int main(){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -939,19 +955,19 @@ int main(){
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/072355009.html">
+                <a href="/2020/07231255.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="写在前面">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Codeforces 658(div2)">
                         
-                        <span class="card-title">写在前面</span>
+                        <span class="card-title">Codeforces 658(div2)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            昨天被学弟问到怎么好久不更hexo的博客了, 我一时语塞, 只能回可能是太忙了吧..(其实就是懒
+                            codeforces 658 题解
                         
                     </div>
                     <div class="publish-info">
@@ -960,11 +976,23 @@ int main(){
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            AsilenceBTF
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/codeforces/" class="post-category">
+                                    codeforces
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/dp/">
+                        <span class="chip bg-color">dp</span>
+                    </a>
+                    
                 </div>
                 
             </div>
