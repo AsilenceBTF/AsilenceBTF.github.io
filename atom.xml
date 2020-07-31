@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-07-25T10:52:41.794Z</updated>
+  <updated>2020-07-31T14:27:09.712Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Codeforces-659-div2</title>
-    <link href="http://www.asilencebtf.top/2020/072559060.html"/>
-    <id>http://www.asilencebtf.top/2020/072559060.html</id>
-    <published>2020-07-25T06:16:35.000Z</published>
-    <updated>2020-07-25T10:52:41.794Z</updated>
+    <title>Codeforces-edu-92</title>
+    <link href="http://www.asilencebtf.top/2020/073120655.html"/>
+    <id>http://www.asilencebtf.top/2020/073120655.html</id>
+    <published>2020-07-31T14:01:32.000Z</published>
+    <updated>2020-07-31T14:27:09.712Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,38 @@
       
         
         
-          &lt;h4 id=&quot;A-Common-Prefixes&quot;&gt;&lt;a href=&quot;#A-Common-Prefixes&quot; class=&quot;headerlink&quot; title=&quot;A  Common Prefixes&quot;&gt;&lt;/a&gt;A  Common
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1389&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;A-LCM-Problem&quot;&gt;&lt;a href=&quot;#A-LCM-Problem&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
+    
+    
+      <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+      <category term="枚举" scheme="http://www.asilencebtf.top/tags/%E6%9E%9A%E4%B8%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Codeforces-659-div2</title>
+    <link href="http://www.asilencebtf.top/2020/072559060.html"/>
+    <id>http://www.asilencebtf.top/2020/072559060.html</id>
+    <published>2020-07-25T06:16:35.000Z</published>
+    <updated>2020-07-31T14:26:26.464Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1384&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;A-Common-Prefixes&quot;&gt;&lt;a
         
       
     
@@ -52,7 +83,7 @@
     <link href="http://www.asilencebtf.top/2020/07231255.html"/>
     <id>http://www.asilencebtf.top/2020/07231255.html</id>
     <published>2020-07-23T10:14:06.000Z</published>
-    <updated>2020-07-24T03:29:55.143Z</updated>
+    <updated>2020-07-31T14:26:57.315Z</updated>
     
     <summary type="html">
     
@@ -60,7 +91,8 @@
       
         
         
-          &lt;h4 id=&quot;A-Common-Subsequence&quot;&gt;&lt;a href=&quot;#A-Common-Subsequence&quot; class=&quot;headerlink&quot; title=&quot;A  Common Subsequence&quot;&gt;&lt;/a&gt;A  Common
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1382&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;A-Common-Subsequence&quot;&gt;&lt;a
         
       
     
@@ -115,7 +147,7 @@
           &lt;blockquote&gt;
 &lt;p&gt;这是一个测试页面&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre class=&quot;line-numbers language-lang-c++&quot;&gt;&lt;code class=&quot;language-lang-c++&quot;&gt;
+&lt;pre class=&quot;line-numbers language-c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;
 #define sz(x)
         
       
