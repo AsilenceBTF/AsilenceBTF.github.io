@@ -55,6 +55,227 @@
       </script>]]></content>
   </entry>
   <entry>
+    <title>Codeforces-660-div2</title>
+    <url>/2020/080232640.html</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1388" target="_blank" rel="noopener">传送门</a></p>
+<h4 id="A-Captain-Flint-and-Crew-Recruitment"><a href="#A-Captain-Flint-and-Crew-Recruitment" class="headerlink" title="A Captain Flint and Crew Recruitment"></a>A Captain Flint and Crew Recruitment</h4><p>特判 31 44 36 40</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+int a[10] = {6, 10, 14, 15, 21, 22};
+void solve(){
+    int n;
+    cin >> n;
+    if(n < 31) cout << "NO" << endl;
+    else{
+        cout << "YES" << endl;
+        if(n == 31) cout << "6 10 14 1" << endl;
+        else if(n == 44) cout << "6 10 15 13" << endl;
+        else if(n == 36) cout << "6 10 15 5" << endl;
+        else if(n == 40) cout << "6 10 15 9" << endl;
+        else cout << 6 << " " << 10 << " " << 14 << " " << n - 30 << endl;
+    }
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B-Captain-Flint-and-a-Long-Voyage"><a href="#B-Captain-Flint-and-a-Long-Voyage" class="headerlink" title="B  Captain Flint and a Long Voyage"></a>B  Captain Flint and a Long Voyage</h4><p>删去的部分用1000覆盖</p>
+<p>留下的部分用1001覆盖</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+int a[N*8];
+void solve(){
+    int n; cin >> n;
+    for(int i = 1; i <= n; ++i) {
+        if(i%4 == 0) a[i] = 1;
+        else a[i] = 0;
+    }
+    vector<int> ans;
+    for(int i = n + 1; i <= n*4; ++i){
+        if(i%4 == 0 || i%4 == 1) a[i] = 1;
+        else a[i] = 0;
+    }
+    int num = 0, b = 1;
+    for(int i = 1; i <= n*4; ++i){
+        num += b*a[i]; b*=2;
+        if(i%4 == 0){
+            ans.push_back(num); b = 1;
+            num = 0;
+        }
+    }
+    reverse(ALL(ans));
+    for(auto it : ans) cout << it;
+    cout << endl;
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-Uncle-Bogdan-and-Country-Happiness"><a href="#C-Uncle-Bogdan-and-Country-Happiness" class="headerlink" title="C  Uncle Bogdan and Country Happiness"></a>C  Uncle Bogdan and Country Happiness</h4><p>阴间题面仿佛强行喂我吃奥里给, wdnmd</p>
+<blockquote>
+<p>题意: 初始时每个人都在标号为<code>1</code>的城市,然后回到每个人各自的城市,选择从起点到终点的最短路径,相邻城市之间的距离一样,每个人在进入一个城市时可以改变他的心情,从<code>Good</code>变为<code>Bad</code>,但是不可以从<code>Bad</code>变成<code>Good</code>,每个人进入一个城市时他的心情会影响这个城市的幸福指数,如果是<code>Good</code>那么指数加一否则减一,在城市里面心情是不会改变的,现在给出一种城市幸福指数的可能性,计算有没有可能得到这种幸福指数格局? </p>
+</blockquote>
+<p>设经过节点u的人有s个, 好心情的有g个, 坏心情有b个</p>
+<p>$ s = g + b, h = g - b$</p>
+<p>得到$ g = \frac {s + h}{2}     $</p>
+<p>综上得到三个约束条件: </p>
+<ol>
+<li>$(s + h) mod2==0 $</li>
+<li>$0\leq g \leq s$</li>
+<li>$g \geq \sum g_{son} $</li>
+</ol>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+int p[N], h[N], s[N], g[N];
+vector<int> edge[N];
+// h = g - b;
+// s = g + b;
+// g = (h + s) / 2;
+bool dfs(int u, int fa = 0){
+    s[u] = p[u];
+    int sg = 0;
+    for(auto v : edge[u]){
+        if(v == fa) continue;
+        if(!dfs(v, u)) return false;
+        s[u] += s[v];
+        sg += g[v];
+    }
+    g[u] = (h[u] + s[u]) / 2;
+    if(g[u] > s[u] || g[u] < 0) return false;
+    if((h[u] + s[u]) % 2) return false;
+    if(g[u] < sg) return false;
+    return true;
+}
+void solve(){
+    int n, m;
+    cin >> n >> m;
+    for(int i = 1; i <= n; ++i) cin >> p[i];
+    for(int i = 1; i <= n; ++i) cin >> h[i];
+    for(int i = 1; i < n; ++i){
+        int u, v; cin >> u >> v;
+        edge[v].push_back(u);
+        edge[u].push_back(v);
+    }
+    if(dfs(1)) cout << "YES" << endl;
+    else cout << "NO" << endl;
+    for(int i = 1; i <= n; ++i) edge[i].clear();
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-Captain-Flint-and-Treasure"><a href="#D-Captain-Flint-and-Treasure" class="headerlink" title="D  Captain Flint and Treasure"></a>D  Captain Flint and Treasure</h4><p>tuopu排序</p>
+<p>如果传递的值为正, 就push进队列</p>
+<p>如果为负, 就将链倒过来, 不让累加值传递下去</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 2e5 + 104;
+vector<int> edge[N];
+ll a[N];
+int in[N], b[N];
+void solve(){
+    int n; cin >> n;
+    for(int i = 1; i <= n; ++i) cin >> a[i];
+    for(int i = 1; i <= n; ++i) cin >> b[i];
+    queue<int> que;
+    vector<int> g, ba;
+    for(int i = 1; i <= n; ++i){
+        if(b[i] == -1) continue;
+        else in[b[i]]++, edge[i].push_back(b[i]);
+    }
+    ll ans = 0;
+    for(int i = 1; i <= n; ++i){
+        if(in[i] == 0) que.push(i);
+    }
+    while(!que.empty()){
+        int now = que.front(); que.pop();
+        ans += a[now];
+        if(a[now] >= 0){
+            g.push_back(now);
+            if(b[now] != -1){
+                a[b[now]] += a[now];
+                in[b[now]] --;
+                if(in[b[now]] == 0){
+                    que.push(b[now]);
+                }
+            }
+        }else{
+            ba.push_back(now);
+            if(b[now] == -1) continue;
+            in[b[now]]--;
+            if(in[b[now]] == 0){
+                que.push(b[now]);
+            }
+        }
+    }
+    cout << ans << endl;
+    for(int i = 0; i < sz(g); ++i) cout << g[i] << " ";
+    for(int i = sz(ba) - 1; i >= 0; --i) cout << ba[i] << " ";
+    cout << endl;
+}
+int main(){
+    // ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>codeforces</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>贪心</tag>
+        <tag>tuopu排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Codeforces-edu-92</title>
     <url>/2020/073120655.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1389" target="_blank" rel="noopener">传送门</a></p>
