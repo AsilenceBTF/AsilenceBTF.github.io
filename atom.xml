@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-08-02T03:59:51.360Z</updated>
+  <updated>2020-08-06T03:25:50.497Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Codeforces 661(div3)</title>
+    <link href="http://www.asilencebtf.top/2020/080633087.html"/>
+    <id>http://www.asilencebtf.top/2020/080633087.html</id>
+    <published>2020-08-06T02:57:24.000Z</published>
+    <updated>2020-08-06T03:25:50.497Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1399&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;A-Remove-Smallest&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
+    
+    
+      <category term="暴力" scheme="http://www.asilencebtf.top/tags/%E6%9A%B4%E5%8A%9B/"/>
+    
+      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+  </entry>
   
   <entry>
     <title>Codeforces-660-div2</title>
@@ -179,7 +209,7 @@
           &lt;blockquote&gt;
 &lt;p&gt;这是一个测试页面&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre class=&quot;line-numbers language-c++&quot;&gt;&lt;code class=&quot;language-c++&quot;&gt;
+&lt;pre class=&quot;line-numbers language-lang-c++&quot;&gt;&lt;code class=&quot;language-lang-c++&quot;&gt;
 #define sz(x)
         
       
