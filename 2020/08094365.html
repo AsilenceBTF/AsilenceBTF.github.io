@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Codeforces-660-div2, AsilenceBTF&#39;s Blog">
+    <meta name="keywords" content="Codeforces 662(div2), AsilenceBTF&#39;s Blog">
     <meta name="description" content="人生当苦无妨,良人当归即好">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Codeforces-660-div2 | AsilenceBTF&#39;s Blog</title>
+    <title>Codeforces 662(div2) | AsilenceBTF&#39;s Blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon2.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Codeforces-660-div2</h1>
+                    <h1 class="description center-align post-title">Codeforces 662(div2)</h1>
                 </div>
             </div>
         </div>
@@ -379,8 +379,8 @@
                                 <span class="chip bg-color">dp</span>
                             </a>
                         
-                            <a href="/tags/tuopu%E6%8E%92%E5%BA%8F/">
-                                <span class="chip bg-color">tuopu排序</span>
+                            <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/">
+                                <span class="chip bg-color">分类讨论</span>
                             </a>
                         
                     </div>
@@ -404,7 +404,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-08-02
+                    2020-08-09
                 </div>
                 
 
@@ -413,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    64
+                    188
                 </div>
                 
 
@@ -435,196 +435,171 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><a href="https://codeforces.com/contest/1388" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Captain-Flint-and-Crew-Recruitment"><a href="#A-Captain-Flint-and-Crew-Recruitment" class="headerlink" title="A Captain Flint and Crew Recruitment"></a>A Captain Flint and Crew Recruitment</h4><p>特判 31 44 36 40</p>
+                <h4 id="A-Rainbow-Dash-Fluttershy-and-Chess-Coloring"><a href="#A-Rainbow-Dash-Fluttershy-and-Chess-Coloring" class="headerlink" title="A  Rainbow Dash, Fluttershy and Chess Coloring"></a>A  Rainbow Dash, Fluttershy and Chess Coloring</h4><p>从外往里填 </p>
 <pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
 typedef long long ll;
 
-const int N = 1e5 + 105;
-int a[10] = {6, 10, 14, 15, 21, 22};
+void solve(){
+    ll n; 
+    cin >> n;
+    cout << (n) / 2 + 1 << endl;
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B-Applejack-and-Storages"><a href="#B-Applejack-and-Storages" class="headerlink" title="B  Applejack and Storages"></a>B  Applejack and Storages</h4><p>记下$\geq 2,4,6,8$ 的数量, 判断的时候容斥一下</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
 void solve(){
     int n;
     cin >> n;
-    if(n < 31) cout << "NO" << endl;
-    else{
-        cout << "YES" << endl;
-        if(n == 31) cout << "6 10 14 1" << endl;
-        else if(n == 44) cout << "6 10 15 13" << endl;
-        else if(n == 36) cout << "6 10 15 5" << endl;
-        else if(n == 40) cout << "6 10 15 9" << endl;
-        else cout << 6 << " " << 10 << " " << 14 << " " << n - 30 << endl;
-    }
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Captain-Flint-and-a-Long-Voyage"><a href="#B-Captain-Flint-and-a-Long-Voyage" class="headerlink" title="B  Captain Flint and a Long Voyage"></a>B  Captain Flint and a Long Voyage</h4><p>删去的部分用1000覆盖</p>
-<p>留下的部分用1001覆盖</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-int a[N*8];
-void solve(){
-    int n; cin >> n;
+    vector< int > v(n + 1);
+    map< int, int > ma;
+    ma.clear();
+    int tot2 = 0, tot4 = 0, tot8 = 0, tot6 = 0;
     for(int i = 1; i <= n; ++i) {
-        if(i%4 == 0) a[i] = 1;
-        else a[i] = 0;
-    }
-    vector<int> ans;
-    for(int i = n + 1; i <= n*4; ++i){
-        if(i%4 == 0 || i%4 == 1) a[i] = 1;
-        else a[i] = 0;
-    }
-    int num = 0, b = 1;
-    for(int i = 1; i <= n*4; ++i){
-        num += b*a[i]; b*=2;
-        if(i%4 == 0){
-            ans.push_back(num); b = 1;
-            num = 0;
-        }
-    }
-    reverse(ALL(ans));
-    for(auto it : ans) cout << it;
-    cout << endl;
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Uncle-Bogdan-and-Country-Happiness"><a href="#C-Uncle-Bogdan-and-Country-Happiness" class="headerlink" title="C  Uncle Bogdan and Country Happiness"></a>C  Uncle Bogdan and Country Happiness</h4><p>阴间题面仿佛强行喂我吃奥里给, wdnmd</p>
-<blockquote>
-<p>题意: 初始时每个人都在标号为<code>1</code>的城市,然后回到每个人各自的城市,选择从起点到终点的最短路径,相邻城市之间的距离一样,每个人在进入一个城市时可以改变他的心情,从<code>Good</code>变为<code>Bad</code>,但是不可以从<code>Bad</code>变成<code>Good</code>,每个人进入一个城市时他的心情会影响这个城市的幸福指数,如果是<code>Good</code>那么指数加一否则减一,在城市里面心情是不会改变的,现在给出一种城市幸福指数的可能性,计算有没有可能得到这种幸福指数格局? </p>
-</blockquote>
-<p>设经过节点u的人有s个, 好心情的有g个, 坏心情有b个</p>
-<p>$ s = g + b, h = g - b$</p>
-<p>得到$ g = \frac {s + h}{2}     $</p>
-<p>综上得到三个约束条件: </p>
-<ol>
-<li>$(s + h) mod2==0 $</li>
-<li>$0\leq g \leq s$</li>
-<li>$g \geq \sum g_{son} $</li>
-</ol>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-int p[N], h[N], s[N], g[N];
-vector<int> edge[N];
-// h = g - b;
-// s = g + b;
-// g = (h + s) / 2;
-bool dfs(int u, int fa = 0){
-    s[u] = p[u];
-    int sg = 0;
-    for(auto v : edge[u]){
-        if(v == fa) continue;
-        if(!dfs(v, u)) return false;
-        s[u] += s[v];
-        sg += g[v];
-    }
-    g[u] = (h[u] + s[u]) / 2;
-    if(g[u] > s[u] || g[u] < 0) return false;
-    if((h[u] + s[u]) % 2) return false;
-    if(g[u] < sg) return false;
-    return true;
-}
-void solve(){
-    int n, m;
-    cin >> n >> m;
-    for(int i = 1; i <= n; ++i) cin >> p[i];
-    for(int i = 1; i <= n; ++i) cin >> h[i];
-    for(int i = 1; i < n; ++i){
-        int u, v; cin >> u >> v;
-        edge[v].push_back(u);
-        edge[u].push_back(v);
-    }
-    if(dfs(1)) cout << "YES" << endl;
-    else cout << "NO" << endl;
-    for(int i = 1; i <= n; ++i) edge[i].clear();
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Captain-Flint-and-Treasure"><a href="#D-Captain-Flint-and-Treasure" class="headerlink" title="D  Captain Flint and Treasure"></a>D  Captain Flint and Treasure</h4><p>tuopu排序</p>
-<p>如果传递的值为正, 就push进队列</p>
-<p>如果为负, 就将链倒过来, 不让累加值传递下去</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 2e5 + 104;
-vector<int> edge[N];
-ll a[N];
-int in[N], b[N];
-void solve(){
-    int n; cin >> n;
-    for(int i = 1; i <= n; ++i) cin >> a[i];
-    for(int i = 1; i <= n; ++i) cin >> b[i];
-    queue<int> que;
-    vector<int> g, ba;
-    for(int i = 1; i <= n; ++i){
-        if(b[i] == -1) continue;
-        else in[b[i]]++, edge[i].push_back(b[i]);
-    }
-    ll ans = 0;
-    for(int i = 1; i <= n; ++i){
-        if(in[i] == 0) que.push(i);
-    }
-    while(!que.empty()){
-        int now = que.front(); que.pop();
-        ans += a[now];
-        if(a[now] >= 0){
-            g.push_back(now);
-            if(b[now] != -1){
-                a[b[now]] += a[now];
-                in[b[now]] --;
-                if(in[b[now]] == 0){
-                    que.push(b[now]);
-                }
-            }
+        cin >> v[i];
+        ma[v[i]] ++;
+        if(ma[v[i]] == 2) tot2++;
+        if(ma[v[i]] == 4) tot4++;
+        if(ma[v[i]] == 6) tot6++;
+        if(ma[v[i]] == 8) tot8++;
+    };
+    int t, x; cin >> t;
+    char c;
+    for(int i = 1; i <= t; ++i){
+        bool flag = false;
+        cin >> c >> x;
+        if(c == '+'){
+            ma[x]++;
+            if(ma[x] == 8) tot8++;
+            if(ma[x] == 6) tot6++;
+            if(ma[x] == 4) tot4++;
+            if(ma[x] == 2) tot2++;
         }else{
-            ba.push_back(now);
-            if(b[now] == -1) continue;
-            in[b[now]]--;
-            if(in[b[now]] == 0){
-                que.push(b[now]);
-            }
+            if(ma[x] == 2) tot2--;
+            if(ma[x] == 4) tot4--;
+            if(ma[x] == 6) tot6--;
+            if(ma[x] == 8) tot8--;
+            ma[x]--;
         }
+        if(tot8 > 0) flag = true;
+        if(tot4 > 0 && tot2 > 2) flag = true;
+        if(tot2 > 1 && tot6 > 0) flag = true;
+        if(tot4 > 1) flag = true;
+        if(flag) cout << "YES" << endl;
+        else cout << "NO" << endl;
     }
-    cout << ans << endl;
-    for(int i = 0; i < sz(g); ++i) cout << g[i] << " ";
-    for(int i = sz(ba) - 1; i >= 0; --i) cout << ba[i] << " ";
-    cout << endl;
 }
 int main(){
-    // ios::sync_with_stdio(0), cin.tie(0);
+    ios::sync_with_stdio(0), cin.tie(0);
     int _ = 1;
+    // scanf("%d", &_);
+    // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-Pinkie-Pie-Eats-Patty-cakes"><a href="#C-Pinkie-Pie-Eats-Patty-cakes" class="headerlink" title="C  Pinkie Pie Eats Patty-cakes"></a>C  Pinkie Pie Eats Patty-cakes</h4><p>二分被叉了, 哭了, TvT</p>
+<blockquote>
+<p>容易想到要平均分摊只跟出现最多的数字有关</p>
+<p>$设出现最多的次数为maxcnt, 这些数字有cntfrq个$</p>
+<p>显然$cntfrq$个数字要挨在一起放, 不妨把它叫一个块</p>
+<p>贪心的先放一个块在最后</p>
+<p>剩下的块平均放在前$n - cntfrq$个位置上</p>
+<p>剩下$maxcnt - 1$ 个块</p>
+<p>结论:$(n - cntfrq) \div (maxcnt - 1) - 1$</p>
+</blockquote>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+void solve(){
+    int n; scanf("%d", &n);
+    vector< int > v(n + 1), cnt(n + 1, 0);
+    int maxcnt = 0, cntfrq = 0;
+    for(int i = 1; i <= n; ++i){
+        scanf("%d", &v[i]);
+        ++cnt[v[i]];
+        maxcnt = max(maxcnt, cnt[v[i]]);
+    } 
+    for(int i = 1; i <= n; ++i){
+        if(cnt[i] == maxcnt) ++cntfrq;
+    }
+    printf("%d\n", (n - cntfrq) / (maxcnt - 1) - 1);
+}
+int main(){
+    int _ = 1;
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-Rarity-and-New-Dress"><a href="#D-Rarity-and-New-Dress" class="headerlink" title="D  Rarity and New Dress"></a>D  Rarity and New Dress</h4><p>把图形分成四个方向, 左上, 左下, 右上, 右下</p>
+<p>可以看到是四个三角形, 符合dp特征</p>
+<p>经典悬线法</p>
+<p>$pro: 看到一个究极玄学的dp式子$</p>
+<p>$dp[i][j] = 1 + min(dp[i - 1][j - 1], dp[i - 1][j + 1], dp[i - 2][j])$</p>
+<p>$歪果仁还是秀,学不来学不来$ </p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 2050;
+
+// #define cin in
+// #define cout out
+ifstream in("in.txt");
+ofstream out("out.txt");
+
+char a[N][N];
+int leftup[N][N], leftdn[N][N], rightup[N][N], rightdn[N][N];
+int main(){
+    int n, m, ans = 0;
+    cin >> n >> m;
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            cin >> a[i][j];
+
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            a[i][j] == a[i - 1][j] and a[i][j] == a[i][j - 1] ? 
+            leftup[i][j] = min(leftup[i - 1][j], leftup[i][j - 1]) + 1:
+            leftup[i][j] = 1;
+
+    for(int i = n; i >= 1; --i)
+        for(int j = 1; j <= m; ++j)
+            a[i][j] == a[i + 1][j] and a[i][j] == a[i][j - 1] ? 
+            leftdn[i][j] = min(leftdn[i + 1][j], leftdn[i][j - 1]) + 1:
+            leftdn[i][j] = 1;
+
+    for(int i = 1; i <= n; ++i)
+        for(int j = m; j >= 1; --j)
+            a[i][j] == a[i - 1][j] and a[i][j] == a[i][j + 1] ? 
+            rightup[i][j] = min(rightup[i - 1][j], rightup[i][j + 1]) + 1:
+            rightup[i][j] = 1;
+
+    for(int i = n; i >= 1; --i)
+        for(int j = m; j >= 1; --j)
+            a[i][j] == a[i + 1][j] and a[i][j] == a[i][j + 1] ?
+            rightdn[i][j] = min(rightdn[i + 1][j], rightdn[i][j + 1]) + 1:
+            rightdn[i][j] = 1;
+
+    for(int i = 1; i <= n; ++i)
+        for(int j = 1; j <= m; ++j)
+            ans += min(min(leftdn[i][j], leftup[i][j]), min(rightdn[i][j], rightup[i][j]));
+    cout << ans << endl;
+    // system("puase");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -668,7 +643,7 @@ int main(){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.asilencebtf.top/2020/080232640.html">http://www.asilencebtf.top/2020/080232640.html</a>
+                    <a href="http://www.asilencebtf.top/2020/08094365.html">http://www.asilencebtf.top/2020/08094365.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -714,8 +689,8 @@ int main(){
                                     <span class="chip bg-color">dp</span>
                                 </a>
                             
-                                <a href="/tags/tuopu%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">tuopu排序</span>
+                                <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/">
+                                    <span class="chip bg-color">分类讨论</span>
                                 </a>
                             
                         </div>
@@ -886,7 +861,7 @@ int main(){
         repo: 'AsilenceBTF.github.io',
         owner: 'AsilenceBTF',
         admin: "AsilenceBTF",
-        id: '2020-08-02T11-21-41',
+        id: '2020-08-09T18-19-15',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -910,9 +885,68 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/08094365.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Codeforces 662(div2)">
+                        
+                        <span class="card-title">Codeforces 662(div2)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            人生总是大气大落落落落落落落落~
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/codeforces/" class="post-category">
+                                    codeforces
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                        <span class="chip bg-color">贪心</span>
+                    </a>
+                    
+                    <a href="/tags/dp/">
+                        <span class="chip bg-color">dp</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/">
+                        <span class="chip bg-color">分类讨论</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/080633087.html">
                     <div class="card-image">
@@ -930,9 +964,9 @@ int main(){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -954,59 +988,6 @@ int main(){
                     
                     <a href="/tags/%E8%B4%AA%E5%BF%83/">
                         <span class="chip bg-color">贪心</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/073120655.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Codeforces-edu-92">
-                        
-                        <span class="card-title">Codeforces-edu-92</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            激情午夜, 在线掉分
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-31
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/codeforces/" class="post-category">
-                                    codeforces
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/dp/">
-                        <span class="chip bg-color">dp</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%9E%9A%E4%B8%BE/">
-                        <span class="chip bg-color">枚举</span>
                     </a>
                     
                 </div>
