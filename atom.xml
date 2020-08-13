@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-08-09T10:49:58.147Z</updated>
+  <updated>2020-08-13T03:26:00.775Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Codeforces 664(div2)</title>
+    <link href="http://www.asilencebtf.top/2020/08134459.html"/>
+    <id>http://www.asilencebtf.top/2020/08134459.html</id>
+    <published>2020-08-13T02:56:55.000Z</published>
+    <updated>2020-08-13T03:26:00.775Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/1395&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;A-Boboniu-Likes-to-Color-Balls&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
+    
+    
+      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+      <category term="枚举" scheme="http://www.asilencebtf.top/tags/%E6%9E%9A%E4%B8%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>Codeforces 662(div2)</title>
@@ -39,11 +69,11 @@
       <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
     
     
-      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
     
       <category term="分类讨论" scheme="http://www.asilencebtf.top/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/"/>
+    
+      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
@@ -71,9 +101,9 @@
       <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
     
     
-      <category term="暴力" scheme="http://www.asilencebtf.top/tags/%E6%9A%B4%E5%8A%9B/"/>
-    
       <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+      <category term="暴力" scheme="http://www.asilencebtf.top/tags/%E6%9A%B4%E5%8A%9B/"/>
     
   </entry>
   
@@ -101,9 +131,9 @@
       <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
     
     
-      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
     
       <category term="tuopu排序" scheme="http://www.asilencebtf.top/tags/tuopu%E6%8E%92%E5%BA%8F/"/>
     
@@ -163,9 +193,9 @@
       <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
     
     
-      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+      <category term="贪心" scheme="http://www.asilencebtf.top/tags/%E8%B4%AA%E5%BF%83/"/>
     
       <category term="枚举" scheme="http://www.asilencebtf.top/tags/%E6%9E%9A%E4%B8%BE/"/>
     
