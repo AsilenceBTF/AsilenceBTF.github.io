@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-08-13T03:26:00.775Z</updated>
+  <updated>2020-09-11T09:23:32.177Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Codeforces 669(div2)</title>
+    <link href="http://www.asilencebtf.top/2020/091153687.html"/>
+    <id>http://www.asilencebtf.top/2020/091153687.html</id>
+    <published>2020-09-11T08:58:16.000Z</published>
+    <updated>2020-09-11T09:23:32.177Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://codeforces.ml/contest/1407&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;A-Ahahahahahahahaha&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="codeforces" scheme="http://www.asilencebtf.top/categories/codeforces/"/>
+    
+    
+      <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+      <category term="交互" scheme="http://www.asilencebtf.top/tags/%E4%BA%A4%E4%BA%92/"/>
+    
+      <category term="单调栈" scheme="http://www.asilencebtf.top/tags/%E5%8D%95%E8%B0%83%E6%A0%88/"/>
+    
+  </entry>
   
   <entry>
     <title>Codeforces 664(div2)</title>
