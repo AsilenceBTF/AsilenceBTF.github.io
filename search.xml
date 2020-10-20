@@ -1,201 +1,658 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Codeforces 658(div2)</title>
-    <url>/2020/07231255.html</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1382" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Common-Subsequence"><a href="#A-Common-Subsequence" class="headerlink" title="A  Common Subsequence"></a>A  Common Subsequence</h4><p>签到</p>
+    <title>写在前面</title>
+    <url>/2020/072355009.html</url>
+    <content><![CDATA[<p>昨天被学弟问到怎么好久不更hexo的博客了, 我一时语塞, 只能回可能是太忙了吧..(其实就是懒</p>
+<p>本来想着就在博客园凑合写一写, 可谁让我偏偏又是个偏执怪</p>
+<p>博客园优化弄了一下午是在弄不下去了, 这突然想起来自己以前写的工程目录, 何止是丑陋,简直是丑陋…</p>
+<p>好吧, 干脆全部推到重来算求, 重新拾起hexo</p>
+<p>熬夜一天半算是整理出大概的样子, 也不知道还会不会更新, 看心情吧~~</p>
+<blockquote>
+<p>已更新</p>
+<ul>
+<li>avatar logo</li>
+<li>首页轮播图 按天换==</li>
+<li>首页隐藏音乐播放器</li>
+<li>点击特效</li>
+<li>MathJax</li>
+<li>文章置顶和打赏</li>
+<li>友链页面</li>
+<li>留言面板</li>
+<li>关于我页面</li>
+<li>busuanzi统计</li>
+<li>Gitalk评论</li>
+<li>页脚</li>
+<li>链接URL优化</li>
+<li>Github emoji</li>
+<li>时间线归档</li>
+<li>底部标志更新</li>
+<li>音乐歌单更新</li>
+<li>CDN加速</li>
+<li>netlify托管与持续部署 解决了https和STL问题 </li>
+<li>数学公式渲染待优化….</li>
+</ul>
+</blockquote>
+<p>因为换了主题, 以前的markdown格式不兼容, 所以文章都被我下了, 不知道会不会再传 0.0</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+  </entry>
+  <entry>
+    <title>2020CCPC秦皇岛云打星</title>
+    <url>/2020/102035032.html</url>
+    <content><![CDATA[<p>19级学弟在11楼打秦皇岛,  和队友在-1云打星QAQ</p>
+<p>这波双指针我能补两天, tcl</p>
+<p>按我觉得由易到难的顺序</p>
+<h4 id="A-Greeting-from-Qinhuangdao"><a href="#A-Greeting-from-Qinhuangdao" class="headerlink" title="A  Greeting from Qinhuangdao"></a>A  <strong>Greeting from Qinhuangdao</strong></h4><p>组合数学,  再求下GCD</p>
 <pre class="line-numbers language-c++"><code class="language-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
+using namespace std;
 typedef long long ll;
 
-const int N = 5e5 + 105;
+const int N = 1e6 + 105;
 
-void solve(){
-    int n, m;
-    cin >> n >> m;
-    set<int>se;
-    for(int i = 1; i <= n; ++i){
-        int x; cin >> x;
-        se.insert(x);
+ll f(ll n){
+    if(n < 2) return 0;
+    return (n - 1) * n / 2;
+}
+void solve(int t){   
+    ll r, b, n;
+    cin >> r >> b;
+    cout << "Case #" << t << ": ";
+    n = r + b;
+    ll z = f(r), m = f(n);
+    ll gcd = __gcd(z, m);
+    z /= gcd, m /= gcd;
+    cout << z << "/" << m << endl;
+}
+int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="F-Friendly-Group"><a href="#F-Friendly-Group" class="headerlink" title="F  Friendly Group"></a>F  <strong>Friendly Group</strong></h4><p>给你一个图, 你需要选择一些点</p>
+<p>一个图中点的贡献cost = 所有边的个数 -  所有点的个数 - 连接图中却没选的点的个数</p>
+<p>注意cost可能是负数</p>
+<p>可以发现度&lt;=1的节点可选可不选 , 全部去掉剩下都选就行了</p>
+<p>学弟有并查集做的 QAQ </p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+using namespace std;
+typedef long long ll;
+
+const int N = 3e5 + 105;
+vector< int > edge[N];
+int lef[N], sum_n, sum_m, lef_n, vis[N];
+void dfs(int u, int fa){
+    vis[u] = 1;
+    for(auto v : edge[u]){
+        if(v == fa || vis[v]) continue;
+        dfs(v, u);
     }
-    int k = 0, flag = 0;
-    for(int i = 1; i <= m; ++i){
-        int x;
-        cin >> x;
-        if(se.count(x) > 0){
-            k = 1; flag = x;
+    if(sz(edge[u]) < 1) lef[u] = 1;
+}
+void dfs2(int u, int fa){
+    vis[u] = 1;
+    ++sum_n;
+    for(auto v : edge[u]){
+        if(vis[v] || v == fa) continue;
+        if(lef[v]) ++lef_n;
+        else{
+            dfs2(v, u);
         }
     }
-    if(k){
-        cout << "YES" << endl;
-        cout << k << " " << flag << endl;
-    }else{
-        cout << "NO" << endl;
+    sum_m += sz(edge[u]);
+}
+void solve(int t){
+    int n, m;
+    scanf("%d%d", &n, &m);
+    for(int i = 1; i <= m; ++i){
+        int u, v;
+        scanf("%d%d", &u, &v);
+        edge[u].push_back(v);
+        edge[v].push_back(u);
+    }
+    ll ans = 0;
+    for(int i = 1; i <= n; ++i){
+        if(!vis[i]) dfs(i, 0);
+    }
+    for(int i = 1; i <= n; ++i) vis[i] = 0;
+    for(int i = 1; i <= n; ++i){
+        if(!vis[i] && !lef[i]){
+            sum_n = sum_m = lef_n = 0;
+            dfs2(i, 0);
+            ans += max(0, sum_m/2 - sum_n - lef_n);
+        }
+    }
+    printf("Case #%d: %lld\n", t, ans);
+    for(int i = 1; i <= n; ++i){
+        edge[i].clear();
+        lef[i] = 0;
+        vis[i] = 0;
     }
 }
 int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
     int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Sequential-Nim"><a href="#B-Sequential-Nim" class="headerlink" title="B  Sequential Nim"></a>B  Sequential Nim</h4><blockquote>
-<p>结论: 首先碰到 &gt; 1 的数的人胜利</p>
-</blockquote>
-<p>证明的话只要分三种情况</p>
-<blockquote>
-<ol>
-<li><p>序列为3 3 3 3</p>
-<p>轮流拿 2 1 2 1 2 1 3</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li><p>序列为3 1 3 3</p>
-<p>轮流拿 3 1 2 1 3</p>
-</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li><p>序列为 3 1 1 3</p>
-<p>轮流拿 2 1 1 1 3</p>
-</li>
-</ol>
-</blockquote>
-<p>以上三种序列足以覆盖所有情况</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="G-Good-Number"><a href="#G-Good-Number" class="headerlink" title="G  Good Number"></a>G  <strong>Good Number</strong></h4><p>$k &gt;= 32 或 k==1$时 答案直接为n</p>
+<p>剩下小数据直接二分暴力了</p>
+<p>跑的时候死活过不去样例, 断点进去才发现pow精度有问题, 淦</p>
+<p>老老实实手写开根号了</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
+using namespace std;
 typedef long long ll;
 
-const int N = 1e5 + 105;
-int a[N];
-void solve(){
-    int n;
-    cin >> n;
-    int one = 0, idx = 0;
-    for(int i = 1; i <= n; ++i){
-        cin >> a[i];
-        if(a[i] == 1) one++;
-        else{
-            if(idx == 0) idx = i;
+const int N = 1e6 + 105;
+
+ll n, k;
+ll pow_(ll a) { // pow(a, 1/k)
+    ll l = 1, r = n, mid, ans = 0;
+    while(l <= r){
+        mid = l + r >> 1;
+        ll res = 1;
+        int f = 0;
+        for(int j = 1; j <= k; ++j){
+            res *= mid;
+            if(res > a){
+                f = 1; break;
+            }
+        }
+        if(f == 1){
+            r = mid - 1;
+        }else{
+            ans = max(ans, mid);
+            l = mid + 1;
         }
     }
-    if(one == 0){
-        cout << "First" << endl; return;
-    }else if(one == n){
-        if(n&1) cout << "First" << endl;
-        else cout << "Second" << endl;
-    }else{
-        if(idx&1) cout << "First" << endl;
-        else cout << "Second" << endl;
-    }
-
+    return ans;
 }
-int main(){c++
-    cin.tie(0);
-    ios::sync_with_stdio(0);
+ll check(ll idx){
+    ll l = 1, r = n, mid, ans = 0;
+    while(l <= r){
+        mid = l + r >> 1;
+        ll res = pow_(mid);
+        if(res >= idx){
+            if(res == idx){
+                ans = max(ans, mid);
+                l = mid + 1;
+            }
+            else
+                r = mid - 1;
+        }else{
+            l = mid + 1;
+        }
+    }
+    return min(ans, n);
+}
+ll pre(ll n, ll idx){
+    return n / idx;
+}
+void solve(int t){   
+    scanf("%lld%lld", &n, &k);
+    printf("Case #%d: ", t);
+    if(k >= 32 || k == 1){
+        printf("%lld\n", n); return;
+    }
+    ll l = 1, r, idx = 1, ans = 0;
+    while(true){
+        r = check(idx);
+        if(l > r) break;
+        ans += pre(r, idx) - pre(l - 1, idx);
+        ++idx;
+        l = r + 1;
+    }
+    printf("%lld\n", ans);
+}
+int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    int _ = 1;
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="E-Exam-Results"><a href="#E-Exam-Results" class="headerlink" title="E  Exam Results"></a>E  <strong>Exam Results</strong></h4><p>n个学生,  每个学生可能有两种成绩, 要么是a[i], 要么是b[i]</p>
+<p>现在规定所有小于最高成绩x*p/100的都算不及格</p>
+<p>现在问最多及格多少人</p>
+<p>枚举最高分, 双指针扫一遍就好了, 写了好久, sad</p>
+<p>注意小于最高分的一定要够n个人</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+using namespace std;
+
+#define ALL(x) x.begin(), x.end()
+#define sz(x) int(x.size())
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e6 + 105;
+struct node{
+    int id;
+    ll a, b;
+}arr[N];
+int vis[N];
+void solve(int t){
+    int n, p, tot = 0;
+    scanf("%d%d", &n, &p);
+    vector< pair< ll, int > > v;
+    for(int i = 1; i <= n; ++i){
+        vis[i] = 0;
+        cin >> arr[i].a >> arr[i].b;
+        arr[i].a *= 100, arr[i].b *= 100;
+        v.push_back({arr[i].a, i});
+        v.push_back({arr[i].b, i});
+        arr[i].id = i;
+    } 
+    sort(ALL(v));
+    int res = 0, l = 0, r = -1;
+    while(res < n){
+        ++r;
+        pair< ll, int > now = v[r];
+        if(vis[now.second] == 0){
+            ++res;
+        }
+        vis[now.second]++;
+    }
+    int ans = 0;
+    while(l <= r){
+        while(v[l].first < v[r].first/100 * p && l <= r){
+            vis[v[l].second]--;
+            if(vis[v[l].second] == 0) --res;
+            ++l;
+        }
+        ans = max(ans, res);
+        ++r;
+        if(r >= sz(v)) break;
+        if(vis[v[r].second] == 0)++res;
+        vis[v[r].second]++;
+    }
+    printf("Case #%d: %d\n", t, ans);
+}
+int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    int _ = 1;
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="K-Kingdom’s-Power"><a href="#K-Kingdom’s-Power" class="headerlink" title="K   Kingdom’s Power"></a>K   <strong>Kingdom’s Power</strong></h4><p>tree dp</p>
+<p>考虑每个点要么从根节点来, 要么从其他叶节点来</p>
+<p>预处理一下每个节点到根节点的距离</p>
+<p>那么每个子树, 每次枚举较浅的节点去更新深的节点(上一步进行排序)</p>
+<p>最后把所有叶子的答案加起来就是了</p>
+<pre class="line-numbers language-c++"><code class="language-c++">/*
+ * @Author: AsilenceBTF
+ * @LastEditTime: 2020-10-20 10:23:25
+ */
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ALL(x) x.begin(), x.end()
+#define sz(x) int(x.size())
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e6 + 105;
+vector< pair< int, int > > edge[N];
+int val[N];
+void init(int n){
+    for(int i = 1; i <= n; ++i) 
+        edge[i].clear(), val[i] = 0;
+}
+int get_val(int u){
+    if(sz(edge[u]) == 0) return 1;
+    for(int i = 0; i < sz(edge[u]); ++i){
+        edge[u][i].first = get_val(edge[u][i].second);
+    }
+    sort(ALL(edge[u]));
+    return edge[u].back().first + 1;
+}
+int dfs(int u, int dep, int v){
+    val[u] = v;
+    if(sz(edge[u]) == 0) return 1;
+    int t = v;
+    for(int i = 0; i < sz(edge[u]); ++i){
+        t = min(dep, dfs(edge[u][i].second, dep + 1, t + 1));
+    }
+    return t + 1;
+}
+void solve(int t){
+    int n;
+    scanf("%d", &n);
+    init(n);
+    for(int i = 2; i <= n; ++i){
+        int f; scanf("%d", &f);
+        edge[f].push_back(make_pair(0, i));
+    }
+    get_val(1);
+    dfs(1, 0, 0);
+    ll ans = 0;
+    for(int i = 1; i <= n; ++i){
+        if(sz(edge[i]) == 0) 
+            ans += val[i];
+    }
+    printf("Case #%d: ", t);
+    printf("%lld\n", ans);
+}
+int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    int _ = 1;
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CCPC</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>思维</tag>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Codeforces 669(div2)</title>
+    <url>/2020/091153687.html</url>
+    <content><![CDATA[<p><a href="https://codeforces.ml/contest/1407" target="_blank" rel="noopener">传送门</a></p>
+<h4 id="A-Ahahahahahahahaha"><a href="#A-Ahahahahahahahaha" class="headerlink" title="A  Ahahahahahahahaha"></a>A  Ahahahahahahahaha</h4><blockquote>
+<p>题意: 求一个长度不小于n/2的子序列, 奇数位置和偶数位置和相等</p>
+</blockquote>
+<p>分类讨论, 这a题就离谱</p>
+<p>$记录0的个数cnt_0, 1的个数cnt_1$</p>
+<p>$当cnt_0 &gt;= \frac{n}{2} 时, 输出\frac{n}{2} 个0$</p>
+<p>$当cnt1 &gt;= \frac{n}{2}且 \frac{n}{2}为偶数, 输出\frac{n}{2}个1$</p>
+<p>$其他情况输出\frac{n}{2}个1和1个0$</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+#define debug(x) cout << "##### " << x << endl; 
+typedef long long ll;
+
+// ifstream in("in.txt");
+// ofstream out("out.txt");
+// #define cin in
+// #define cout out 
+
+int a[5000];
+void solve(){
+    int n, o = 0, z = 0;
+    cin >> n;
+    for(int i = 1; i <= n; ++i){
+        int x; cin >> x;
+        a[i] = x;
+        if(x) ++o;
+        else ++z;
+    }
+    if(n/2%2 == 0){
+        cout << n / 2 << endl;
+        for(int i = 1; i <= n/2; ++i){
+            if(z > o) cout << "0 ";
+            else cout << "1 ";
+        }
+        cout << endl;
+    }else{
+        if(z >= o){
+            cout << n/2 << endl;
+            for(int i = 1; i <= n/2; ++i)
+            cout << "0 ";
+            cout << endl;
+        }else{
+            int f = 0, p = 0;
+            if(o > z){
+                cout << n / 2 + 1 << endl;
+                for(int i = 1; i <= n/2 + 1; ++i){
+                    cout << "1 ";
+                }
+                cout << endl;
+            }
+            else{
+                cout << n / 2 + 1 << endl;
+                for(int i = 1; i <= n; ++i){
+                    if(a[i] == 0){
+                        if(p == 0) cout << "0 ";
+                        p = 1;
+                    }else{
+                        if(f <= n/2) cout << "1 ";
+                        ++f;
+                    }
+                }
+                cout << endl;
+            }
+        }
+    }
+}
+int main(){
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Prefix-Flip"><a href="#C-Prefix-Flip" class="headerlink" title="C  Prefix Flip"></a>C  Prefix Flip</h4><p>若串首字符不等于目标字符, 则直接翻转</p>
-<p>若串首字符等于目标字符, 则先翻转串首, 在翻转</p>
-<p>这样构造一定小于$2n$</p>
-<p>双指针记录一下串首和串尾的位置和翻转情况即可</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B-Big-Vova"><a href="#B-Big-Vova" class="headerlink" title="B  Big Vova"></a>B  Big Vova</h4><blockquote>
+<p>题意 重排数组a, 使得前缀gcd 字典序最大</p>
+</blockquote>
+<p>暴力每个位置, 贪心找最大值</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
+#define debug(x) cout << "##### " << x << endl; 
 typedef long long ll;
 
-const int N = 1e5 + 105;
+// ifstream in("in.txt");
+// ofstream out("out.txt");
+// #define cin in
+// #define cout out 
+
+const int N = 1e3 + 105;
+int a[N], vis[N];
 void solve(){
-    int n, l, r, f = 0; cin >> n;
-    string s, t;
-    cin >> s >> t;
-    if(s == t){
-        cout << 0 << endl; return;
+    int n; cin >> n;
+    int Gcd = 0;
+    for(int i = 1; i <= n; ++i){
+        cin >> a[i]; vis[i] = 0;
+        Gcd = max(Gcd, a[i]);
     }
-    l = 0, r = n - 1;
-    vector<int> ans;
-    for(int i = n - 1; i >= 0; --i){
-        if((s[l] == t[i] && f%2 == 0) || (s[l] != t[i] && f%2 == 1)){
-            ans.push_back(1);
+    for(int i = 1; i <= n; ++i){
+        int sum = 0, idx = 0;
+        for(int j = 1; j <= n; ++j){
+            if(vis[j]) continue;
+            if(__gcd(Gcd, a[j]) > sum){
+                sum = __gcd(Gcd, a[j]);
+                idx = j;
+            }
         }
-        ans.push_back(i + 1);
-        f++;
-        swap(l, r);
-        if(f&1) ++r;
-        else --r;
+        vis[idx] = 1;
+        Gcd = sum;
+        cout << a[idx] << " ";
     }
-    cout << sz(ans) << " ";
-    for(auto it : ans) cout << it << " ";
     cout << endl;
 }
 int main(){
-    cin.tie(0);
-    ios::sync_with_stdio(0);
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Unmerge"><a href="#D-Unmerge" class="headerlink" title="D  Unmerge"></a>D  Unmerge</h4><p>01背包变形</p>
-<p>观察发现, 两个前缀最大之间的数是可以连续的存在一个序列里的</p>
-<p>预处理出所有这样的段</p>
-<p>dp一下能不能组成长度为n的序列即可</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
-#define sz(x) int(x.size())
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-Chocolate-Bunny"><a href="#C-Chocolate-Bunny" class="headerlink" title="C  Chocolate Bunny"></a>C  Chocolate Bunny</h4><blockquote>
+<p>题意: 交互题, 每次可以询问两个位置i, j 返回a[i]%a[j] 最多询问2*n次, 求a</p>
+</blockquote>
+<p>设定初始基准idx = 1</p>
+<p>从2~n 开始遍历</p>
+<p>每次询问a[idx]%a[i], a[i]%a[idx]</p>
+<p>较大的值可以确定, 较小的则重新选为基准</p>
+<p>最后剩下的就是n</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
+#define debug(x) cout << "##### " << x << endl; 
 typedef long long ll;
 
-const int N = 4050;
-int a[N], pre[N], preidx[N], dp[N];
-void solve(){
-    int n; cin >> n;
-    int m = n + n;
-    for(int i = 1; i <= m; ++i){
-        cin >> a[i];
-        pre[i] = a[i];
-        preidx[i] = i;
-        if(pre[i - 1] > pre[i]){
-            pre[i] = pre[i - 1];
-            preidx[i] = preidx[i - 1];
-        } dp[i] = 0;
-    }
-    vector<int> v;
-    for(int i = 2; i <= m; ++i){
-        if(preidx[i] == i){
-            v.push_back(preidx[i] - preidx[i - 1]); 
-        }
-    }
-    for(auto it : v){
-        for(int j = n; j >= it; --j){
-            dp[j] = max(dp[j], dp[j - it] + it);
-        }
-    }
-    if(dp[n] == n) cout << "YES" << endl;
-    else cout << "NO" << endl;
-}
+// ifstream in("in.txt");
+// ofstream out("out.txt");
+// #define cin in
+// #define cout out 
+
+const int N = 1e4 + 105;
+int a[N];
 int main(){
-    int  _ = 1;
-    cin >> _;c++
-    for(int i = 1; i <= _; ++i) solve();
+    int n; cin >> n;
+    if(n == 1){
+        cout << "! 1" << endl;
+    }else{
+        int idx = 1, x, y;
+        for(int i = 2; i <= n; ++i){
+            cout << "? " << i << " " << idx << endl;
+            cin >> x;
+            cout << "? " << idx << " " << i << endl;
+            cin >> y;
+            if(x > y) a[i] = x;
+            else a[idx] = y, idx = i;
+        }
+        a[idx] = n;
+        cout << "!";
+        for(int i = 1; i <= n; ++i){
+            cout << " " << a[i];
+        }
+        cout << endl;
+    }
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-Discrete-Centrifugal-Jumps"><a href="#D-Discrete-Centrifugal-Jumps" class="headerlink" title="D  Discrete Centrifugal Jumps"></a>D  Discrete Centrifugal Jumps</h4><blockquote>
+<p>题意:  懒得写了</p>
+</blockquote>
+<p>跳跃的条件大概就是找一个凹槽或者突起, 就能跳</p>
+<p>找到每个位置可以跳的位置, 要么是左边第一个小于它的, 要么是左边第一个大于它的(细想这样求出来的是凹槽或突起)</p>
+<p>右边同理</p>
+<p>这个单调栈可以预处理</p>
+<p>最后dp一下就可</p>
+<p>$O(n)$</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+#define debug(x) cout << "##### " << x << endl; 
+typedef long long ll;
+
+// ifstream in("in.txt");
+// ofstream out("out.txt");
+// #define cin in
+// #define cout out 
+const int N = 3e5 + 104;
+vector< int > jump[N];
+int h[N], dp[N];
+int main(){
+    int n; 
+    scanf("%d", &n);
+    for(int i = 1; i <= n; ++i){
+        scanf("%d", &h[i]);
+        dp[i] = i - 1;
+    }
+    stack< int > sta;
+    for(int i = 1; i <= n; ++i){
+        if(i == 1 || sz(sta) == 0){
+            sta.push(i);
+        }else{
+            while(sz(sta) && h[sta.top()] < h[i]) sta.pop();
+            if(sz(sta)) jump[i].push_back(sta.top());
+            sta.push(i);
+        }
+    }
+    while(sz(sta)) sta.pop();
+    for(int i = 1; i <= n; ++i){
+        if(i == 1 || sz(sta) == 0){
+            sta.push(i);
+        }else{
+            while(sz(sta) && h[sta.top()] > h[i]) sta.pop();
+            if(sz(sta)) jump[i].push_back(sta.top());
+            sta.push(i);
+        }
+    }
+    while(sz(sta)) sta.pop();
+    for(int i = n; i >= 1; --i){
+        if(i == n || sz(sta) == 0){
+            sta.push(i);
+        }else{
+            while(sz(sta) && h[sta.top()] > h[i]) sta.pop();
+            if(sz(sta)) jump[sta.top()].push_back(i);
+            sta.push(i);
+        }
+    }  
+    while(sz(sta)) sta.pop();
+    for(int i = n; i >= 1; --i){
+        if(i == n || sz(sta) == 0){
+            sta.push(i);
+        }else{
+            while(sz(sta) && h[sta.top()] < h[i]) sta.pop();
+            if(sz(sta)) jump[sta.top()].push_back(i);
+            sta.push(i);
+        }
+    }
+    for(int i = 1; i <= n; ++i){
+        for(auto to : jump[i]){
+            dp[i] = min(dp[i], dp[to] + 1);
+        }
+    }  
+    cout << dp[n] << endl;
+    // system("pause");
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -220,6 +677,186 @@ int main(){
       </categories>
       <tags>
         <tag>dp</tag>
+        <tag>交互</tag>
+        <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Codeforces 664(div2)</title>
+    <url>/2020/08134459.html</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1395" target="_blank" rel="noopener">传送门</a></p>
+<h4 id="A-Boboniu-Likes-to-Color-Balls"><a href="#A-Boboniu-Likes-to-Color-Balls" class="headerlink" title="A  Boboniu Likes to Color Balls"></a>A  Boboniu Likes to Color Balls</h4><p>能构成回文的条件至少三个偶数, 暴力一下就好了</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+bool f(int a, int b, int c, int d){
+    int sum = a&1;
+    sum += b&1;
+    sum += c&1;
+    sum += d&1;
+    if(sum <= 1) return true;
+    return false;
+}
+void solve(){
+    int r, g, b, w;
+    cin >> r >> g >> b >> w;
+    int num = min(min(r, g), b);
+    if(num > 0) num = 1;
+    if(f(r, g, b, w)) cout << "Yes" << endl;
+    else if(f(r - num, g - num, b - num, w + num*3)) cout << "Yes" << endl;
+    else cout << "No" << endl;
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B-Boboniu-Plays-Chess"><a href="#B-Boboniu-Plays-Chess" class="headerlink" title="B  Boboniu Plays Chess"></a>B  Boboniu Plays Chess</h4><p>白给题, 拼手速吧</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+void solve(){
+    int n, m, x, y;
+    cin >> n >> m >> x >> y;
+    printf("%d %d\n", x, y);
+    for(int j = 1; j <= m; ++j){
+        if(y == j) continue;
+        printf("%d %d\n", x, j);
+    }
+    int f = 1;
+    for(int i = 1; i <= n; ++i){
+        if(i == x) continue;
+        if(f){
+            for(int j = m; j >= 1; --j){
+                printf("%d %d\n", i, j);
+            }
+        }else{
+            for(int j = 1; j <= m; ++j){
+                printf("%d %d\n", i, j);
+            }
+        }
+        f = 1 - f;
+    }
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    // cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-Boboniu-and-Bit-Operations"><a href="#C-Boboniu-and-Bit-Operations" class="headerlink" title="C  Boboniu and Bit Operations"></a>C  Boboniu and Bit Operations</h4><p>数据看错了, 把$2^{9}$ 看成$1e9$了, 强行给自己增加hard version T_T</p>
+<p>$2^{9}$直接暴力就好了, 不用说的水题</p>
+<p>$1e9$的做法就是, 从高位到低位枚举贪心</p>
+<p>如果存在某个$b_j$ 使得前面枚举的更高位都满足, 且当前位为0, 则枚举的当前位 置0</p>
+<p>否则当前位 置1</p>
+<p>$O(nmlog^2(num))$</p>
+<p>还是很快的, 1e18感觉也能跑</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N =2e5 + 105;
+ll bit[36];
+int main(){
+    ios :: sync_with_stdio(0), cin.tie(0);
+    int n, m; cin >> n >> m;
+    vector< ll > a(n + 2), b(m + 2);
+    for(int i = 1; i <= n; ++i) cin >> a[i];
+    for(int i = 1; i <= m; ++i) cin >> b[i];
+    for(int up = 32; up >= 0; --up){
+        int s = 0;
+        for(int i = 1; i <= n; ++i){
+            int f = 0;
+            for(int j = 1; j <= m; ++j){
+                int f1 = 1;
+                if((a[i] & b[j]) >> up & 1) continue;
+                for(int dn = 32; dn > up; --dn){
+                    if(((a[i] & b[j]) >> dn & 1) <= bit[dn]) continue;
+                    f1 = 0; break;
+                }
+                if(f1) { f = 1; break; } 
+            }
+            s += f;
+        }
+        if(s == n) bit[up] = 0;
+        else bit[up] = 1;
+    } 
+    ll res = 0;
+    for(int i = 32; i >= 0; --i) 
+        res += bit[i] << i;
+    cout << res << endl;
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-Boboniu-Chats-with-Du"><a href="#D-Boboniu-Chats-with-Du" class="headerlink" title="D  Boboniu Chats with Du"></a>D  Boboniu Chats with Du</h4><p>枚举被禁言多少天, 剩下的天数可以算出来</p>
+<p>枚举的时候, 我们贪心的先放一个在最后一格, 其他的再往前放</p>
+<p>用前缀更新答案, 注意判断边界</p>
+<pre class="line-numbers language-c++"><code class="language-c++">const int N =2e5 + 105;
+ll a[N], b[N], prea[N], preb[N];
+void solve(){
+    int d, n, t1 = 0, t2 = 0;
+    ll m, ans = 0;
+    cin >> n >> d >> m;
+    for(int i = 1; i <= n; ++i){
+        ll x; cin >> x;
+        if(x > m) a[++t1] = x;
+        else b[++t2] = x, ans += x;
+    }
+    sort(a + 1, a + 1 + t1, greater<ll>());
+    sort(b + 1, b + 1 + t2, greater<ll>());
+    for(int i = 1; i <= t1; ++i)
+        prea[i] = prea[i - 1] + a[i];
+    for(int i = 1; i <= t2; ++i)
+        preb[i] = preb[i - 1] + b[i];
+    for(int i = t2 + 1; i <= n; ++i)
+        preb[i] = preb[i - 1];
+    for(int i = 1; i <= t1; ++i){
+        if(1 + 1ll*(i - 1)*(d + 1) > n) break;
+        ll k = n - (1 + (i - 1)*(d + 1));
+        ans = max(ans, prea[i] + preb[k]);
+    }
+    cout << ans << endl;
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    // cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>codeforces</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+        <tag>枚举</tag>
       </tags>
   </entry>
   <entry>
@@ -416,449 +1053,6 @@ int main(){
         <tag>dp</tag>
         <tag>分类讨论</tag>
         <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Codeforces-660-div2</title>
-    <url>/2020/080232640.html</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1388" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Captain-Flint-and-Crew-Recruitment"><a href="#A-Captain-Flint-and-Crew-Recruitment" class="headerlink" title="A Captain Flint and Crew Recruitment"></a>A Captain Flint and Crew Recruitment</h4><p>特判 31 44 36 40</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-int a[10] = {6, 10, 14, 15, 21, 22};
-void solve(){
-    int n;
-    cin >> n;
-    if(n < 31) cout << "NO" << endl;
-    else{
-        cout << "YES" << endl;
-        if(n == 31) cout << "6 10 14 1" << endl;
-        else if(n == 44) cout << "6 10 15 13" << endl;
-        else if(n == 36) cout << "6 10 15 5" << endl;
-        else if(n == 40) cout << "6 10 15 9" << endl;
-        else cout << 6 << " " << 10 << " " << 14 << " " << n - 30 << endl;
-    }
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Captain-Flint-and-a-Long-Voyage"><a href="#B-Captain-Flint-and-a-Long-Voyage" class="headerlink" title="B  Captain Flint and a Long Voyage"></a>B  Captain Flint and a Long Voyage</h4><p>删去的部分用1000覆盖</p>
-<p>留下的部分用1001覆盖</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-int a[N*8];
-void solve(){
-    int n; cin >> n;
-    for(int i = 1; i <= n; ++i) {
-        if(i%4 == 0) a[i] = 1;
-        else a[i] = 0;
-    }
-    vector<int> ans;
-    for(int i = n + 1; i <= n*4; ++i){
-        if(i%4 == 0 || i%4 == 1) a[i] = 1;
-        else a[i] = 0;
-    }
-    int num = 0, b = 1;
-    for(int i = 1; i <= n*4; ++i){
-        num += b*a[i]; b*=2;
-        if(i%4 == 0){
-            ans.push_back(num); b = 1;
-            num = 0;
-        }
-    }
-    reverse(ALL(ans));
-    for(auto it : ans) cout << it;
-    cout << endl;
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Uncle-Bogdan-and-Country-Happiness"><a href="#C-Uncle-Bogdan-and-Country-Happiness" class="headerlink" title="C  Uncle Bogdan and Country Happiness"></a>C  Uncle Bogdan and Country Happiness</h4><p>阴间题面仿佛强行喂我吃奥里给, wdnmd</p>
-<blockquote>
-<p>题意: 初始时每个人都在标号为<code>1</code>的城市,然后回到每个人各自的城市,选择从起点到终点的最短路径,相邻城市之间的距离一样,每个人在进入一个城市时可以改变他的心情,从<code>Good</code>变为<code>Bad</code>,但是不可以从<code>Bad</code>变成<code>Good</code>,每个人进入一个城市时他的心情会影响这个城市的幸福指数,如果是<code>Good</code>那么指数加一否则减一,在城市里面心情是不会改变的,现在给出一种城市幸福指数的可能性,计算有没有可能得到这种幸福指数格局? </p>
-</blockquote>
-<p>设经过节点u的人有s个, 好心情的有g个, 坏心情有b个</p>
-<p>$ s = g + b, h = g - b$</p>
-<p>得到$ g = \frac {s + h}{2}     $</p>
-<p>综上得到三个约束条件: </p>
-<ol>
-<li>$(s + h) mod2==0 $</li>
-<li>$0\leq g \leq s$</li>
-<li>$g \geq \sum g_{son} $</li>
-</ol>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-int p[N], h[N], s[N], g[N];
-vector<int> edge[N];
-// h = g - b;
-// s = g + b;
-// g = (h + s) / 2;
-bool dfs(int u, int fa = 0){
-    s[u] = p[u];
-    int sg = 0;
-    for(auto v : edge[u]){
-        if(v == fa) continue;
-        if(!dfs(v, u)) return false;
-        s[u] += s[v];
-        sg += g[v];
-    }
-    g[u] = (h[u] + s[u]) / 2;
-    if(g[u] > s[u] || g[u] < 0) return false;
-    if((h[u] + s[u]) % 2) return false;
-    if(g[u] < sg) return false;
-    return true;
-}
-void solve(){
-    int n, m;
-    cin >> n >> m;
-    for(int i = 1; i <= n; ++i) cin >> p[i];
-    for(int i = 1; i <= n; ++i) cin >> h[i];
-    for(int i = 1; i < n; ++i){
-        int u, v; cin >> u >> v;
-        edge[v].push_back(u);
-        edge[u].push_back(v);
-    }
-    if(dfs(1)) cout << "YES" << endl;
-    else cout << "NO" << endl;
-    for(int i = 1; i <= n; ++i) edge[i].clear();
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Captain-Flint-and-Treasure"><a href="#D-Captain-Flint-and-Treasure" class="headerlink" title="D  Captain Flint and Treasure"></a>D  Captain Flint and Treasure</h4><p>tuopu排序</p>
-<p>如果传递的值为正, 就push进队列</p>
-<p>如果为负, 就将链倒过来, 不让累加值传递下去</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 2e5 + 104;
-vector<int> edge[N];
-ll a[N];
-int in[N], b[N];
-void solve(){
-    int n; cin >> n;
-    for(int i = 1; i <= n; ++i) cin >> a[i];
-    for(int i = 1; i <= n; ++i) cin >> b[i];
-    queue<int> que;
-    vector<int> g, ba;
-    for(int i = 1; i <= n; ++i){
-        if(b[i] == -1) continue;
-        else in[b[i]]++, edge[i].push_back(b[i]);
-    }
-    ll ans = 0;
-    for(int i = 1; i <= n; ++i){
-        if(in[i] == 0) que.push(i);
-    }
-    while(!que.empty()){
-        int now = que.front(); que.pop();
-        ans += a[now];
-        if(a[now] >= 0){
-            g.push_back(now);
-            if(b[now] != -1){
-                a[b[now]] += a[now];
-                in[b[now]] --;
-                if(in[b[now]] == 0){
-                    que.push(b[now]);
-                }
-            }
-        }else{
-            ba.push_back(now);
-            if(b[now] == -1) continue;
-            in[b[now]]--;
-            if(in[b[now]] == 0){
-                que.push(b[now]);
-            }
-        }
-    }
-    cout << ans << endl;
-    for(int i = 0; i < sz(g); ++i) cout << g[i] << " ";
-    for(int i = sz(ba) - 1; i >= 0; --i) cout << ba[i] << " ";
-    cout << endl;
-}
-int main(){
-    // ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>codeforces</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-        <tag>贪心</tag>
-        <tag>tuopu排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Codeforces-659-div2</title>
-    <url>/2020/072559060.html</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1384" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Common-Prefixes"><a href="#A-Common-Prefixes" class="headerlink" title="A  Common Prefixes"></a>A  Common Prefixes</h4><p>懒得想就暴力两层</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-int a[150];
-void solve(){
-    int n; cin >> n;
-    for(int i = 1; i <= n; ++i) cin >> a[i];
-    string s = string(150, 'a');
-    cout << s << endl;
-    for(int i = 1; i <= n; ++i){
-        for(int j = 0; j < a[i]; ++j){
-            cout << s[j];
-        }
-        for(int j = a[i]; j < 150; ++j){
-            s[j]++;
-            if(s[j] > 'z') s[j] = 'a';
-            cout << s[j];
-        }cout << endl;
-    }
-}
-int main(){
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B1-Koa-and-the-Beach-Easy-Version"><a href="#B1-Koa-and-the-Beach-Easy-Version" class="headerlink" title="B1  Koa and the Beach (Easy Version)"></a>B1  Koa and the Beach (Easy Version)</h4><p><img src="https://i.loli.net/2020/07/25/9KN4cCmMLSr28Wd.png" alt="tem3.png"></p>
-<p>万万没想到, $O(n*n*k*t)$的dp还真就是$1e9$  (狗头)</p>
-<p>对着时间线和位置暴力dp, 注意自己所在的位置也是可以转移的</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 10050;
-int d[150], n, l, k, t[300];
-bool dp[105][N << 1];
-void solve(){
-    cin >> n >> k >> l;
-    for(int i = 1; i <= n; ++i)
-        cin >> d[i];
-    for(int i = 0; i < k + k; ++i){
-        t[i] = i;
-        if(i > k) t[i] = k - (i - k);
-    }
-    for(int j = 0; j <= 2*n*k + 1; ++j){
-        for(int i = 1; i <= n; ++i){
-            dp[i][j] = false;
-            dp[0][j] = true;
-        }
-        dp[n + 1][j] = false;
-    }
-    d[n + 1] = -3000;
-    bool flag = false;
-    for(int i = 1; i <= n; ++i){
-        for(int j = 0; j <= 2*n*k; ++j){
-            if(dp[i - 1][j] && d[i] + t[(j + 1)%(k + k)] <= l){
-                dp[i][j + 1] = true;
-            }else if(dp[i][j] && d[i] + t[(j + 1)%(k + k)] <= l){
-                dp[i][j + 1] = true;
-            }
-            if(dp[n][j + 1]) flag = true;
-        }
-    }
-    if(flag){
-        cout << "YES" << endl;
-    }else{
-        cout << "NO" << endl;
-    }
-}
-int main(){
-    ios::sync_with_stdio(0),  cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-String-Transformation-1"><a href="#C-String-Transformation-1" class="headerlink" title="C  String Transformation 1"></a>C  String Transformation 1</h4><p>题意读的爆炸, 球球了, 别再出阅读理解了</p>
-<blockquote>
-<p>每次选任意个一样的字母x, 全部替换成y (y &gt; x)</p>
-</blockquote>
-<p>最后能否将$A \Rightarrow  B$</p>
-<p>因为是从小到大变, 出现$ ai &gt; bi$ 就-1好了</p>
-<p>记录一下每个字母的所有目标字母</p>
-<p>从小到大枚举贪心,  如果没有出现已经改变过的(当前字母), 就直接改变到目标字母, ++ans</p>
-<p>否则, 就加到已经改变的字母上, 攒到一起最后更改</p>
-<p>样例把人误导了  :no_mouth:  </p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-const int N = 1e5 + 105;
-void solve(){
-    set<int>se[28];
-    for(int i = 0; i < 26; ++i) se[i].clear();
-    int n;
-    cin >> n;
-    string a, b;
-    cin >> a >> b;
-    for(int i = 0; i < n; ++i){
-        if(a[i] > b[i]){
-            cout << -1 << endl; return;
-        }
-        if(a[i] == b[i]) continue;
-        se[a[i] - 'a'].insert(b[i] - 'a');
-    }
-    ll ans = 0;
-    for(int i = 0; i < 26; ++i){
-        int vis[26] = {0};
-        for(auto it : se[i]){
-            int flag = 0;
-            for(int k = i + 1; k < it; ++k){
-                if(vis[k]){
-                    se[k].insert(it);
-                    flag = 1; break;
-                }
-            }
-            if(flag) continue;
-            vis[it] = 1;
-            ans ++;
-        }
-    }
-    cout << ans << endl;
-}   
-int main(){
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-GameGame"><a href="#D-GameGame" class="headerlink" title="D  GameGame"></a>D  GameGame</h4><p>学弟给了波思路, 还是没切出来, wtcl  :sob: </p>
-<p>很容易想到只要枚举最高位的情况就行</p>
-<p>但是这里的最高位不是实际最高位, 而是有效最高位</p>
-<blockquote>
-<p>例如 2 2 1 1 1</p>
-</blockquote>
-<p>这里的最高位就不是2贡献的, 因为2最高位个数是偶数, 最后一定会抵消</p>
-<p>那么最高位个数一定是奇数</p>
-<p>注意 游戏是你先手, 所以最终你拿到的数字个数一定是$ \lceil n / 2 \rceil $</p>
-<p>利用这个特点我们需要让对手拿到偶数个最高位</p>
-<p>那么必输的情况只有一种$one%4 == 3 \bigwedge  zero%2 == 0$</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define lowbit(x) ((x) & (-x))
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-void solve(){
-    int n; cin >> n;
-    vector < int > a(n + 1);
-    int d = 0;
-    for(int i = 1; i <= n; ++i){
-        cin >> a[i];
-        d ^= a[i];
-    }
-    if(d == 0){
-        cout << "DRAW" << endl; return;
-    }
-    for(int i = 31; i >= 0; --i){
-        if(d >> i & 1){
-            int one = 0, zero = 0;
-            for(int j = 1; j <= n; ++j){
-                if(a[j] >> i & 1) ++one;
-                else ++zero;
-            }
-            if(one % 4 == 3 && zero % 2 == 0){
-                cout << "LOSE" << endl;
-            }else{
-                cout << "WIN" << endl;
-            }
-            break;
-        }
-    }
-}
-int main(){
-    ios::sync_with_stdio(0),  cin.tie(0);
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>codeforces</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-        <tag>贪心</tag>
-        <tag>枚举</tag>
       </tags>
   </entry>
   <entry>
@@ -1237,31 +1431,30 @@ int main(){
       </tags>
   </entry>
   <entry>
-    <title>Codeforces 664(div2)</title>
-    <url>/2020/08134459.html</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1395" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Boboniu-Likes-to-Color-Balls"><a href="#A-Boboniu-Likes-to-Color-Balls" class="headerlink" title="A  Boboniu Likes to Color Balls"></a>A  Boboniu Likes to Color Balls</h4><p>能构成回文的条件至少三个偶数, 暴力一下就好了</p>
+    <title>Codeforces-660-div2</title>
+    <url>/2020/080232640.html</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1388" target="_blank" rel="noopener">传送门</a></p>
+<h4 id="A-Captain-Flint-and-Crew-Recruitment"><a href="#A-Captain-Flint-and-Crew-Recruitment" class="headerlink" title="A Captain Flint and Crew Recruitment"></a>A Captain Flint and Crew Recruitment</h4><p>特判 31 44 36 40</p>
 <pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
 typedef long long ll;
 
-bool f(int a, int b, int c, int d){
-    int sum = a&1;
-    sum += b&1;
-    sum += c&1;
-    sum += d&1;
-    if(sum <= 1) return true;
-    return false;
-}
+const int N = 1e5 + 105;
+int a[10] = {6, 10, 14, 15, 21, 22};
 void solve(){
-    int r, g, b, w;
-    cin >> r >> g >> b >> w;
-    int num = min(min(r, g), b);
-    if(num > 0) num = 1;
-    if(f(r, g, b, w)) cout << "Yes" << endl;
-    else if(f(r - num, g - num, b - num, w + num*3)) cout << "Yes" << endl;
-    else cout << "No" << endl;
+    int n;
+    cin >> n;
+    if(n < 31) cout << "NO" << endl;
+    else{
+        cout << "YES" << endl;
+        if(n == 31) cout << "6 10 14 1" << endl;
+        else if(n == 44) cout << "6 10 15 13" << endl;
+        else if(n == 36) cout << "6 10 15 5" << endl;
+        else if(n == 40) cout << "6 10 15 9" << endl;
+        else cout << 6 << " " << 10 << " " << 14 << " " << n - 30 << endl;
+    }
 }
 int main(){
     ios::sync_with_stdio(0), cin.tie(0);
@@ -1269,124 +1462,167 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Boboniu-Plays-Chess"><a href="#B-Boboniu-Plays-Chess" class="headerlink" title="B  Boboniu Plays Chess"></a>B  Boboniu Plays Chess</h4><p>白给题, 拼手速吧</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
-#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-typedef long long ll;
-
-void solve(){
-    int n, m, x, y;
-    cin >> n >> m >> x >> y;
-    printf("%d %d\n", x, y);
-    for(int j = 1; j <= m; ++j){
-        if(y == j) continue;
-        printf("%d %d\n", x, j);
-    }
-    int f = 1;
-    for(int i = 1; i <= n; ++i){
-        if(i == x) continue;
-        if(f){
-            for(int j = m; j >= 1; --j){
-                printf("%d %d\n", i, j);
-            }
-        }else{
-            for(int j = 1; j <= m; ++j){
-                printf("%d %d\n", i, j);
-            }
-        }
-        f = 1 - f;
-    }
-}
-int main(){
-    ios::sync_with_stdio(0), cin.tie(0);
-    int _ = 1;
-    // cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Boboniu-and-Bit-Operations"><a href="#C-Boboniu-and-Bit-Operations" class="headerlink" title="C  Boboniu and Bit Operations"></a>C  Boboniu and Bit Operations</h4><p>数据看错了, 把$2^{9}$ 看成$1e9$了, 强行给自己增加hard version T_T</p>
-<p>$2^{9}$直接暴力就好了, 不用说的水题</p>
-<p>$1e9$的做法就是, 从高位到低位枚举贪心</p>
-<p>如果存在某个$b_j$ 使得前面枚举的更高位都满足, 且当前位为0, 则枚举的当前位 置0</p>
-<p>否则当前位 置1</p>
-<p>$O(nmlog^2(num))$</p>
-<p>还是很快的, 1e18感觉也能跑</p>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B-Captain-Flint-and-a-Long-Voyage"><a href="#B-Captain-Flint-and-a-Long-Voyage" class="headerlink" title="B  Captain Flint and a Long Voyage"></a>B  Captain Flint and a Long Voyage</h4><p>删去的部分用1000覆盖</p>
+<p>留下的部分用1001覆盖</p>
 <pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
 typedef long long ll;
 
-const int N =2e5 + 105;
-ll bit[36];
-int main(){
-    ios :: sync_with_stdio(0), cin.tie(0);
-    int n, m; cin >> n >> m;
-    vector< ll > a(n + 2), b(m + 2);
-    for(int i = 1; i <= n; ++i) cin >> a[i];
-    for(int i = 1; i <= m; ++i) cin >> b[i];
-    for(int up = 32; up >= 0; --up){
-        int s = 0;
-        for(int i = 1; i <= n; ++i){
-            int f = 0;
-            for(int j = 1; j <= m; ++j){
-                int f1 = 1;
-                if((a[i] & b[j]) >> up & 1) continue;
-                for(int dn = 32; dn > up; --dn){
-                    if(((a[i] & b[j]) >> dn & 1) <= bit[dn]) continue;
-                    f1 = 0; break;
-                }
-                if(f1) { f = 1; break; } 
-            }
-            s += f;
-        }
-        if(s == n) bit[up] = 0;
-        else bit[up] = 1;
-    } 
-    ll res = 0;
-    for(int i = 32; i >= 0; --i) 
-        res += bit[i] << i;
-    cout << res << endl;
-    // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Boboniu-Chats-with-Du"><a href="#D-Boboniu-Chats-with-Du" class="headerlink" title="D  Boboniu Chats with Du"></a>D  Boboniu Chats with Du</h4><p>枚举被禁言多少天, 剩下的天数可以算出来</p>
-<p>枚举的时候, 我们贪心的先放一个在最后一格, 其他的再往前放</p>
-<p>用前缀更新答案, 注意判断边界</p>
-<pre class="line-numbers language-c++"><code class="language-c++">const int N =2e5 + 105;
-ll a[N], b[N], prea[N], preb[N];
+const int N = 1e5 + 105;
+int a[N*8];
 void solve(){
-    int d, n, t1 = 0, t2 = 0;
-    ll m, ans = 0;
-    cin >> n >> d >> m;
-    for(int i = 1; i <= n; ++i){
-        ll x; cin >> x;
-        if(x > m) a[++t1] = x;
-        else b[++t2] = x, ans += x;
+    int n; cin >> n;
+    for(int i = 1; i <= n; ++i) {
+        if(i%4 == 0) a[i] = 1;
+        else a[i] = 0;
     }
-    sort(a + 1, a + 1 + t1, greater<ll>());
-    sort(b + 1, b + 1 + t2, greater<ll>());
-    for(int i = 1; i <= t1; ++i)
-        prea[i] = prea[i - 1] + a[i];
-    for(int i = 1; i <= t2; ++i)
-        preb[i] = preb[i - 1] + b[i];
-    for(int i = t2 + 1; i <= n; ++i)
-        preb[i] = preb[i - 1];
-    for(int i = 1; i <= t1; ++i){
-        if(1 + 1ll*(i - 1)*(d + 1) > n) break;
-        ll k = n - (1 + (i - 1)*(d + 1));
-        ans = max(ans, prea[i] + preb[k]);
+    vector<int> ans;
+    for(int i = n + 1; i <= n*4; ++i){
+        if(i%4 == 0 || i%4 == 1) a[i] = 1;
+        else a[i] = 0;
     }
-    cout << ans << endl;
+    int num = 0, b = 1;
+    for(int i = 1; i <= n*4; ++i){
+        num += b*a[i]; b*=2;
+        if(i%4 == 0){
+            ans.push_back(num); b = 1;
+            num = 0;
+        }
+    }
+    reverse(ALL(ans));
+    for(auto it : ans) cout << it;
+    cout << endl;
 }
 int main(){
     ios::sync_with_stdio(0), cin.tie(0);
     int _ = 1;
-    // cin >> _;
+    cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-Uncle-Bogdan-and-Country-Happiness"><a href="#C-Uncle-Bogdan-and-Country-Happiness" class="headerlink" title="C  Uncle Bogdan and Country Happiness"></a>C  Uncle Bogdan and Country Happiness</h4><p>阴间题面仿佛强行喂我吃奥里给, wdnmd</p>
+<blockquote>
+<p>题意: 初始时每个人都在标号为<code>1</code>的城市,然后回到每个人各自的城市,选择从起点到终点的最短路径,相邻城市之间的距离一样,每个人在进入一个城市时可以改变他的心情,从<code>Good</code>变为<code>Bad</code>,但是不可以从<code>Bad</code>变成<code>Good</code>,每个人进入一个城市时他的心情会影响这个城市的幸福指数,如果是<code>Good</code>那么指数加一否则减一,在城市里面心情是不会改变的,现在给出一种城市幸福指数的可能性,计算有没有可能得到这种幸福指数格局? </p>
+</blockquote>
+<p>设经过节点u的人有s个, 好心情的有g个, 坏心情有b个</p>
+<p>$ s = g + b, h = g - b$</p>
+<p>得到$ g = \frac {s + h}{2}     $</p>
+<p>综上得到三个约束条件: </p>
+<ol>
+<li>$(s + h) mod2==0 $</li>
+<li>$0\leq g \leq s$</li>
+<li>$g \geq \sum g_{son} $</li>
+</ol>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+int p[N], h[N], s[N], g[N];
+vector<int> edge[N];
+// h = g - b;
+// s = g + b;
+// g = (h + s) / 2;
+bool dfs(int u, int fa = 0){
+    s[u] = p[u];
+    int sg = 0;
+    for(auto v : edge[u]){
+        if(v == fa) continue;
+        if(!dfs(v, u)) return false;
+        s[u] += s[v];
+        sg += g[v];
+    }
+    g[u] = (h[u] + s[u]) / 2;
+    if(g[u] > s[u] || g[u] < 0) return false;
+    if((h[u] + s[u]) % 2) return false;
+    if(g[u] < sg) return false;
+    return true;
+}
+void solve(){
+    int n, m;
+    cin >> n >> m;
+    for(int i = 1; i <= n; ++i) cin >> p[i];
+    for(int i = 1; i <= n; ++i) cin >> h[i];
+    for(int i = 1; i < n; ++i){
+        int u, v; cin >> u >> v;
+        edge[v].push_back(u);
+        edge[u].push_back(v);
+    }
+    if(dfs(1)) cout << "YES" << endl;
+    else cout << "NO" << endl;
+    for(int i = 1; i <= n; ++i) edge[i].clear();
+}
+int main(){
+    ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-Captain-Flint-and-Treasure"><a href="#D-Captain-Flint-and-Treasure" class="headerlink" title="D  Captain Flint and Treasure"></a>D  Captain Flint and Treasure</h4><p>tuopu排序</p>
+<p>如果传递的值为正, 就push进队列</p>
+<p>如果为负, 就将链倒过来, 不让累加值传递下去</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 2e5 + 104;
+vector<int> edge[N];
+ll a[N];
+int in[N], b[N];
+void solve(){
+    int n; cin >> n;
+    for(int i = 1; i <= n; ++i) cin >> a[i];
+    for(int i = 1; i <= n; ++i) cin >> b[i];
+    queue<int> que;
+    vector<int> g, ba;
+    for(int i = 1; i <= n; ++i){
+        if(b[i] == -1) continue;
+        else in[b[i]]++, edge[i].push_back(b[i]);
+    }
+    ll ans = 0;
+    for(int i = 1; i <= n; ++i){
+        if(in[i] == 0) que.push(i);
+    }
+    while(!que.empty()){
+        int now = que.front(); que.pop();
+        ans += a[now];
+        if(a[now] >= 0){
+            g.push_back(now);
+            if(b[now] != -1){
+                a[b[now]] += a[now];
+                in[b[now]] --;
+                if(in[b[now]] == 0){
+                    que.push(b[now]);
+                }
+            }
+        }else{
+            ba.push_back(now);
+            if(b[now] == -1) continue;
+            in[b[now]]--;
+            if(in[b[now]] == 0){
+                que.push(b[now]);
+            }
+        }
+    }
+    cout << ans << endl;
+    for(int i = 0; i < sz(g); ++i) cout << g[i] << " ";
+    for(int i = sz(ba) - 1; i >= 0; --i) cout << ba[i] << " ";
+    cout << endl;
+}
+int main(){
+    // ios::sync_with_stdio(0), cin.tie(0);
+    int _ = 1;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1410,8 +1646,9 @@ int main(){
         <category>codeforces</category>
       </categories>
       <tags>
+        <tag>dp</tag>
         <tag>贪心</tag>
-        <tag>枚举</tag>
+        <tag>tuopu排序</tag>
       </tags>
   </entry>
   <entry>
@@ -1614,6 +1851,450 @@ int main(){
       </tags>
   </entry>
   <entry>
+    <title>Codeforces-659-div2</title>
+    <url>/2020/072559060.html</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1384" target="_blank" rel="noopener">传送门</a></p>
+<h4 id="A-Common-Prefixes"><a href="#A-Common-Prefixes" class="headerlink" title="A  Common Prefixes"></a>A  Common Prefixes</h4><p>懒得想就暴力两层</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+int a[150];
+void solve(){
+    int n; cin >> n;
+    for(int i = 1; i <= n; ++i) cin >> a[i];
+    string s = string(150, 'a');
+    cout << s << endl;
+    for(int i = 1; i <= n; ++i){
+        for(int j = 0; j < a[i]; ++j){
+            cout << s[j];
+        }
+        for(int j = a[i]; j < 150; ++j){
+            s[j]++;
+            if(s[j] > 'z') s[j] = 'a';
+            cout << s[j];
+        }cout << endl;
+    }
+}
+int main(){
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B1-Koa-and-the-Beach-Easy-Version"><a href="#B1-Koa-and-the-Beach-Easy-Version" class="headerlink" title="B1  Koa and the Beach (Easy Version)"></a>B1  Koa and the Beach (Easy Version)</h4><p><img src="https://i.loli.net/2020/07/25/9KN4cCmMLSr28Wd.png" alt="tem3.png"></p>
+<p>万万没想到, $O(n*n*k*t)$的dp还真就是$1e9$  (狗头)</p>
+<p>对着时间线和位置暴力dp, 注意自己所在的位置也是可以转移的</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 10050;
+int d[150], n, l, k, t[300];
+bool dp[105][N << 1];
+void solve(){
+    cin >> n >> k >> l;
+    for(int i = 1; i <= n; ++i)
+        cin >> d[i];
+    for(int i = 0; i < k + k; ++i){
+        t[i] = i;
+        if(i > k) t[i] = k - (i - k);
+    }
+    for(int j = 0; j <= 2*n*k + 1; ++j){
+        for(int i = 1; i <= n; ++i){
+            dp[i][j] = false;
+            dp[0][j] = true;
+        }
+        dp[n + 1][j] = false;
+    }
+    d[n + 1] = -3000;
+    bool flag = false;
+    for(int i = 1; i <= n; ++i){
+        for(int j = 0; j <= 2*n*k; ++j){
+            if(dp[i - 1][j] && d[i] + t[(j + 1)%(k + k)] <= l){
+                dp[i][j + 1] = true;
+            }else if(dp[i][j] && d[i] + t[(j + 1)%(k + k)] <= l){
+                dp[i][j + 1] = true;
+            }
+            if(dp[n][j + 1]) flag = true;
+        }
+    }
+    if(flag){
+        cout << "YES" << endl;
+    }else{
+        cout << "NO" << endl;
+    }
+}
+int main(){
+    ios::sync_with_stdio(0),  cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-String-Transformation-1"><a href="#C-String-Transformation-1" class="headerlink" title="C  String Transformation 1"></a>C  String Transformation 1</h4><p>题意读的爆炸, 球球了, 别再出阅读理解了</p>
+<blockquote>
+<p>每次选任意个一样的字母x, 全部替换成y (y &gt; x)</p>
+</blockquote>
+<p>最后能否将$A \Rightarrow  B$</p>
+<p>因为是从小到大变, 出现$ ai &gt; bi$ 就-1好了</p>
+<p>记录一下每个字母的所有目标字母</p>
+<p>从小到大枚举贪心,  如果没有出现已经改变过的(当前字母), 就直接改变到目标字母, ++ans</p>
+<p>否则, 就加到已经改变的字母上, 攒到一起最后更改</p>
+<p>样例把人误导了  :no_mouth:  </p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+void solve(){
+    set<int>se[28];
+    for(int i = 0; i < 26; ++i) se[i].clear();
+    int n;
+    cin >> n;
+    string a, b;
+    cin >> a >> b;
+    for(int i = 0; i < n; ++i){
+        if(a[i] > b[i]){
+            cout << -1 << endl; return;
+        }
+        if(a[i] == b[i]) continue;
+        se[a[i] - 'a'].insert(b[i] - 'a');
+    }
+    ll ans = 0;
+    for(int i = 0; i < 26; ++i){
+        int vis[26] = {0};
+        for(auto it : se[i]){
+            int flag = 0;
+            for(int k = i + 1; k < it; ++k){
+                if(vis[k]){
+                    se[k].insert(it);
+                    flag = 1; break;
+                }
+            }
+            if(flag) continue;
+            vis[it] = 1;
+            ans ++;
+        }
+    }
+    cout << ans << endl;
+}   
+int main(){
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-GameGame"><a href="#D-GameGame" class="headerlink" title="D  GameGame"></a>D  GameGame</h4><p>学弟给了波思路, 还是没切出来, wtcl  :sob: </p>
+<p>很容易想到只要枚举最高位的情况就行</p>
+<p>但是这里的最高位不是实际最高位, 而是有效最高位</p>
+<blockquote>
+<p>例如 2 2 1 1 1</p>
+</blockquote>
+<p>这里的最高位就不是2贡献的, 因为2最高位个数是偶数, 最后一定会抵消</p>
+<p>那么最高位个数一定是奇数</p>
+<p>注意 游戏是你先手, 所以最终你拿到的数字个数一定是$ \lceil n / 2 \rceil $</p>
+<p>利用这个特点我们需要让对手拿到偶数个最高位</p>
+<p>那么必输的情况只有一种$one%4 == 3 \bigwedge  zero%2 == 0$</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+void solve(){
+    int n; cin >> n;
+    vector < int > a(n + 1);
+    int d = 0;
+    for(int i = 1; i <= n; ++i){
+        cin >> a[i];
+        d ^= a[i];
+    }
+    if(d == 0){
+        cout << "DRAW" << endl; return;
+    }
+    for(int i = 31; i >= 0; --i){
+        if(d >> i & 1){
+            int one = 0, zero = 0;
+            for(int j = 1; j <= n; ++j){
+                if(a[j] >> i & 1) ++one;
+                else ++zero;
+            }
+            if(one % 4 == 3 && zero % 2 == 0){
+                cout << "LOSE" << endl;
+            }else{
+                cout << "WIN" << endl;
+            }
+            break;
+        }
+    }
+}
+int main(){
+    ios::sync_with_stdio(0),  cin.tie(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>codeforces</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+        <tag>贪心</tag>
+        <tag>枚举</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Codeforces 658(div2)</title>
+    <url>/2020/07231255.html</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1382" target="_blank" rel="noopener">传送门</a></p>
+<h4 id="A-Common-Subsequence"><a href="#A-Common-Subsequence" class="headerlink" title="A  Common Subsequence"></a>A  Common Subsequence</h4><p>签到</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 5e5 + 105;
+
+void solve(){
+    int n, m;
+    cin >> n >> m;
+    set<int>se;
+    for(int i = 1; i <= n; ++i){
+        int x; cin >> x;
+        se.insert(x);
+    }
+    int k = 0, flag = 0;
+    for(int i = 1; i <= m; ++i){
+        int x;
+        cin >> x;
+        if(se.count(x) > 0){
+            k = 1; flag = x;
+        }
+    }
+    if(k){
+        cout << "YES" << endl;
+        cout << k << " " << flag << endl;
+    }else{
+        cout << "NO" << endl;
+    }
+}
+int main(){
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="B-Sequential-Nim"><a href="#B-Sequential-Nim" class="headerlink" title="B  Sequential Nim"></a>B  Sequential Nim</h4><blockquote>
+<p>结论: 首先碰到 &gt; 1 的数的人胜利</p>
+</blockquote>
+<p>证明的话只要分三种情况</p>
+<blockquote>
+<ol>
+<li><p>序列为3 3 3 3</p>
+<p>轮流拿 2 1 2 1 2 1 3</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>序列为3 1 3 3</p>
+<p>轮流拿 3 1 2 1 3</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><p>序列为 3 1 1 3</p>
+<p>轮流拿 2 1 1 1 3</p>
+</li>
+</ol>
+</blockquote>
+<p>以上三种序列足以覆盖所有情况</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+int a[N];
+void solve(){
+    int n;
+    cin >> n;
+    int one = 0, idx = 0;
+    for(int i = 1; i <= n; ++i){
+        cin >> a[i];
+        if(a[i] == 1) one++;
+        else{
+            if(idx == 0) idx = i;
+        }
+    }
+    if(one == 0){
+        cout << "First" << endl; return;
+    }else if(one == n){
+        if(n&1) cout << "First" << endl;
+        else cout << "Second" << endl;
+    }else{
+        if(idx&1) cout << "First" << endl;
+        else cout << "Second" << endl;
+    }
+
+}
+int main(){c++
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="C-Prefix-Flip"><a href="#C-Prefix-Flip" class="headerlink" title="C  Prefix Flip"></a>C  Prefix Flip</h4><p>若串首字符不等于目标字符, 则直接翻转</p>
+<p>若串首字符等于目标字符, 则先翻转串首, 在翻转</p>
+<p>这样构造一定小于$2n$</p>
+<p>双指针记录一下串首和串尾的位置和翻转情况即可</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 1e5 + 105;
+void solve(){
+    int n, l, r, f = 0; cin >> n;
+    string s, t;
+    cin >> s >> t;
+    if(s == t){
+        cout << 0 << endl; return;
+    }
+    l = 0, r = n - 1;
+    vector<int> ans;
+    for(int i = n - 1; i >= 0; --i){
+        if((s[l] == t[i] && f%2 == 0) || (s[l] != t[i] && f%2 == 1)){
+            ans.push_back(1);
+        }
+        ans.push_back(i + 1);
+        f++;
+        swap(l, r);
+        if(f&1) ++r;
+        else --r;
+    }
+    cout << sz(ans) << " ";
+    for(auto it : ans) cout << it << " ";
+    cout << endl;
+}
+int main(){
+    cin.tie(0);
+    ios::sync_with_stdio(0);
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="D-Unmerge"><a href="#D-Unmerge" class="headerlink" title="D  Unmerge"></a>D  Unmerge</h4><p>01背包变形</p>
+<p>观察发现, 两个前缀最大之间的数是可以连续的存在一个序列里的</p>
+<p>预处理出所有这样的段</p>
+<p>dp一下能不能组成长度为n的序列即可</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+#define lowbit(x) ((x) & (-x))
+#define INF 0x3f3f3f3f
+typedef long long ll;
+
+const int N = 4050;
+int a[N], pre[N], preidx[N], dp[N];
+void solve(){
+    int n; cin >> n;
+    int m = n + n;
+    for(int i = 1; i <= m; ++i){
+        cin >> a[i];
+        pre[i] = a[i];
+        preidx[i] = i;
+        if(pre[i - 1] > pre[i]){
+            pre[i] = pre[i - 1];
+            preidx[i] = preidx[i - 1];
+        } dp[i] = 0;
+    }
+    vector<int> v;
+    for(int i = 2; i <= m; ++i){
+        if(preidx[i] == i){
+            v.push_back(preidx[i] - preidx[i - 1]); 
+        }
+    }
+    for(auto it : v){
+        for(int j = n; j >= it; --j){
+            dp[j] = max(dp[j], dp[j - it] + it);
+        }
+    }
+    if(dp[n] == n) cout << "YES" << endl;
+    else cout << "NO" << endl;
+}
+int main(){
+    int  _ = 1;
+    cin >> _;c++
+    for(int i = 1; i <= _; ++i) solve();
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>codeforces</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>dream deverse</title>
     <url>/2020/072338086.html</url>
     <content><![CDATA[<blockquote>
@@ -1811,335 +2492,5 @@ int main()
             document.body.appendChild(img);
           });
       </script>]]></content>
-  </entry>
-  <entry>
-    <title>写在前面</title>
-    <url>/2020/072355009.html</url>
-    <content><![CDATA[<p>昨天被学弟问到怎么好久不更hexo的博客了, 我一时语塞, 只能回可能是太忙了吧..(其实就是懒</p>
-<p>本来想着就在博客园凑合写一写, 可谁让我偏偏又是个偏执怪</p>
-<p>博客园优化弄了一下午是在弄不下去了, 这突然想起来自己以前写的工程目录, 何止是丑陋,简直是丑陋…</p>
-<p>好吧, 干脆全部推到重来算求, 重新拾起hexo</p>
-<p>熬夜一天半算是整理出大概的样子, 也不知道还会不会更新, 看心情吧~~</p>
-<blockquote>
-<p>已更新</p>
-<ul>
-<li>avatar logo</li>
-<li>首页轮播图 按天换==</li>
-<li>首页隐藏音乐播放器</li>
-<li>点击特效</li>
-<li>MathJax</li>
-<li>文章置顶和打赏</li>
-<li>友链页面</li>
-<li>留言面板</li>
-<li>关于我页面</li>
-<li>busuanzi统计</li>
-<li>Gitalk评论</li>
-<li>页脚</li>
-<li>链接URL优化</li>
-<li>Github emoji</li>
-<li>时间线归档</li>
-<li>底部标志更新</li>
-<li>音乐歌单更新</li>
-<li>CDN加速</li>
-<li>netlify托管与持续部署 解决了https和STL问题 </li>
-<li>数学公式渲染待优化….</li>
-</ul>
-</blockquote>
-<p>因为换了主题, 以前的markdown格式不兼容, 所以文章都被我下了, 不知道会不会再传 0.0</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-  </entry>
-  <entry>
-    <title>Codeforces 669(div2)</title>
-    <url>/2020/091153687.html</url>
-    <content><![CDATA[<p><a href="https://codeforces.ml/contest/1407" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Ahahahahahahahaha"><a href="#A-Ahahahahahahahaha" class="headerlink" title="A  Ahahahahahahahaha"></a>A  Ahahahahahahahaha</h4><blockquote>
-<p>题意: 求一个长度不小于n/2的子序列, 奇数位置和偶数位置和相等</p>
-</blockquote>
-<p>分类讨论, 这a题就离谱</p>
-<p>$记录0的个数cnt_0, 1的个数cnt_1$</p>
-<p>$当cnt_0 &gt;= \frac{n}{2} 时, 输出\frac{n}{2} 个0$</p>
-<p>$当cnt1 &gt;= \frac{n}{2}且 \frac{n}{2}为偶数, 输出\frac{n}{2}个1$</p>
-<p>$其他情况输出\frac{n}{2}个1和1个0$</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
-#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
-typedef long long ll;
-
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-
-int a[5000];
-void solve(){
-    int n, o = 0, z = 0;
-    cin >> n;
-    for(int i = 1; i <= n; ++i){
-        int x; cin >> x;
-        a[i] = x;
-        if(x) ++o;
-        else ++z;
-    }
-    if(n/2%2 == 0){
-        cout << n / 2 << endl;
-        for(int i = 1; i <= n/2; ++i){
-            if(z > o) cout << "0 ";
-            else cout << "1 ";
-        }
-        cout << endl;
-    }else{
-        if(z >= o){
-            cout << n/2 << endl;
-            for(int i = 1; i <= n/2; ++i)
-            cout << "0 ";
-            cout << endl;
-        }else{
-            int f = 0, p = 0;
-            if(o > z){
-                cout << n / 2 + 1 << endl;
-                for(int i = 1; i <= n/2 + 1; ++i){
-                    cout << "1 ";
-                }
-                cout << endl;
-            }
-            else{
-                cout << n / 2 + 1 << endl;
-                for(int i = 1; i <= n; ++i){
-                    if(a[i] == 0){
-                        if(p == 0) cout << "0 ";
-                        p = 1;
-                    }else{
-                        if(f <= n/2) cout << "1 ";
-                        ++f;
-                    }
-                }
-                cout << endl;
-            }
-        }
-    }
-}
-int main(){
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Big-Vova"><a href="#B-Big-Vova" class="headerlink" title="B  Big Vova"></a>B  Big Vova</h4><blockquote>
-<p>题意 重排数组a, 使得前缀gcd 字典序最大</p>
-</blockquote>
-<p>暴力每个位置, 贪心找最大值</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
-typedef long long ll;
-
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-
-const int N = 1e3 + 105;
-int a[N], vis[N];
-void solve(){
-    int n; cin >> n;
-    int Gcd = 0;
-    for(int i = 1; i <= n; ++i){
-        cin >> a[i]; vis[i] = 0;
-        Gcd = max(Gcd, a[i]);
-    }
-    for(int i = 1; i <= n; ++i){
-        int sum = 0, idx = 0;
-        for(int j = 1; j <= n; ++j){
-            if(vis[j]) continue;
-            if(__gcd(Gcd, a[j]) > sum){
-                sum = __gcd(Gcd, a[j]);
-                idx = j;
-            }
-        }
-        vis[idx] = 1;
-        Gcd = sum;
-        cout << a[idx] << " ";
-    }
-    cout << endl;
-}
-int main(){
-    int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Chocolate-Bunny"><a href="#C-Chocolate-Bunny" class="headerlink" title="C  Chocolate Bunny"></a>C  Chocolate Bunny</h4><blockquote>
-<p>题意: 交互题, 每次可以询问两个位置i, j 返回a[i]%a[j] 最多询问2*n次, 求a</p>
-</blockquote>
-<p>设定初始基准idx = 1</p>
-<p>从2~n 开始遍历</p>
-<p>每次询问a[idx]%a[i], a[i]%a[idx]</p>
-<p>较大的值可以确定, 较小的则重新选为基准</p>
-<p>最后剩下的就是n</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
-typedef long long ll;
-
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-
-const int N = 1e4 + 105;
-int a[N];
-int main(){
-    int n; cin >> n;
-    if(n == 1){
-        cout << "! 1" << endl;
-    }else{
-        int idx = 1, x, y;
-        for(int i = 2; i <= n; ++i){
-            cout << "? " << i << " " << idx << endl;
-            cin >> x;
-            cout << "? " << idx << " " << i << endl;
-            cin >> y;
-            if(x > y) a[i] = x;
-            else a[idx] = y, idx = i;
-        }
-        a[idx] = n;
-        cout << "!";
-        for(int i = 1; i <= n; ++i){
-            cout << " " << a[i];
-        }
-        cout << endl;
-    }
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Discrete-Centrifugal-Jumps"><a href="#D-Discrete-Centrifugal-Jumps" class="headerlink" title="D  Discrete Centrifugal Jumps"></a>D  Discrete Centrifugal Jumps</h4><blockquote>
-<p>题意:  懒得写了</p>
-</blockquote>
-<p>跳跃的条件大概就是找一个凹槽或者突起, 就能跳</p>
-<p>找到每个位置可以跳的位置, 要么是左边第一个小于它的, 要么是左边第一个大于它的(细想这样求出来的是凹槽或突起)</p>
-<p>右边同理</p>
-<p>这个单调栈可以预处理</p>
-<p>最后dp一下就可</p>
-<p>$O(n)$</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
-typedef long long ll;
-
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-const int N = 3e5 + 104;
-vector< int > jump[N];
-int h[N], dp[N];
-int main(){
-    int n; 
-    scanf("%d", &n);
-    for(int i = 1; i <= n; ++i){
-        scanf("%d", &h[i]);
-        dp[i] = i - 1;
-    }
-    stack< int > sta;
-    for(int i = 1; i <= n; ++i){
-        if(i == 1 || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] < h[i]) sta.pop();
-            if(sz(sta)) jump[i].push_back(sta.top());
-            sta.push(i);
-        }
-    }
-    while(sz(sta)) sta.pop();
-    for(int i = 1; i <= n; ++i){
-        if(i == 1 || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] > h[i]) sta.pop();
-            if(sz(sta)) jump[i].push_back(sta.top());
-            sta.push(i);
-        }
-    }
-    while(sz(sta)) sta.pop();
-    for(int i = n; i >= 1; --i){
-        if(i == n || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] > h[i]) sta.pop();
-            if(sz(sta)) jump[sta.top()].push_back(i);
-            sta.push(i);
-        }
-    }  
-    while(sz(sta)) sta.pop();
-    for(int i = n; i >= 1; --i){
-        if(i == n || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] < h[i]) sta.pop();
-            if(sz(sta)) jump[sta.top()].push_back(i);
-            sta.push(i);
-        }
-    }
-    for(int i = 1; i <= n; ++i){
-        for(auto to : jump[i]){
-            dp[i] = min(dp[i], dp[to] + 1);
-        }
-    }  
-    cout << dp[n] << endl;
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>codeforces</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-        <tag>交互</tag>
-        <tag>单调栈</tag>
-      </tags>
   </entry>
 </search>

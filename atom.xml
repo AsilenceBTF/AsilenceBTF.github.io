@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.asilencebtf.top/"/>
-  <updated>2020-09-11T09:23:32.177Z</updated>
+  <updated>2020-10-20T06:11:30.468Z</updated>
   <id>http://www.asilencebtf.top/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020CCPC秦皇岛云打星</title>
+    <link href="http://www.asilencebtf.top/2020/102035032.html"/>
+    <id>http://www.asilencebtf.top/2020/102035032.html</id>
+    <published>2020-10-20T03:35:41.000Z</published>
+    <updated>2020-10-20T06:11:30.468Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;19级学弟在11楼打秦皇岛,  和队友在-1云打星QAQ&lt;/p&gt;
+&lt;p&gt;这波双指针我能补两天, tcl&lt;/p&gt;
+&lt;p&gt;按我觉得由易到难的顺序&lt;/p&gt;
+&lt;h4 id=&quot;A-Greeting-from-Qinhuangdao&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CCPC" scheme="http://www.asilencebtf.top/categories/CCPC/"/>
+    
+    
+      <category term="dp" scheme="http://www.asilencebtf.top/tags/dp/"/>
+    
+      <category term="思维" scheme="http://www.asilencebtf.top/tags/%E6%80%9D%E7%BB%B4/"/>
+    
+      <category term="双指针" scheme="http://www.asilencebtf.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
   
   <entry>
     <title>Codeforces 669(div2)</title>

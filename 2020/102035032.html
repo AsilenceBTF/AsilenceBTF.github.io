@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Codeforces 669(div2), AsilenceBTF&#39;s Blog">
+    <meta name="keywords" content="2020CCPC秦皇岛云打星, AsilenceBTF&#39;s Blog">
     <meta name="description" content="人生当苦无妨,良人当归即好">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Codeforces 669(div2) | AsilenceBTF&#39;s Blog</title>
+    <title>2020CCPC秦皇岛云打星 | AsilenceBTF&#39;s Blog</title>
     <link rel="icon" type="image/jpeg" href="/favicon2.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Codeforces 669(div2)</h1>
+                    <h1 class="description center-align post-title">2020CCPC秦皇岛云打星</h1>
                 </div>
             </div>
         </div>
@@ -375,12 +375,12 @@
                                 <span class="chip bg-color">dp</span>
                             </a>
                         
-                            <a href="/tags/%E4%BA%A4%E4%BA%92/">
-                                <span class="chip bg-color">交互</span>
+                            <a href="/tags/%E6%80%9D%E7%BB%B4/">
+                                <span class="chip bg-color">思维</span>
                             </a>
                         
-                            <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">
-                                <span class="chip bg-color">单调栈</span>
+                            <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                                <span class="chip bg-color">双指针</span>
                             </a>
                         
                     </div>
@@ -391,8 +391,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/codeforces/" class="post-category">
-                                codeforces
+                            <a href="/categories/CCPC/" class="post-category">
+                                CCPC
                             </a>
                         
                     </div>
@@ -404,7 +404,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-09-11
+                    2020-10-20
                 </div>
                 
 
@@ -413,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    135
+                    103
                 </div>
                 
 
@@ -435,251 +435,326 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><a href="https://codeforces.ml/contest/1407" target="_blank" rel="noopener">传送门</a></p>
-<h4 id="A-Ahahahahahahahaha"><a href="#A-Ahahahahahahahaha" class="headerlink" title="A  Ahahahahahahahaha"></a>A  Ahahahahahahahaha</h4><blockquote>
-<p>题意: 求一个长度不小于n/2的子序列, 奇数位置和偶数位置和相等</p>
-</blockquote>
-<p>分类讨论, 这a题就离谱</p>
-<p>$记录0的个数cnt_0, 1的个数cnt_1$</p>
-<p>$当cnt_0 &gt;= \frac{n}{2} 时, 输出\frac{n}{2} 个0$</p>
-<p>$当cnt1 &gt;= \frac{n}{2}且 \frac{n}{2}为偶数, 输出\frac{n}{2}个1$</p>
-<p>$其他情况输出\frac{n}{2}个1和1个0$</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
+                <p>19级学弟在11楼打秦皇岛,  和队友在-1云打星QAQ</p>
+<p>这波双指针我能补两天, tcl</p>
+<p>按我觉得由易到难的顺序</p>
+<h4 id="A-Greeting-from-Qinhuangdao"><a href="#A-Greeting-from-Qinhuangdao" class="headerlink" title="A  Greeting from Qinhuangdao"></a>A  <strong>Greeting from Qinhuangdao</strong></h4><p>组合数学,  再求下GCD</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
+using namespace std;
 typedef long long ll;
 
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
+const int N = 1e6 + 105;
 
-int a[5000];
-void solve(){
-    int n, o = 0, z = 0;
-    cin >> n;
-    for(int i = 1; i <= n; ++i){
-        int x; cin >> x;
-        a[i] = x;
-        if(x) ++o;
-        else ++z;
+ll f(ll n){
+    if(n < 2) return 0;
+    return (n - 1) * n / 2;
+}
+void solve(int t){   
+    ll r, b, n;
+    cin >> r >> b;
+    cout << "Case #" << t << ": ";
+    n = r + b;
+    ll z = f(r), m = f(n);
+    ll gcd = __gcd(z, m);
+    z /= gcd, m /= gcd;
+    cout << z << "/" << m << endl;
+}
+int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    int _ = 1;
+    cin >> _;
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="F-Friendly-Group"><a href="#F-Friendly-Group" class="headerlink" title="F  Friendly Group"></a>F  <strong>Friendly Group</strong></h4><p>给你一个图, 你需要选择一些点</p>
+<p>一个图中点的贡献cost = 所有边的个数 -  所有点的个数 - 连接图中却没选的点的个数</p>
+<p>注意cost可能是负数</p>
+<p>可以发现度&lt;=1的节点可选可不选 , 全部去掉剩下都选就行了</p>
+<p>学弟有并查集做的 QAQ </p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+using namespace std;
+typedef long long ll;
+
+const int N = 3e5 + 105;
+vector< int > edge[N];
+int lef[N], sum_n, sum_m, lef_n, vis[N];
+void dfs(int u, int fa){
+    vis[u] = 1;
+    for(auto v : edge[u]){
+        if(v == fa || vis[v]) continue;
+        dfs(v, u);
     }
-    if(n/2%2 == 0){
-        cout << n / 2 << endl;
-        for(int i = 1; i <= n/2; ++i){
-            if(z > o) cout << "0 ";
-            else cout << "1 ";
+    if(sz(edge[u]) < 1) lef[u] = 1;
+}
+void dfs2(int u, int fa){
+    vis[u] = 1;
+    ++sum_n;
+    for(auto v : edge[u]){
+        if(vis[v] || v == fa) continue;
+        if(lef[v]) ++lef_n;
+        else{
+            dfs2(v, u);
         }
-        cout << endl;
-    }else{
-        if(z >= o){
-            cout << n/2 << endl;
-            for(int i = 1; i <= n/2; ++i)
-            cout << "0 ";
-            cout << endl;
+    }
+    sum_m += sz(edge[u]);
+}
+void solve(int t){
+    int n, m;
+    scanf("%d%d", &n, &m);
+    for(int i = 1; i <= m; ++i){
+        int u, v;
+        scanf("%d%d", &u, &v);
+        edge[u].push_back(v);
+        edge[v].push_back(u);
+    }
+    ll ans = 0;
+    for(int i = 1; i <= n; ++i){
+        if(!vis[i]) dfs(i, 0);
+    }
+    for(int i = 1; i <= n; ++i) vis[i] = 0;
+    for(int i = 1; i <= n; ++i){
+        if(!vis[i] && !lef[i]){
+            sum_n = sum_m = lef_n = 0;
+            dfs2(i, 0);
+            ans += max(0, sum_m/2 - sum_n - lef_n);
+        }
+    }
+    printf("Case #%d: %lld\n", t, ans);
+    for(int i = 1; i <= n; ++i){
+        edge[i].clear();
+        lef[i] = 0;
+        vis[i] = 0;
+    }
+}
+int main(){
+    int _ = 1;
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+    // system("pause");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="G-Good-Number"><a href="#G-Good-Number" class="headerlink" title="G  Good Number"></a>G  <strong>Good Number</strong></h4><p>$k &gt;= 32 或 k==1$时 答案直接为n</p>
+<p>剩下小数据直接二分暴力了</p>
+<p>跑的时候死活过不去样例, 断点进去才发现pow精度有问题, 淦</p>
+<p>老老实实手写开根号了</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+#define sz(x) int(x.size())
+#define ALL(x) x.begin(), x.end()
+using namespace std;
+typedef long long ll;
+
+const int N = 1e6 + 105;
+
+ll n, k;
+ll pow_(ll a) { // pow(a, 1/k)
+    ll l = 1, r = n, mid, ans = 0;
+    while(l <= r){
+        mid = l + r >> 1;
+        ll res = 1;
+        int f = 0;
+        for(int j = 1; j <= k; ++j){
+            res *= mid;
+            if(res > a){
+                f = 1; break;
+            }
+        }
+        if(f == 1){
+            r = mid - 1;
         }else{
-            int f = 0, p = 0;
-            if(o > z){
-                cout << n / 2 + 1 << endl;
-                for(int i = 1; i <= n/2 + 1; ++i){
-                    cout << "1 ";
-                }
-                cout << endl;
-            }
-            else{
-                cout << n / 2 + 1 << endl;
-                for(int i = 1; i <= n; ++i){
-                    if(a[i] == 0){
-                        if(p == 0) cout << "0 ";
-                        p = 1;
-                    }else{
-                        if(f <= n/2) cout << "1 ";
-                        ++f;
-                    }
-                }
-                cout << endl;
-            }
+            ans = max(ans, mid);
+            l = mid + 1;
         }
     }
+    return ans;
+}
+ll check(ll idx){
+    ll l = 1, r = n, mid, ans = 0;
+    while(l <= r){
+        mid = l + r >> 1;
+        ll res = pow_(mid);
+        if(res >= idx){
+            if(res == idx){
+                ans = max(ans, mid);
+                l = mid + 1;
+            }
+            else
+                r = mid - 1;
+        }else{
+            l = mid + 1;
+        }
+    }
+    return min(ans, n);
+}
+ll pre(ll n, ll idx){
+    return n / idx;
+}
+void solve(int t){   
+    scanf("%lld%lld", &n, &k);
+    printf("Case #%d: ", t);
+    if(k >= 32 || k == 1){
+        printf("%lld\n", n); return;
+    }
+    ll l = 1, r, idx = 1, ans = 0;
+    while(true){
+        r = check(idx);
+        if(l > r) break;
+        ans += pre(r, idx) - pre(l - 1, idx);
+        ++idx;
+        l = r + 1;
+    }
+    printf("%lld\n", ans);
 }
 int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
     int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="B-Big-Vova"><a href="#B-Big-Vova" class="headerlink" title="B  Big Vova"></a>B  Big Vova</h4><blockquote>
-<p>题意 重排数组a, 使得前缀gcd 字典序最大</p>
-</blockquote>
-<p>暴力每个位置, 贪心找最大值</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="E-Exam-Results"><a href="#E-Exam-Results" class="headerlink" title="E  Exam Results"></a>E  <strong>Exam Results</strong></h4><p>n个学生,  每个学生可能有两种成绩, 要么是a[i], 要么是b[i]</p>
+<p>现在规定所有小于最高成绩x*p/100的都算不及格</p>
+<p>现在问最多及格多少人</p>
+<p>枚举最高分, 双指针扫一遍就好了, 写了好久, sad</p>
+<p>注意小于最高分的一定要够n个人</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+using namespace std;
+
 #define ALL(x) x.begin(), x.end()
+#define sz(x) int(x.size())
 #define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
 typedef long long ll;
 
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-
-const int N = 1e3 + 105;
-int a[N], vis[N];
-void solve(){
-    int n; cin >> n;
-    int Gcd = 0;
+const int N = 1e6 + 105;
+struct node{
+    int id;
+    ll a, b;
+}arr[N];
+int vis[N];
+void solve(int t){
+    int n, p, tot = 0;
+    scanf("%d%d", &n, &p);
+    vector< pair< ll, int > > v;
     for(int i = 1; i <= n; ++i){
-        cin >> a[i]; vis[i] = 0;
-        Gcd = max(Gcd, a[i]);
-    }
-    for(int i = 1; i <= n; ++i){
-        int sum = 0, idx = 0;
-        for(int j = 1; j <= n; ++j){
-            if(vis[j]) continue;
-            if(__gcd(Gcd, a[j]) > sum){
-                sum = __gcd(Gcd, a[j]);
-                idx = j;
-            }
+        vis[i] = 0;
+        cin >> arr[i].a >> arr[i].b;
+        arr[i].a *= 100, arr[i].b *= 100;
+        v.push_back({arr[i].a, i});
+        v.push_back({arr[i].b, i});
+        arr[i].id = i;
+    } 
+    sort(ALL(v));
+    int res = 0, l = 0, r = -1;
+    while(res < n){
+        ++r;
+        pair< ll, int > now = v[r];
+        if(vis[now.second] == 0){
+            ++res;
         }
-        vis[idx] = 1;
-        Gcd = sum;
-        cout << a[idx] << " ";
+        vis[now.second]++;
     }
-    cout << endl;
+    int ans = 0;
+    while(l <= r){
+        while(v[l].first < v[r].first/100 * p && l <= r){
+            vis[v[l].second]--;
+            if(vis[v[l].second] == 0) --res;
+            ++l;
+        }
+        ans = max(ans, res);
+        ++r;
+        if(r >= sz(v)) break;
+        if(vis[v[r].second] == 0)++res;
+        vis[v[r].second]++;
+    }
+    printf("Case #%d: %d\n", t, ans);
 }
 int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
     int _ = 1;
-    cin >> _;
-    for(int i = 1; i <= _; ++i) solve();
-    // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="C-Chocolate-Bunny"><a href="#C-Chocolate-Bunny" class="headerlink" title="C  Chocolate Bunny"></a>C  Chocolate Bunny</h4><blockquote>
-<p>题意: 交互题, 每次可以询问两个位置i, j 返回a[i]%a[j] 最多询问2*n次, 求a</p>
-</blockquote>
-<p>设定初始基准idx = 1</p>
-<p>从2~n 开始遍历</p>
-<p>每次询问a[idx]%a[i], a[i]%a[idx]</p>
-<p>较大的值可以确定, 较小的则重新选为基准</p>
-<p>最后剩下的就是n</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="K-Kingdom’s-Power"><a href="#K-Kingdom’s-Power" class="headerlink" title="K   Kingdom’s Power"></a>K   <strong>Kingdom’s Power</strong></h4><p>tree dp</p>
+<p>考虑每个点要么从根节点来, 要么从其他叶节点来</p>
+<p>预处理一下每个节点到根节点的距离</p>
+<p>那么每个子树, 每次枚举较浅的节点去更新深的节点(上一步进行排序)</p>
+<p>最后把所有叶子的答案加起来就是了</p>
+<pre class="line-numbers language-c++"><code class="language-c++">/*
+ * @Author: AsilenceBTF
+ * @LastEditTime: 2020-10-20 10:23:25
+ */
+#include<bits/stdc++.h>
+using namespace std;
+
 #define ALL(x) x.begin(), x.end()
+#define sz(x) int(x.size())
 #define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
 typedef long long ll;
 
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-
-const int N = 1e4 + 105;
-int a[N];
-int main(){
-    int n; cin >> n;
-    if(n == 1){
-        cout << "! 1" << endl;
-    }else{
-        int idx = 1, x, y;
-        for(int i = 2; i <= n; ++i){
-            cout << "? " << i << " " << idx << endl;
-            cin >> x;
-            cout << "? " << idx << " " << i << endl;
-            cin >> y;
-            if(x > y) a[i] = x;
-            else a[idx] = y, idx = i;
-        }
-        a[idx] = n;
-        cout << "!";
-        for(int i = 1; i <= n; ++i){
-            cout << " " << a[i];
-        }
-        cout << endl;
+const int N = 1e6 + 105;
+vector< pair< int, int > > edge[N];
+int val[N];
+void init(int n){
+    for(int i = 1; i <= n; ++i) 
+        edge[i].clear(), val[i] = 0;
+}
+int get_val(int u){
+    if(sz(edge[u]) == 0) return 1;
+    for(int i = 0; i < sz(edge[u]); ++i){
+        edge[u][i].first = get_val(edge[u][i].second);
     }
-    // system("pause");
+    sort(ALL(edge[u]));
+    return edge[u].back().first + 1;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="D-Discrete-Centrifugal-Jumps"><a href="#D-Discrete-Centrifugal-Jumps" class="headerlink" title="D  Discrete Centrifugal Jumps"></a>D  Discrete Centrifugal Jumps</h4><blockquote>
-<p>题意:  懒得写了</p>
-</blockquote>
-<p>跳跃的条件大概就是找一个凹槽或者突起, 就能跳</p>
-<p>找到每个位置可以跳的位置, 要么是左边第一个小于它的, 要么是左边第一个大于它的(细想这样求出来的是凹槽或突起)</p>
-<p>右边同理</p>
-<p>这个单调栈可以预处理</p>
-<p>最后dp一下就可</p>
-<p>$O(n)$</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
-#define ALL(x) x.begin(), x.end()
-#define INF 0x3f3f3f3f
-#define debug(x) cout << "##### " << x << endl; 
-typedef long long ll;
-
-// ifstream in("in.txt");
-// ofstream out("out.txt");
-// #define cin in
-// #define cout out 
-const int N = 3e5 + 104;
-vector< int > jump[N];
-int h[N], dp[N];
-int main(){
-    int n; 
+int dfs(int u, int dep, int v){
+    val[u] = v;
+    if(sz(edge[u]) == 0) return 1;
+    int t = v;
+    for(int i = 0; i < sz(edge[u]); ++i){
+        t = min(dep, dfs(edge[u][i].second, dep + 1, t + 1));
+    }
+    return t + 1;
+}
+void solve(int t){
+    int n;
     scanf("%d", &n);
-    for(int i = 1; i <= n; ++i){
-        scanf("%d", &h[i]);
-        dp[i] = i - 1;
+    init(n);
+    for(int i = 2; i <= n; ++i){
+        int f; scanf("%d", &f);
+        edge[f].push_back(make_pair(0, i));
     }
-    stack< int > sta;
+    get_val(1);
+    dfs(1, 0, 0);
+    ll ans = 0;
     for(int i = 1; i <= n; ++i){
-        if(i == 1 || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] < h[i]) sta.pop();
-            if(sz(sta)) jump[i].push_back(sta.top());
-            sta.push(i);
-        }
+        if(sz(edge[i]) == 0) 
+            ans += val[i];
     }
-    while(sz(sta)) sta.pop();
-    for(int i = 1; i <= n; ++i){
-        if(i == 1 || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] > h[i]) sta.pop();
-            if(sz(sta)) jump[i].push_back(sta.top());
-            sta.push(i);
-        }
-    }
-    while(sz(sta)) sta.pop();
-    for(int i = n; i >= 1; --i){
-        if(i == n || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] > h[i]) sta.pop();
-            if(sz(sta)) jump[sta.top()].push_back(i);
-            sta.push(i);
-        }
-    }  
-    while(sz(sta)) sta.pop();
-    for(int i = n; i >= 1; --i){
-        if(i == n || sz(sta) == 0){
-            sta.push(i);
-        }else{
-            while(sz(sta) && h[sta.top()] < h[i]) sta.pop();
-            if(sz(sta)) jump[sta.top()].push_back(i);
-            sta.push(i);
-        }
-    }
-    for(int i = 1; i <= n; ++i){
-        for(auto to : jump[i]){
-            dp[i] = min(dp[i], dp[to] + 1);
-        }
-    }  
-    cout << dp[n] << endl;
-    // system("pause");
+    printf("Case #%d: ", t);
+    printf("%lld\n", ans);
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+int main(){
+    // #define LOCAL
+#ifdef LOCAL
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    int _ = 1;
+    scanf("%d", &_);
+    for(int i = 1; i <= _; ++i) solve(i);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -723,7 +798,7 @@ int main(){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.asilencebtf.top/2020/091153687.html">http://www.asilencebtf.top/2020/091153687.html</a>
+                    <a href="http://www.asilencebtf.top/2020/102035032.html">http://www.asilencebtf.top/2020/102035032.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -765,12 +840,12 @@ int main(){
                                     <span class="chip bg-color">dp</span>
                                 </a>
                             
-                                <a href="/tags/%E4%BA%A4%E4%BA%92/">
-                                    <span class="chip bg-color">交互</span>
+                                <a href="/tags/%E6%80%9D%E7%BB%B4/">
+                                    <span class="chip bg-color">思维</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">
-                                    <span class="chip bg-color">单调栈</span>
+                                <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                                    <span class="chip bg-color">双指针</span>
                                 </a>
                             
                         </div>
@@ -941,7 +1016,7 @@ int main(){
         repo: 'AsilenceBTF.github.io',
         owner: 'AsilenceBTF',
         admin: "AsilenceBTF",
-        id: '2020-09-11T16-58-16',
+        id: '2020-10-20T11-35-41',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -965,9 +1040,10 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/102035032.html">
                     <div class="card-image">
@@ -985,9 +1061,9 @@ int main(){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1000,6 +1076,7 @@ int main(){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1026,24 +1103,24 @@ int main(){
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/08134459.html">
+                <a href="/2020/091153687.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Codeforces 664(div2)">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Codeforces 669(div2)">
                         
-                        <span class="card-title">Codeforces 664(div2)</span>
+                        <span class="card-title">Codeforces 669(div2)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            要开学了qvq, 一年没上学了有点慌了都
+                            Codeforces 669(div2)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-11
                             </span>
                         <span class="publish-author">
                             
@@ -1060,12 +1137,16 @@ int main(){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                        <span class="chip bg-color">贪心</span>
+                    <a href="/tags/dp/">
+                        <span class="chip bg-color">dp</span>
                     </a>
                     
-                    <a href="/tags/%E6%9E%9A%E4%B8%BE/">
-                        <span class="chip bg-color">枚举</span>
+                    <a href="/tags/%E4%BA%A4%E4%BA%92/">
+                        <span class="chip bg-color">交互</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">
+                        <span class="chip bg-color">单调栈</span>
                     </a>
                     
                 </div>
