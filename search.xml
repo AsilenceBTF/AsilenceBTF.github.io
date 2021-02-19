@@ -55,13 +55,105 @@
       </script>]]></content>
   </entry>
   <entry>
+    <title>C/C++基础要点</title>
+    <url>/2021/021935383.html</url>
+    <content><![CDATA[<h4 id="C-C-程序基础"><a href="#C-C-程序基础" class="headerlink" title="C/C++程序基础"></a>C/C++程序基础</h4><ol>
+<li><p>在C++中与操作符**::**可以直接操作全局变量, C中不支持域操作符, 编译时会报错</p>
+</li>
+<li><p>前缀式和后缀式效率(++i和i++)比较:</p>
+<blockquote>
+<p>当使用内建数据类型时,两个效率一样</p>
+<p>当使用自定义数据类型时, 由于后缀式需要先用一个临时变量存储返回值,所以前缀式效率高</p>
+</blockquote>
+</li>
+<li><p>码风良好的条件比较句</p>
+<blockquote>
+<p>当使用布尔变量时 使用if(flag)好于if(flag == True) 因为True固定为1, 但flag任何非0值都为真</p>
+<p>当与0做比较时 使用if(value != 0) 好于if(value) 因为后者会误认为与布尔值做比较</p>
+<p>浮点数作比较时,使用精度误差eps进行控制</p>
+<p>指针变量与0比较时 if(p==NULL)好于if(p==0) 后者会让人误认为与0作比较</p>
+</blockquote>
+</li>
+<li><p>无符号与有符号整数运算时, 都转化为无符号进行运算</p>
+<p>且要注意溢出问题</p>
+</li>
+<li><p>不使用中间变量交换a,b的值</p>
+<pre class="line-numbers language-c++"><code class="language-c++">void swap1(int &a, int &b){
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    // 缺点是加减可能会在计算过程中溢出, 但不影响结果
+}
+void swap2(int &a, int &b){
+    a ^= b;
+    b ^= a;
+    a ^= b;
+    // 推荐用这种方式
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><strong>C++与C有什么不同</strong></p>
+<p>C是结构化语言, 重点在于算法和数据结构. 对语言本身, C是C++的子集. C程序设计首先考虑如何通过一个过程,对输入进行运算处理,得到输出. 对于C++,首先要考虑如何构造一个对象模型,让这个模型能够配合对应的问题, 通过获取对象的状态信息得到输出或实现控制过程</p>
+<p>因此,C和C++最大区别是解决问题的思想方法不一样</p>
+<p>C实现了C++中过程化控制及其他相关功能. 而在C++中的C, 相对于原来的C还有所加强, 引入了<strong>重载,内联函数,异常处理等</strong>. C++更是拓展了<strong>面向对象设计的内容, 如类,继承,虚函数,模板,包容器类等</strong></p>
+<p>在C++中, 不仅需要考虑数据封装, 还需要考虑对象粒度的选择, 对象接口的设计和继承, 组合与继承的使用等问题</p>
+<p>相对于C,C++包含了更丰富的设计概念</p>
+</li>
+<li><p>如何理解C++是面向对象化的, 而C是面向过程化的</p>
+<p>C是面向过程化的, 但C++不是完全面向对象化的. 在C++中也可以完全写出C一样过程化的程序, 所以C++只是拥有面向对象的特性. Java是真正面向对象化的</p>
+</li>
+<li><p>标准头文件的结构</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#ifndef __INCvxWorksh
+#define __INCvxWorksh // 防止头文件被重复引用
+#ifdef __cplusplus // 如果是c++文件
+extern "C"{ // 模块按照C语言编译, 解决重载名字匹配问题
+#endif
+#ifdef __cplusplus
+}
+#endif
+#endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>#include&lt;head.h&gt; 与"head.h" 的区别</p>
+<p>尖括号表明这个文件是一个工程或标准头文件, 会先从预定义的目录中查找</p>
+<p>引号表明该文件是用户提供的头文件, 会先从当前文件目录寻找</p>
+</li>
+<li><p>C++中main函数执行完后还执行其他语句吗?</p>
+<p>可以使用atexit函数来注册函数在main函数结束后, 被atexit注册的函数会依次调用, 最先注册的最后调用, 最后注册的最先调用</p>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2020CCPC秦皇岛云打星</title>
     <url>/2020/102035032.html</url>
     <content><![CDATA[<p>19级学弟在11楼打秦皇岛,  和队友在-1云打星QAQ</p>
 <p>这波双指针我能补两天, tcl</p>
 <p>按我觉得由易到难的顺序</p>
 <h4 id="A-Greeting-from-Qinhuangdao"><a href="#A-Greeting-from-Qinhuangdao" class="headerlink" title="A  Greeting from Qinhuangdao"></a>A  <strong>Greeting from Qinhuangdao</strong></h4><p>组合数学,  再求下GCD</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 using namespace std;
@@ -92,13 +184,14 @@ int main(){
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="F-Friendly-Group"><a href="#F-Friendly-Group" class="headerlink" title="F  Friendly Group"></a>F  <strong>Friendly Group</strong></h4><p>给你一个图, 你需要选择一些点</p>
 <p>一个图中点的贡献cost = 所有边的个数 -  所有点的个数 - 连接图中却没选的点的个数</p>
 <p>注意cost可能是负数</p>
 <p>可以发现度&lt;=1的节点可选可不选 , 全部去掉剩下都选就行了</p>
 <p>学弟有并查集做的 QAQ </p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 using namespace std;
@@ -160,12 +253,13 @@ int main(){
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="G-Good-Number"><a href="#G-Good-Number" class="headerlink" title="G  Good Number"></a>G  <strong>Good Number</strong></h4><p>$k &gt;= 32 或 k==1$时 答案直接为n</p>
 <p>剩下小数据直接二分暴力了</p>
 <p>跑的时候死活过不去样例, 断点进去才发现pow精度有问题, 淦</p>
 <p>老老实实手写开根号了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 using namespace std;
@@ -241,13 +335,14 @@ int main(){
     int _ = 1;
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="E-Exam-Results"><a href="#E-Exam-Results" class="headerlink" title="E  Exam Results"></a>E  <strong>Exam Results</strong></h4><p>n个学生,  每个学生可能有两种成绩, 要么是a[i], 要么是b[i]</p>
 <p>现在规定所有小于最高成绩x*p/100的都算不及格</p>
 <p>现在问最多及格多少人</p>
 <p>枚举最高分, 双指针扫一遍就好了, 写了好久, sad</p>
 <p>注意小于最高分的一定要够n个人</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 using namespace std;
 
 #define ALL(x) x.begin(), x.end()
@@ -307,13 +402,14 @@ int main(){
     int _ = 1;
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="K-Kingdom’s-Power"><a href="#K-Kingdom’s-Power" class="headerlink" title="K   Kingdom’s Power"></a>K   <strong>Kingdom’s Power</strong></h4><p>tree dp</p>
 <p>考虑每个点要么从根节点来, 要么从其他叶节点来</p>
 <p>预处理一下每个节点到根节点的距离</p>
 <p>那么每个子树, 每次枚举较浅的节点去更新深的节点(上一步进行排序)</p>
 <p>最后把所有叶子的答案加起来就是了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">/*
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">/*
  * @Author: AsilenceBTF
  * @LastEditTime: 2020-10-20 10:23:25
  */
@@ -376,7 +472,8 @@ int main(){
     int _ = 1;
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -686,7 +783,7 @@ int main(){
     <url>/2020/08134459.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1395" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-Boboniu-Likes-to-Color-Balls"><a href="#A-Boboniu-Likes-to-Color-Balls" class="headerlink" title="A  Boboniu Likes to Color Balls"></a>A  Boboniu Likes to Color Balls</h4><p>能构成回文的条件至少三个偶数, 暴力一下就好了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -714,9 +811,10 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Boboniu-Plays-Chess"><a href="#B-Boboniu-Plays-Chess" class="headerlink" title="B  Boboniu Plays Chess"></a>B  Boboniu Plays Chess</h4><p>白给题, 拼手速吧</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
@@ -751,7 +849,8 @@ int main(){
     // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Boboniu-and-Bit-Operations"><a href="#C-Boboniu-and-Bit-Operations" class="headerlink" title="C  Boboniu and Bit Operations"></a>C  Boboniu and Bit Operations</h4><p>数据看错了, 把$2^{9}$ 看成$1e9$了, 强行给自己增加hard version T_T</p>
 <p>$2^{9}$直接暴力就好了, 不用说的水题</p>
 <p>$1e9$的做法就是, 从高位到低位枚举贪心</p>
@@ -759,7 +858,7 @@ int main(){
 <p>否则当前位 置1</p>
 <p>$O(nmlog^2(num))$</p>
 <p>还是很快的, 1e18感觉也能跑</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -795,11 +894,12 @@ int main(){
         res += bit[i] << i;
     cout << res << endl;
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Boboniu-Chats-with-Du"><a href="#D-Boboniu-Chats-with-Du" class="headerlink" title="D  Boboniu Chats with Du"></a>D  Boboniu Chats with Du</h4><p>枚举被禁言多少天, 剩下的天数可以算出来</p>
 <p>枚举的时候, 我们贪心的先放一个在最后一格, 其他的再往前放</p>
 <p>用前缀更新答案, 注意判断边界</p>
-<pre class="line-numbers language-c++"><code class="language-c++">const int N =2e5 + 105;
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const int N =2e5 + 105;
 ll a[N], b[N], prea[N], preb[N];
 void solve(){
     int d, n, t1 = 0, t2 = 0;
@@ -831,7 +931,8 @@ int main(){
     // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -863,7 +964,7 @@ int main(){
     <title>Codeforces 662(div2)</title>
     <url>/2020/08094365.html</url>
     <content><![CDATA[<h4 id="A-Rainbow-Dash-Fluttershy-and-Chess-Coloring"><a href="#A-Rainbow-Dash-Fluttershy-and-Chess-Coloring" class="headerlink" title="A  Rainbow Dash, Fluttershy and Chess Coloring"></a>A  Rainbow Dash, Fluttershy and Chess Coloring</h4><p>从外往里填 </p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -879,9 +980,10 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Applejack-and-Storages"><a href="#B-Applejack-and-Storages" class="headerlink" title="B  Applejack and Storages"></a>B  Applejack and Storages</h4><p>记下$\geq 2,4,6,8$ 的数量, 判断的时候容斥一下</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -934,7 +1036,8 @@ int main(){
     // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Pinkie-Pie-Eats-Patty-cakes"><a href="#C-Pinkie-Pie-Eats-Patty-cakes" class="headerlink" title="C  Pinkie Pie Eats Patty-cakes"></a>C  Pinkie Pie Eats Patty-cakes</h4><p>二分被叉了, 哭了, TvT</p>
 <blockquote>
 <p>容易想到要平均分摊只跟出现最多的数字有关</p>
@@ -945,7 +1048,7 @@ int main(){
 <p>剩下$maxcnt - 1$ 个块</p>
 <p>结论:$(n - cntfrq) \div (maxcnt - 1) - 1$</p>
 </blockquote>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -969,14 +1072,15 @@ int main(){
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Rarity-and-New-Dress"><a href="#D-Rarity-and-New-Dress" class="headerlink" title="D  Rarity and New Dress"></a>D  Rarity and New Dress</h4><p>把图形分成四个方向, 左上, 左下, 右上, 右下</p>
 <p>可以看到是四个三角形, 符合dp特征</p>
 <p>经典悬线法</p>
 <p>$pro: 看到一个究极玄学的dp式子$</p>
 <p>$dp[i][j] = 1 + min(dp[i - 1][j - 1], dp[i - 1][j + 1], dp[i - 2][j])$</p>
 <p>$歪果仁还是秀,学不来学不来$ </p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -1026,7 +1130,8 @@ int main(){
             ans += min(min(leftdn[i][j], leftup[i][j]), min(rightdn[i][j], rightup[i][j]));
     cout << ans << endl;
     // system("puase");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1060,7 +1165,7 @@ int main(){
     <url>/2020/080633087.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1399" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-Remove-Smallest"><a href="#A-Remove-Smallest" class="headerlink" title="A  Remove Smallest"></a>A  Remove Smallest</h4><p>排个序, for一遍看相邻的差值是否大于1</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
@@ -1090,7 +1195,7 @@ int main(){
 }
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Gifts-Fixing"><a href="#B-Gifts-Fixing" class="headerlink" title="B  Gifts Fixing"></a>B  Gifts Fixing</h4><p>全部变成$min(a)$ 和$min(b)$</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -1126,7 +1231,7 @@ int main(){
 }
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Boats-Competition"><a href="#C-Boats-Competition" class="headerlink" title="C  Boats Competition"></a>C  Boats Competition</h4><p>枚举$s$ for两层就好了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -1166,10 +1271,11 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Binary-String-To-Subsequences"><a href="#D-Binary-String-To-Subsequences" class="headerlink" title="D  Binary String To Subsequences"></a>D  Binary String To Subsequences</h4><p>开个容器记一下所有前缀1或者0的颜色</p>
 <p>互相倒一下就行了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -1227,7 +1333,7 @@ int main(){
 <p>这个过程顺便维护一下每条边会走过的次数$tot$</p>
 <p>$edge的贡献 = (d - d/2) * tot$ 这里可能有取整的问题, 直接按照乘积排可能有问题</p>
 <p>开个优先队列维护好了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -1296,16 +1402,17 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="E2-Weights-Division-hard-version"><a href="#E2-Weights-Division-hard-version" class="headerlink" title="E2  Weights Division (hard version)"></a>E2  Weights Division (hard version)</h4><p>跟E1差不太多, 每条边$move$的花费告诉你了</p>
 <p>我们不妨将花费为1的和花费为2的单独存</p>
-<p>同样是贪心, 只要多亿点细节 <del>就能轻松ac</del></p>
+<p>同样是贪心, 只要多亿点细节 ~就能轻松ac~</p>
 <p>考虑花费为1的边, 堆顶可能与次堆顶构成贡献cost1</p>
 <p>堆顶本身可能连续move两次构成贡献cost2</p>
 <p>考虑花费为2的边, 贡献为cost3</p>
 <p>前两者去最值与cost3进行比较</p>
 <p>最后还要特判, 花费一次就跳出的情况0.0</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -1402,7 +1509,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1435,7 +1543,7 @@ int main(){
     <url>/2020/080232640.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1388" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-Captain-Flint-and-Crew-Recruitment"><a href="#A-Captain-Flint-and-Crew-Recruitment" class="headerlink" title="A Captain Flint and Crew Recruitment"></a>A Captain Flint and Crew Recruitment</h4><p>特判 31 44 36 40</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1462,10 +1570,11 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Captain-Flint-and-a-Long-Voyage"><a href="#B-Captain-Flint-and-a-Long-Voyage" class="headerlink" title="B  Captain Flint and a Long Voyage"></a>B  Captain Flint and a Long Voyage</h4><p>删去的部分用1000覆盖</p>
 <p>留下的部分用1001覆盖</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1502,7 +1611,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Uncle-Bogdan-and-Country-Happiness"><a href="#C-Uncle-Bogdan-and-Country-Happiness" class="headerlink" title="C  Uncle Bogdan and Country Happiness"></a>C  Uncle Bogdan and Country Happiness</h4><p>阴间题面仿佛强行喂我吃奥里给, wdnmd</p>
 <blockquote>
 <p>题意: 初始时每个人都在标号为<code>1</code>的城市,然后回到每个人各自的城市,选择从起点到终点的最短路径,相邻城市之间的距离一样,每个人在进入一个城市时可以改变他的心情,从<code>Good</code>变为<code>Bad</code>,但是不可以从<code>Bad</code>变成<code>Good</code>,每个人进入一个城市时他的心情会影响这个城市的幸福指数,如果是<code>Good</code>那么指数加一否则减一,在城市里面心情是不会改变的,现在给出一种城市幸福指数的可能性,计算有没有可能得到这种幸福指数格局? </p>
@@ -1516,7 +1626,7 @@ int main(){
 <li>$0\leq g \leq s$</li>
 <li>$g \geq \sum g_{son} $</li>
 </ol>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1563,11 +1673,12 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Captain-Flint-and-Treasure"><a href="#D-Captain-Flint-and-Treasure" class="headerlink" title="D  Captain Flint and Treasure"></a>D  Captain Flint and Treasure</h4><p>tuopu排序</p>
 <p>如果传递的值为正, 就push进队列</p>
 <p>如果为负, 就将链倒过来, 不让累加值传递下去</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1622,7 +1733,8 @@ int main(){
     int _ = 1;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1656,7 +1768,7 @@ int main(){
     <url>/2020/073120655.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1389" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-LCM-Problem"><a href="#A-LCM-Problem" class="headerlink" title="A  LCM Problem"></a>A  LCM Problem</h4><p>大力猜结论, 必须满足R &gt;= 2L, 过了就nice, 不过下一题QuQ </p>
-<pre class="line-numbers language-c++"><code class="language-c++">using namespace std;
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">using namespace std;
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
@@ -1679,7 +1791,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Array-Walk"><a href="#B-Array-Walk" class="headerlink" title="B  Array Walk"></a>B  Array Walk</h4><p>z很小, 还是蛮好想的dp</p>
 <p>转移只能从相邻位置,  所以暴力转移0.0</p>
 <p>本来开开心心交完pretest</p>
@@ -1688,7 +1801,7 @@ int main(){
 <p>冷静下来再次思考了关于dp为什么不用考虑限制连续向左的问题</p>
 <p>其实如果没有这条限制, 答案最后还是在一对相邻的值之间反复横跳</p>
 <p>综上: 有没有这条限制, 这个写法都是对的 0.0</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1727,12 +1840,13 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Good-String"><a href="#C-Good-String" class="headerlink" title="C  Good String"></a>C  Good String</h4><p>找一个最长子序列$t_1t_2t_3 \cdots t_{n-1}t_n$</p>
 <p>满足$t_2t_3 \cdots t_{n-1}t_nt_1 = t_nt_1t_2t_3 \cdots t_{n-1}$</p>
 <p>化简发现, 只有两种情况, 要么全都一样, 要么隔一个元素一样</p>
 <p>枚举一下就好了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">using namespace std;
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">using namespace std;
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
@@ -1771,10 +1885,11 @@ int main(){
     // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Segment-Intersections"><a href="#D-Segment-Intersections" class="headerlink" title="D  Segment Intersections"></a>D  Segment Intersections</h4><p>分类讨论, 单纯的恶心</p>
 <p>有区域赛签到题内味儿了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">using namespace std;
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">using namespace std;
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
@@ -1822,7 +1937,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1855,7 +1971,7 @@ int main(){
     <url>/2020/072559060.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1384" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-Common-Prefixes"><a href="#A-Common-Prefixes" class="headerlink" title="A  Common Prefixes"></a>A  Common Prefixes</h4><p>懒得想就暴力两层</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1884,11 +2000,12 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B1-Koa-and-the-Beach-Easy-Version"><a href="#B1-Koa-and-the-Beach-Easy-Version" class="headerlink" title="B1  Koa and the Beach (Easy Version)"></a>B1  Koa and the Beach (Easy Version)</h4><p><img src="https://i.loli.net/2020/07/25/9KN4cCmMLSr28Wd.png" alt="tem3.png"></p>
 <p>万万没想到, $O(n*n*k*t)$的dp还真就是$1e9$  (狗头)</p>
 <p>对着时间线和位置暴力dp, 注意自己所在的位置也是可以转移的</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1936,7 +2053,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-String-Transformation-1"><a href="#C-String-Transformation-1" class="headerlink" title="C  String Transformation 1"></a>C  String Transformation 1</h4><p>题意读的爆炸, 球球了, 别再出阅读理解了</p>
 <blockquote>
 <p>每次选任意个一样的字母x, 全部替换成y (y &gt; x)</p>
@@ -1947,7 +2065,7 @@ int main(){
 <p>从小到大枚举贪心,  如果没有出现已经改变过的(当前字母), 就直接改变到目标字母, ++ans</p>
 <p>否则, 就加到已经改变的字母上, 攒到一起最后更改</p>
 <p>样例把人误导了  :no_mouth:  </p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -1991,7 +2109,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-GameGame"><a href="#D-GameGame" class="headerlink" title="D  GameGame"></a>D  GameGame</h4><p>学弟给了波思路, 还是没切出来, wtcl  :sob: </p>
 <p>很容易想到只要枚举最高位的情况就行</p>
 <p>但是这里的最高位不是实际最高位, 而是有效最高位</p>
@@ -2002,8 +2121,8 @@ int main(){
 <p>那么最高位个数一定是奇数</p>
 <p>注意 游戏是你先手, 所以最终你拿到的数字个数一定是$ \lceil n / 2 \rceil $</p>
 <p>利用这个特点我们需要让对手拿到偶数个最高位</p>
-<p>那么必输的情况只有一种$one%4 == 3 \bigwedge  zero%2 == 0$</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<p>那么必输的情况只有一种$one\%4 == 3 \bigwedge  zero\%2 == 0$</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -2077,7 +2196,7 @@ int main(){
     <url>/2020/07231255.html</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1382" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-Common-Subsequence"><a href="#A-Common-Subsequence" class="headerlink" title="A  Common Subsequence"></a>A  Common Subsequence</h4><p>签到</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
@@ -2116,7 +2235,8 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Sequential-Nim"><a href="#B-Sequential-Nim" class="headerlink" title="B  Sequential Nim"></a>B  Sequential Nim</h4><blockquote>
 <p>结论: 首先碰到 &gt; 1 的数的人胜利</p>
 </blockquote>
@@ -2126,24 +2246,16 @@ int main(){
 <li><p>序列为3 3 3 3</p>
 <p>轮流拿 2 1 2 1 2 1 3</p>
 </li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
 <li><p>序列为3 1 3 3</p>
 <p>轮流拿 3 1 2 1 3</p>
 </li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
 <li><p>序列为 3 1 1 3</p>
 <p>轮流拿 2 1 1 1 3</p>
 </li>
 </ol>
 </blockquote>
 <p>以上三种序列足以覆盖所有情况</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -2180,12 +2292,13 @@ int main(){c++
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Prefix-Flip"><a href="#C-Prefix-Flip" class="headerlink" title="C  Prefix Flip"></a>C  Prefix Flip</h4><p>若串首字符不等于目标字符, 则直接翻转</p>
 <p>若串首字符等于目标字符, 则先翻转串首, 在翻转</p>
 <p>这样构造一定小于$2n$</p>
 <p>双指针记录一下串首和串尾的位置和翻转情况即可</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
 #define INF 0x3f3f3f3f
@@ -2222,12 +2335,13 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Unmerge"><a href="#D-Unmerge" class="headerlink" title="D  Unmerge"></a>D  Unmerge</h4><p>01背包变形</p>
 <p>观察发现, 两个前缀最大之间的数是可以连续的存在一个序列里的</p>
 <p>预处理出所有这样的段</p>
 <p>dp一下能不能组成长度为n的序列即可</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))
@@ -2267,7 +2381,8 @@ int main(){
     cin >> _;c++
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -2300,7 +2415,7 @@ int main(){
     <content><![CDATA[<blockquote>
 <p>这是一个测试页面</p>
 </blockquote>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define lowbit(x) ((x) & (-x))

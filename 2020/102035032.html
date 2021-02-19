@@ -439,7 +439,7 @@
 <p>这波双指针我能补两天, tcl</p>
 <p>按我觉得由易到难的顺序</p>
 <h4 id="A-Greeting-from-Qinhuangdao"><a href="#A-Greeting-from-Qinhuangdao" class="headerlink" title="A  Greeting from Qinhuangdao"></a>A  <strong>Greeting from Qinhuangdao</strong></h4><p>组合数学,  再求下GCD</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 using namespace std;
@@ -470,13 +470,14 @@ int main(){
     int _ = 1;
     cin >> _;
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="F-Friendly-Group"><a href="#F-Friendly-Group" class="headerlink" title="F  Friendly Group"></a>F  <strong>Friendly Group</strong></h4><p>给你一个图, 你需要选择一些点</p>
 <p>一个图中点的贡献cost = 所有边的个数 -  所有点的个数 - 连接图中却没选的点的个数</p>
 <p>注意cost可能是负数</p>
 <p>可以发现度&lt;=1的节点可选可不选 , 全部去掉剩下都选就行了</p>
 <p>学弟有并查集做的 QAQ </p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 using namespace std;
@@ -538,12 +539,13 @@ int main(){
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
     // system("pause");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="G-Good-Number"><a href="#G-Good-Number" class="headerlink" title="G  Good Number"></a>G  <strong>Good Number</strong></h4><p>$k &gt;= 32 或 k==1$时 答案直接为n</p>
 <p>剩下小数据直接二分暴力了</p>
 <p>跑的时候死活过不去样例, 断点进去才发现pow精度有问题, 淦</p>
 <p>老老实实手写开根号了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 using namespace std;
@@ -619,13 +621,14 @@ int main(){
     int _ = 1;
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="E-Exam-Results"><a href="#E-Exam-Results" class="headerlink" title="E  Exam Results"></a>E  <strong>Exam Results</strong></h4><p>n个学生,  每个学生可能有两种成绩, 要么是a[i], 要么是b[i]</p>
 <p>现在规定所有小于最高成绩x*p/100的都算不及格</p>
 <p>现在问最多及格多少人</p>
 <p>枚举最高分, 双指针扫一遍就好了, 写了好久, sad</p>
 <p>注意小于最高分的一定要够n个人</p>
-<pre class="line-numbers language-c++"><code class="language-c++">
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
 using namespace std;
 
 #define ALL(x) x.begin(), x.end()
@@ -685,13 +688,14 @@ int main(){
     int _ = 1;
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="K-Kingdom’s-Power"><a href="#K-Kingdom’s-Power" class="headerlink" title="K   Kingdom’s Power"></a>K   <strong>Kingdom’s Power</strong></h4><p>tree dp</p>
 <p>考虑每个点要么从根节点来, 要么从其他叶节点来</p>
 <p>预处理一下每个节点到根节点的距离</p>
 <p>那么每个子树, 每次枚举较浅的节点去更新深的节点(上一步进行排序)</p>
 <p>最后把所有叶子的答案加起来就是了</p>
-<pre class="line-numbers language-c++"><code class="language-c++">/*
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">/*
  * @Author: AsilenceBTF
  * @LastEditTime: 2020-10-20 10:23:25
  */
@@ -754,7 +758,8 @@ int main(){
     int _ = 1;
     scanf("%d", &_);
     for(int i = 1; i <= _; ++i) solve(i);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1040,56 +1045,46 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/102035032.html">
+                <a href="/2021/021935383.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="2020CCPC秦皇岛云打星">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="C/C++基础要点">
                         
-                        <span class="card-title">2020CCPC秦皇岛云打星</span>
+                        <span class="card-title">C/C++基础要点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            2020CCPC秦皇岛云打星
+                            C/C++基础要点,面试必备
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CCPC/" class="post-category">
-                                    CCPC
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
+                                    面试
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/dp/">
-                        <span class="chip bg-color">dp</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%80%9D%E7%BB%B4/">
-                        <span class="chip bg-color">思维</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
-                        <span class="chip bg-color">双指针</span>
+                    <a href="/tags/C-C/">
+                        <span class="chip bg-color">C/C++</span>
                     </a>
                     
                 </div>
