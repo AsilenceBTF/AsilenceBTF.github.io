@@ -371,12 +371,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                                <span class="chip bg-color">贪心</span>
-                            </a>
-                        
                             <a href="/tags/%E6%9E%9A%E4%B8%BE/">
                                 <span class="chip bg-color">枚举</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                                <span class="chip bg-color">贪心</span>
                             </a>
                         
                     </div>
@@ -433,7 +433,7 @@
             <div id="articleContent">
                 <p><a href="https://codeforces.com/contest/1395" target="_blank" rel="noopener">传送门</a></p>
 <h4 id="A-Boboniu-Likes-to-Color-Balls"><a href="#A-Boboniu-Likes-to-Color-Balls" class="headerlink" title="A  Boboniu Likes to Color Balls"></a>A  Boboniu Likes to Color Balls</h4><p>能构成回文的条件至少三个偶数, 暴力一下就好了</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -461,10 +461,9 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Boboniu-Plays-Chess"><a href="#B-Boboniu-Plays-Chess" class="headerlink" title="B  Boboniu Plays Chess"></a>B  Boboniu Plays Chess</h4><p>白给题, 拼手速吧</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
+<pre class="line-numbers language-c++"><code class="language-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
@@ -499,8 +498,7 @@ int main(){
     // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Boboniu-and-Bit-Operations"><a href="#C-Boboniu-and-Bit-Operations" class="headerlink" title="C  Boboniu and Bit Operations"></a>C  Boboniu and Bit Operations</h4><p>数据看错了, 把$2^{9}$ 看成$1e9$了, 强行给自己增加hard version T_T</p>
 <p>$2^{9}$直接暴力就好了, 不用说的水题</p>
 <p>$1e9$的做法就是, 从高位到低位枚举贪心</p>
@@ -508,7 +506,7 @@ int main(){
 <p>否则当前位 置1</p>
 <p>$O(nmlog^2(num))$</p>
 <p>还是很快的, 1e18感觉也能跑</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 typedef long long ll;
@@ -544,12 +542,11 @@ int main(){
         res += bit[i] << i;
     cout << res << endl;
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Boboniu-Chats-with-Du"><a href="#D-Boboniu-Chats-with-Du" class="headerlink" title="D  Boboniu Chats with Du"></a>D  Boboniu Chats with Du</h4><p>枚举被禁言多少天, 剩下的天数可以算出来</p>
 <p>枚举的时候, 我们贪心的先放一个在最后一格, 其他的再往前放</p>
 <p>用前缀更新答案, 注意判断边界</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const int N =2e5 + 105;
+<pre class="line-numbers language-c++"><code class="language-c++">const int N =2e5 + 105;
 ll a[N], b[N], prea[N], preb[N];
 void solve(){
     int d, n, t1 = 0, t2 = 0;
@@ -581,8 +578,7 @@ int main(){
     // cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -664,12 +660,12 @@ int main(){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                                    <span class="chip bg-color">贪心</span>
-                                </a>
-                            
                                 <a href="/tags/%E6%9E%9A%E4%B8%BE/">
                                     <span class="chip bg-color">枚举</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                                    <span class="chip bg-color">贪心</span>
                                 </a>
                             
                         </div>
@@ -963,12 +959,12 @@ int main(){
                         <span class="chip bg-color">dp</span>
                     </a>
                     
-                    <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/">
-                        <span class="chip bg-color">分类讨论</span>
-                    </a>
-                    
                     <a href="/tags/%E8%B4%AA%E5%BF%83/">
                         <span class="chip bg-color">贪心</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/">
+                        <span class="chip bg-color">分类讨论</span>
                     </a>
                     
                 </div>

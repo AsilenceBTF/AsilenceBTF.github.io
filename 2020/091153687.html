@@ -444,7 +444,7 @@
 <p>$当cnt_0 &gt;= \frac{n}{2} 时, 输出\frac{n}{2} 个0$</p>
 <p>$当cnt1 &gt;= \frac{n}{2}且 \frac{n}{2}为偶数, 输出\frac{n}{2}个1$</p>
 <p>$其他情况输出\frac{n}{2}个1和1个0$</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">
+<pre class="line-numbers language-c++"><code class="language-c++">
 #define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
@@ -509,13 +509,12 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="B-Big-Vova"><a href="#B-Big-Vova" class="headerlink" title="B  Big Vova"></a>B  Big Vova</h4><blockquote>
 <p>题意 重排数组a, 使得前缀gcd 字典序最大</p>
 </blockquote>
 <p>暴力每个位置, 贪心找最大值</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 #define debug(x) cout << "##### " << x << endl; 
@@ -555,8 +554,7 @@ int main(){
     cin >> _;
     for(int i = 1; i <= _; ++i) solve();
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="C-Chocolate-Bunny"><a href="#C-Chocolate-Bunny" class="headerlink" title="C  Chocolate Bunny"></a>C  Chocolate Bunny</h4><blockquote>
 <p>题意: 交互题, 每次可以询问两个位置i, j 返回a[i]%a[j] 最多询问2*n次, 求a</p>
 </blockquote>
@@ -565,7 +563,7 @@ int main(){
 <p>每次询问a[idx]%a[i], a[i]%a[idx]</p>
 <p>较大的值可以确定, 较小的则重新选为基准</p>
 <p>最后剩下的就是n</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 #define debug(x) cout << "##### " << x << endl; 
@@ -600,8 +598,7 @@ int main(){
         cout << endl;
     }
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="D-Discrete-Centrifugal-Jumps"><a href="#D-Discrete-Centrifugal-Jumps" class="headerlink" title="D  Discrete Centrifugal Jumps"></a>D  Discrete Centrifugal Jumps</h4><blockquote>
 <p>题意:  懒得写了</p>
 </blockquote>
@@ -611,7 +608,7 @@ int main(){
 <p>这个单调栈可以预处理</p>
 <p>最后dp一下就可</p>
 <p>$O(n)$</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define sz(x) int(x.size())
+<pre class="line-numbers language-c++"><code class="language-c++">#define sz(x) int(x.size())
 #define ALL(x) x.begin(), x.end()
 #define INF 0x3f3f3f3f
 #define debug(x) cout << "##### " << x << endl; 
@@ -678,8 +675,7 @@ int main(){
     }  
     cout << dp[n] << endl;
     // system("pause");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1003,12 +999,12 @@ int main(){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/dp/">
-                        <span class="chip bg-color">dp</span>
-                    </a>
-                    
                     <a href="/tags/%E6%80%9D%E7%BB%B4/">
                         <span class="chip bg-color">思维</span>
+                    </a>
+                    
+                    <a href="/tags/dp/">
+                        <span class="chip bg-color">dp</span>
                     </a>
                     
                     <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
@@ -1060,12 +1056,12 @@ int main(){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
-                        <span class="chip bg-color">贪心</span>
-                    </a>
-                    
                     <a href="/tags/%E6%9E%9A%E4%B8%BE/">
                         <span class="chip bg-color">枚举</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%B4%AA%E5%BF%83/">
+                        <span class="chip bg-color">贪心</span>
                     </a>
                     
                 </div>
