@@ -405,14 +405,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    935
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    3 Min
+                    11 Min
                 </div>
                 
 
@@ -428,9 +428,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="C-C-程序基础"><a href="#C-C-程序基础" class="headerlink" title="C/C++程序基础"></a>C/C++程序基础</h4><ol>
-<li><p>在C++中与操作符**::**可以直接操作全局变量, C中不支持域操作符, 编译时会报错</p>
+<li><p>在<code>C++</code>中域操作符<code>::</code>可以直接操作全局变量,<code>C</code>中不支持域操作符, 编译时会报错</p>
 </li>
-<li><p>前缀式和后缀式效率(++i和i++)比较:</p>
+<li><p>前缀式和后缀式效率(<code>++i</code>和<code>i++</code>)比较:</p>
 <blockquote>
 <p>当使用内建数据类型时,两个效率一样</p>
 <p>当使用自定义数据类型时, 由于后缀式需要先用一个临时变量存储返回值,所以前缀式效率高</p>
@@ -438,17 +438,17 @@
 </li>
 <li><p>码风良好的条件比较句</p>
 <blockquote>
-<p>当使用布尔变量时 使用if(flag)好于if(flag == True) 因为True固定为1, 但flag任何非0值都为真</p>
-<p>当与0做比较时 使用if(value != 0) 好于if(value) 因为后者会误认为与布尔值做比较</p>
-<p>浮点数作比较时,使用精度误差eps进行控制</p>
-<p>指针变量与0比较时 if(p==NULL)好于if(p==0) 后者会让人误认为与0作比较</p>
+<p>当使用布尔变量时 使用<code>if(flag)</code>好于<code>if(flag == True)</code> 因为<code>True</code>固定为<code>1</code>, 但<code>flag</code>任何非<code>0</code>值都为真</p>
+<p>当与<code>0</code>做比较时 使用<code>if(value != 0)</code> 好于<code>if(value)</code> 因为后者会误认为与布尔值做比较</p>
+<p>浮点数作比较时,使用精度误差<code>eps</code>进行控制</p>
+<p>指针变量与<code>0</code>比较时 <code>if(p==NULL)</code>好于<code>if(p==0)</code> 后者会让人误认为与0作比较</p>
 </blockquote>
 </li>
 <li><p>无符号与有符号整数运算时, 都转化为无符号进行运算</p>
 <p>且要注意溢出问题</p>
 </li>
-<li><p>不使用中间变量交换a,b的值</p>
-<pre class="line-numbers language-c++"><code class="language-c++">void swap1(int &a, int &b){
+<li><p>不使用中间变量来交换<code>a,b</code>的值的方法</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void swap1(int &a, int &b){
     a = a + b;
     b = a - b;
     a = a - b;
@@ -459,20 +459,21 @@ void swap2(int &a, int &b){
     b ^= a;
     a ^= b;
     // 推荐用这种方式
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><strong>C++与C有什么不同</strong></p>
-<p>C是结构化语言, 重点在于算法和数据结构. 对语言本身, C是C++的子集. C程序设计首先考虑如何通过一个过程,对输入进行运算处理,得到输出. 对于C++,首先要考虑如何构造一个对象模型,让这个模型能够配合对应的问题, 通过获取对象的状态信息得到输出或实现控制过程</p>
-<p>因此,C和C++最大区别是解决问题的思想方法不一样</p>
-<p>C实现了C++中过程化控制及其他相关功能. 而在C++中的C, 相对于原来的C还有所加强, 引入了<strong>重载,内联函数,异常处理等</strong>. C++更是拓展了<strong>面向对象设计的内容, 如类,继承,虚函数,模板,包容器类等</strong></p>
-<p>在C++中, 不仅需要考虑数据封装, 还需要考虑对象粒度的选择, 对象接口的设计和继承, 组合与继承的使用等问题</p>
-<p>相对于C,C++包含了更丰富的设计概念</p>
+<p><code>C</code>是结构化语言, 重点在于算法和数据结构. 对语言本身, <code>C</code>是<code>C++</code>的子集. <code>C</code>程序设计首先考虑如何通过一个过程,对输入进行运算处理,得到输出. 对于<code>C++</code>,首先要考虑如何构造一个对象模型,让这个模型能够配合对应的问题, 通过获取对象的状态信息得到输出或实现控制过程</p>
+<p>因此,<code>C</code>和<code>C++</code>最大区别是解决问题的思想方法不一样</p>
+<p><code>C</code>实现了<code>C++</code>中过程化控制及其他相关功能. 而在<code>C++</code>中的<code>C</code>, 相对于原来的<code>C</code>还有所加强, 引入了<strong>重载,内联函数,异常处理等</strong>. <code>C++</code>更是拓展了<strong>面向对象设计的内容, 如类,继承,虚函数,模板,包容器类等</strong></p>
+<p>在<code>C++</code>中, 不仅需要考虑数据封装, 还需要考虑对象粒度的选择, 对象接口的设计和继承, 组合与继承的使用等问题</p>
+<p>相对于<code>C,C++</code>包含了更丰富的设计概念</p>
 </li>
-<li><p>如何理解C++是面向对象化的, 而C是面向过程化的</p>
-<p>C是面向过程化的, 但C++不是完全面向对象化的. 在C++中也可以完全写出C一样过程化的程序, 所以C++只是拥有面向对象的特性. Java是真正面向对象化的</p>
+<li><p>如何理解<code>C++</code>是面向对象化的, 而<code>C</code>是面向过程化的</p>
+<p><code>C</code>是面向过程化的, 但<code>C++</code>不是完全面向对象化的. 在<code>C++</code>中也可以完全写出<code>C</code>一样过程化的程序, 所以<code>C++</code>只是拥有面向对象的特性. <code>Java</code>是真正面向对象化的</p>
 </li>
 <li><p>标准头文件的结构</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#ifndef __INCvxWorksh
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#ifndef __INCvxWorksh
 #define __INCvxWorksh // 防止头文件被重复引用
 #ifdef __cplusplus // 如果是c++文件
 extern "C"{ // 模块按照C语言编译, 解决重载名字匹配问题
@@ -480,17 +481,177 @@ extern "C"{ // 模块按照C语言编译, 解决重载名字匹配问题
 #ifdef __cplusplus
 }
 #endif
-#endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#endif
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
-<li><p>#include&lt;head.h&gt; 与"head.h" 的区别</p>
+<li><p><code>#include&lt;head.h&gt;</code> 与<code>"head.h"</code> 的区别</p>
 <p>尖括号表明这个文件是一个工程或标准头文件, 会先从预定义的目录中查找</p>
 <p>引号表明该文件是用户提供的头文件, 会先从当前文件目录寻找</p>
 </li>
-<li><p>C++中main函数执行完后还执行其他语句吗?</p>
-<p>可以使用atexit函数来注册函数在main函数结束后, 被atexit注册的函数会依次调用, 最先注册的最后调用, 最后注册的最先调用</p>
+<li><p><code>C++</code>中<code>main</code>函数执行完后还执行其他语句吗?</p>
+<p>可以使用<code>atexit</code>函数来注册函数在<code>main</code>函数结束后, 被<code>atexit</code>注册的函数会依次调用, 最先注册的最后调用, 最后注册的最先调用</p>
 </li>
 </ol>
-<script>
+<h4 id="预处理-const-static与sizeof"><a href="#预处理-const-static与sizeof" class="headerlink" title="预处理,const,static与sizeof"></a>预处理,const,static与sizeof</h4><ol>
+<li><p>宏定义的注意事项</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define SQR(x) (x*x)
+int main(){
+    int a, b = 3;
+    a = SQR(b + 2);
+    printf("a = %d\n", a);  // 这里的输出是11
+    //由于宏定义是在预处理时期,b没有被赋值,这时b只是一个符号,因此被展开成
+    //a = (b + 2*b + 2); 执行后a被赋值为11
+    /*为达到原来的目的可以将 SQR(x) 改成
+        #define SQR(x) ((x) * (x))
+    */
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>宏参数连接</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define STR(s) #s
+#define CONS(a, b) (int)(a##e##b) // 连接(a,b)变成aeb
+int main(){
+    printf(STR(vck)); // 输出vck
+    printf("\n");
+    printf("%d\n", CONS(2, 3)); // 经过连接变成2e3, 输出2000
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>const</code> 的使用</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#include<stdio.h>
+int main(){
+    const int x = 1; // 如果没有初始化就是随机数且不可变
+    int b = 10;
+    int c = 20;
+
+    const int* a1 = &b; // const在int*左侧,修饰指针所指向的变量,即指针指向为常量
+    int* const a2 = &b; // const在int*右侧,修饰指针本身,即指针为常量
+    const int* const a3 = &b; // 指针为常量,指针指向也为常量
+    x = 2; // 错误, x是常量不可变
+
+    a1 = &c; // 指针可以改变
+    *a1 = 1; // 错误, 指针指向的值为常量
+
+    a2 = &c; // 错误,指针为常量
+    *a2 = 1; // 指针指向的值可以改变
+
+    a3 = &c; // 错误,指针为常量
+    *a3 = 1; // 错误,指针指向的值为常量
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>说明<code>const</code>与<code>#define</code>的特点与区别</p>
+<p><code>#define</code>只是用来做文本替换, 编译时进行替换,生命周期止于编译器,存在于程序的代码段, 实际过程只是一个常数,一个命令中的参数,没有实际存在.</p>
+<p><code>const</code>常量存在程序的数据段, 并在堆栈分配了空间. <code>const</code>常量有数据类型,宏常量没有数据类型. 编译器可以对<code>const</code>常量进行类型安全检查</p>
+</li>
+<li><p><code>C++</code>中<code>const</code>有什么作用</p>
+<ul>
+<li><p><code>const</code>用于常量,<code>const</code>常量编译器可以对其进行数据类型安全检查</p>
+</li>
+<li><p>当输入参数<strong>用户自定义类型和抽象数据类型</strong>时, 应该将<code>值传递</code>改为<code>const&amp;传递</code>, 可以提高效率</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void fun(A a); //函数产生A类型的临时对象来复制参数a, 临时对象的构造,复制,析构过程都消耗时间.
+void fun(A const &a); //使用引用传递不需要产生临时对象,提高效率.但光引用有可能改变a,所以加const
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>const</code>修饰函数的返回值,如给<strong>指针传递</strong>的函数返回值加<code>const</code>,则返回值不能被直接修改,且返回值只能被赋值给加<code>const</code>修饰的同类型指针</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const char* Getchar(void){};
+char* ch = Getchar(); // 错误
+const char* ch = Getchar(); // 正确
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>const</code>修饰类的成员函数,任何不会修改数据成员的函数都应用<code>const</code>修饰, 这样,当不小心修改了数据成员或调用了非<code>const</code>成员函数时,编译器都会报错</p>
+<pre class="line-numbers language-lang-c"><code class="language-lang-c">int GetCount(void) const;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li><p><code>C++</code>中<code>static</code>有什么作用</p>
+<ul>
+<li>隐藏: 在模块内,一个被声明为静态的变量可以被模块内所有函数访问, 但不能被模块外其他函数访问, 相当于一个本地的全局变量</li>
+<li>持久性: 变量会在程序刚开始运行时就完成初始化(<strong>全局变量也是</strong>),也是唯一的一次初始化</li>
+<li>在模块内,一个被声明为静态的函数只可被这一模块的其他函数调用</li>
+</ul>
+</li>
+<li><p>静态全局变量与普通全局变量有什么不同</p>
+<p>非静态全局变量作用域是整个源程序,当一个源程序由多个源文件组成时,非静态的全局变量在各个源文件都是有效的</p>
+<p>静态全局变量限制了作用域,即只在定义该变量的源文件内有效</p>
+<p>static函数在内存中只有一份, 普通函数在每个被调用中维持一份复制品(<strong>static函数是可以递归的</strong>)</p>
+</li>
+<li><p><code>C++</code>类的静态成员</p>
+<p>类的静态成员或方法不属于类的实例,在所有类的实例间共享, 调用时应用类名+操作符<code>::</code>来引用</p>
+</li>
+<li><p>使用<code>sizeof</code>计算普通变量所占空间</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">// 32为WinNT操作系统下
+char str[] = "Hello";
+char *p = str;
+int n = 10;
+sizeof(str); // 6, 对数组变量sizeof计算得到数组占用内存大小,注意字符串还有结束符
+sizeof(p);// 4, 指针类型32位为4字节
+sizeof(n);// 4, int类型32位为4字节
+void Func(char str[100]){
+    sizeof(str); // 4, 由于数组作为参数是传址的, 所以也是4
+}
+void *p = malloc(100); //4,p指向一个100字节的堆内存
+sizeof(p);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>使用<code>sizeof</code>计算类对象或<code>struct</code>所占空间</p>
+<p>由于需要字节对齐,所以计算时总空间需要能够<strong>被其最宽基本类型成员的大小所整除</strong></p>
+<p>所以需要填充字节</p>
+</li>
+<li><p>使用<code>sizeof</code>计算含有虚函数的类对象所占空间</p>
+<p><strong>普通函数不占用内存</strong></p>
+<p><strong>静态成员存储在静态存储区,不参与类大小的计算</strong></p>
+<p>有虚函数的类还包括一个指针来维护这个类的虚函数表,所以<strong>多4个字节</strong></p>
+</li>
+<li><p>使用<code>sizeof</code>计算虚拟继承的类对象的空间大小</p>
+<p><strong>如果是空类,编译器会自动安插一个char给空类,用来标记对象,  因此大小为1字节</strong></p>
+<p>类普通继承, 大小不变</p>
+<p>类虚继承, 编译器为该类安插一个指向父类的指针,大小为4. <strong>每多一个虚继承,大小都增加4</strong></p>
+</li>
+<li><p><code>sizeof</code>和<code>strlen</code>的区别</p>
+<ul>
+<li><code>sizeof</code>是操作符, <code>strlen</code>是函数</li>
+<li><code>sizeof</code>操作符的结果类型是<code>size_t</code></li>
+<li><code>sizeof</code>可以用类型做参数, <code>strlen</code>只用<code>char*</code>做参数, 且必须是以<code>"\0"</code>结尾的</li>
+<li>数组做<code>sizeof</code>的参数不退化, 传递给<code>strlen</code>就退化成指针了</li>
+<li>大部分编译程序在编译的时候<code>sizeof</code>就被计算过了, 这就是<code>sizeof(x)</code> 可以用来定义数组维数的原因. <code>strlen</code>的结果是要在运行的时候才能计算出来, 它用来计算字符串的长度,不是类型占内存的大小</li>
+<li><code>sizeof</code>后如果是类型,必须加括弧; 如果是变量名,可以不加括弧. 因为<code>sizeof</code>是操作符,而不是函数</li>
+<li>如果要计算指针指向的字符串的长度,则一定要用<code>strlen</code></li>
+</ul>
+</li>
+<li><p><code>sizeof</code>的用途</p>
+<ul>
+<li>查看某个类型的对象在内存中所占的单元字节</li>
+<li>分配内存时,可以让系统知道要分配多少内存</li>
+<li>便于一些类型的扩充</li>
+<li>计算指针大小</li>
+</ul>
+</li>
+<li><p>内联函数<code>inline</code>的作用</p>
+<p>代替<code>C</code>语言中的表达式形式的宏定义来解决程序中函数调用的效率问题</p>
+<p>内联函数在使用时直接进行替换, 没有了调用的开销</p>
+<p>类的内联函数也是一个真正的函数, 编译器会检查参数类型确保正确,消除了它的隐患和局限性</p>
+</li>
+<li><p><code>inline</code> 的使用场合</p>
+<p><code>C++</code>类中对于私有或保护成员的接口函数写成内联函数,将会获得比较好的效率</p>
+</li>
+<li><p>为什么不把所有的函数都定义成内联函数?</p>
+<p>内联函数是以代码膨胀为代价的, 仅省去了函数调用的开销, 从而提高函数的执行效率. </p>
+<p>如果函数体内代码的时间相比于函数调用的开销较大, 那么总效率收获很少</p>
+<p>另一方面,内联函数的调用都要复制代码,内存开销很大</p>
+</li>
+<li><p>内联函数和宏的区别</p>
+<ul>
+<li>内联函数在编译时展开, 宏在预编译是展开</li>
+<li>在编译的时候,内联函数可以直接被镶嵌到目标代码, 宏只是一个简单的文本替换</li>
+<li>内联函数可以完成类型检测,语句是否正确等编译功能, 宏不具有这样的功能</li>
+<li>宏不是函数,<code>inline</code>函数是函数</li>
+<li>宏定义是需要用括号括起来,否则容易出现二义性. 内联函数不会</li>
+</ul>
+</li>
+</ol>
+<h4 id="引用和指针"><a href="#引用和指针" class="headerlink" title="引用和指针"></a>引用和指针</h4><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
