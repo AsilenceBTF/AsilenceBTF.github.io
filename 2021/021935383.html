@@ -405,14 +405,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3k
+                    4.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    11 Min
+                    15 Min
                 </div>
                 
 
@@ -549,9 +549,11 @@ int main(){
 <li><p><code>const</code>用于常量,<code>const</code>常量编译器可以对其进行数据类型安全检查</p>
 </li>
 <li><p>当输入参数<strong>用户自定义类型和抽象数据类型</strong>时, 应该将<code>值传递</code>改为<code>const&amp;传递</code>, 可以提高效率</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void fun(A a); //函数产生A类型的临时对象来复制参数a, 临时对象的构造,复制,析构过程都消耗时间.
-void fun(A const &a); //使用引用传递不需要产生临时对象,提高效率.但光引用有可能改变a,所以加const
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void fun(A a); 
+//函数产生A类型的临时对象来复制参数a, 临时对象的构造,复制,析构过程都消耗时间.
+void fun(A const &a); 
+//使用引用传递不需要产生临时对象,提高效率.但光引用有可能改变a,所以加const
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>const</code>修饰函数的返回值,如给<strong>指针传递</strong>的函数返回值加<code>const</code>,则返回值不能被直接修改,且返回值只能被赋值给加<code>const</code>修饰的同类型指针</p>
 <pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const char* Getchar(void){};
@@ -651,7 +653,295 @@ sizeof(p);
 </ul>
 </li>
 </ol>
-<h4 id="引用和指针"><a href="#引用和指针" class="headerlink" title="引用和指针"></a>引用和指针</h4><script>
+<h4 id="引用和指针"><a href="#引用和指针" class="headerlink" title="引用和指针"></a>引用和指针</h4><ol>
+<li><p>引用的定义</p>
+<p>对一个变量的引用就是它的别名, 他们在内存中存储的地址一样</p>
+</li>
+<li><p>引用的注意事项</p>
+<p>引用必须初始化, 且只能在声明的时候赋值, 其他时刻不能作为其他变量的别名</p>
+</li>
+<li><p>指针和引用的区别</p>
+<ul>
+<li>引用创建时必须初始化; 指针不用初始化</li>
+<li>引用初始化后不能修改绑定关系; 指针可以修改</li>
+<li>不能引用<code>NULL</code>, 引用必须指向某个对象; 指针可以是<code>NULL</code>,所以更加灵活也更容易出错</li>
+<li>引用不会指向空值,所以使用前不用测试合法性; 指针需要经常测试, 所以引用代码效率更高</li>
+<li>语言层面引用的用法和指针一样, 底层引用还是用指针实现的</li>
+</ul>
+</li>
+<li><p>为什么传引用比指针安全?</p>
+<p>因为不存在空引用,  一旦引用被初始化就不能改变为另一个对象的引用</p>
+<p>但是指针不用初始化,可以为空, 可以随时指向别的对象, 所以不安全</p>
+</li>
+<li><p>一些复杂指针的声明</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//一个整形数
+int a;
+//一个指向整型数的指针
+int* a;
+//一个指向指针的指针a, a指向的指针是指向一个整型数的
+int** a;
+//一个有10个整型数的数组
+int a[10];
+//一个有10个指针的数组,该数组的指针是指向一个整型数的
+int* a[10];
+//一个指向有10个整型数数组的指针
+int (*a)[10];
+//一个指向函数的指针, 该函数有一个整型参数并返回一个整型数
+int (*a)(int);
+//一个有10个指针的数组,该指针指向一个函数,该函数有一个整型参数并返回一个整型数
+int (*a[10])(int);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>指针常量与常量指针的区别</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//指针常量 该指针指向整型且不可改变
+int* const a;
+//常量指针 该指针指向一个常量,指针可以改变,指向的值不可以
+const int* a;
+int const* a;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>指针函数和函数指针的区别</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//指针函数 指一个返回值是指针的函数
+int* f(int a, int b){
+
+}
+int max(int x, int y){}
+//函数指针 指一个指针指向的是一个函数
+int (*p)(int, int) = max;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>什么是<code>野指针</code>?</p>
+<p><code>野指针</code>不是<code>NULL</code>指针, 而是指向<code>"垃圾"</code>内存的指针. <code>野指针</code>一旦出现很难判断</p>
+<p>成因主要有两种:</p>
+<ul>
+<li>指针变量没有被初始化, 指针指向随机, 所以指针建立时应当初始化</li>
+<li>指针<code>p</code>被<code>free</code>或者<code>delete</code>之后,没有置<code>NULL</code>, 让人误以为<code>p</code>是个合法指针</li>
+</ul>
+<p><code>野指针</code>指向的指是随机的,所以可能使得程序崩溃</p>
+</li>
+<li><p>有<code>malloc/free</code>, 为什么还要<code>new/delete</code> ? </p>
+<p>对于非内建数据,<code>malloc/free</code>无法满足动态对象的要求. 对象要求创建的同时要自动执行构造函数, 对象在消亡前要自动执行构析函数. <code>malloc/free</code>是库函数不是运算符,不在编译权限内,不能执行构造函数和析构函数</p>
+<p>因此只有使用<code>new/delete</code></p>
+</li>
+<li><p>内存的分配方式有几种?</p>
+<ul>
+<li>静态存储区. 在程序编译时就已经分配好,例如全局变量或者<code>static</code>变量</li>
+<li>在栈上创建. 执行函数时,函数内局部变量的存储单元都可以在栈上创建,函数结束时自动释放,效率高,但是分配容量有限</li>
+<li>在堆上分配,也叫动态内存分配. 程序运行时用<code>malloc</code>或<code>new</code>申请内存,程序员自己复杂何时用<code>free</code>或<code>delete</code>释放内存, 动态内存生存期有我们决定,非常灵活</li>
+</ul>
+</li>
+</ol>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><ol>
+<li><p>编程实现<code>strcpy</code>函数</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">char* strcpy(char* strDest, char* strSrc){
+    if((strDest == NULL) || (strSrc == NULL)){
+        return NULL;
+    } // 特判不合法
+    char* strDestCopy = strDest;
+    while((*strDest++ = *strSrc++) != '\0');
+    return strDestCopy;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>编程实现<code>memcpy</code>函数</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void* memcpy2(void* memTo, const void* memFrom, size_t size){
+    assert((memTo != NULL) && (memFrom != NULL)); // 判断合法性
+    char* tempFrom = (char*) memFrom;
+    char* tempTo = (char*) memTo;
+    while(size-- > 0){
+        *tempTo++ = *tempFrom++;
+    }
+    return memTo;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>strcpy</code>和<code>memcpy</code>的区别</p>
+<ul>
+<li><code>strcpy</code>只能复制字符串, <code>memcpy</code>可以复制任意内容, 例如字符数组,整型,,结构体,类等</li>
+<li>复制的方法不同. <code>strcpy</code>不需要指定长度,他是遇到<code>'\0'</code>而结束的, <code>memcpy</code>根据第三个参数决定复制的长度</li>
+<li>用途不同,字符串用<code>strcpy</code>,其他用<code>memcpy</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="位运算与嵌入式编程"><a href="#位运算与嵌入式编程" class="headerlink" title="位运算与嵌入式编程"></a>位运算与嵌入式编程</h4><ol>
+<li><p>设置或清楚特定的位</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//清楚或设置整型的bit3
+#define BIT3 (0x1 << 3)
+void set_bit3_1(int &a){ // 置1
+    a |= BIT3; 
+}
+void set_bit3_0(int &a){ // 置0
+    a &= ~BIT3;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>隐式类型转换</p>
+<ul>
+<li><p>算术转换：在混合类型的算术表达式种, 最宽的数据类型成为目标转换类型</p>
+</li>
+<li><p>一种类型表达式赋值给另一种类型的对象: 目标类型是被赋值对象的类型</p>
+<p><strong>void指针赋值给其他类型指针时,无法转换, 编译出错</strong></p>
+</li>
+<li><p>将一个表达式作为实参传递给函数调用, 此时形参和实参类型不一致: 目标转换类型为形参的类型</p>
+</li>
+<li><p>从一个函数返回一个表达式,表达式类型与返回类型不一致: 目标转换类型为函数的返回类型</p>
+</li>
+</ul>
+</li>
+<li><p>显示类型转换: 列举并解释<code>C++</code>中的4种运算符转化以及他们的不同点</p>
+<ul>
+<li><p><code>const_cast</code>操作符:  用来修改类型的<code>const</code>或<code>volatile</code>属性</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const int constant = 21;
+const int* const_p = &constant; // 常量指针
+int* modifier = const_cast<int*>(const_p); // 将常量指针转化为普通指针
+*modifier = 7; //成功修改constant的值
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>dynamic_cast</code>操作符:  转换类型必须是类的指针,类的引用或者<code>void*</code></p>
+<p>适用于当无法使用<code>virtual</code>函数的时候</p>
+</li>
+<li><p><code>static_cast</code>该类型把<code>expression</code>转换成<code>type-id</code>, 但没有运行时类型检查来保证转换的安全性</p>
+<p>为什么需要<code>static_cast</code>?</p>
+<p>情况1: <code>void</code>指针转换为其他类型指针</p>
+<p>情况2:改变通常的标准转换</p>
+<p>情况3:避免出现可能多种转换的歧义</p>
+</li>
+<li><p><code>reinpreter_cast</code>操作符: <code>type-id</code>必须是一个指针,引用,算术类型,函数指针或者成员指针. 可以把一个指针转换成一个整数,也可以把一个整数转换成一个指针(先把一个指针转换成一个整数, 在把该整数转换成原类型的指针,还可以得到原先的指针值)</p>
+</li>
+</ul>
+</li>
+<li><p>如何写死循环? (这我可是一把好手0.0)</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//
+while(1) {}
+//
+for(;;){}
+//
+Loop:
+...
+goto Loop;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>关键字<code>volatile</code>有什么作用?</p>
+<p>一个定义为<code>volatile</code>的变量可能会被意想不到的改变,这样,编译器就不会去假设这个变量的值了. 准确的说,就是优化器在用到这个变量时必须每次都小心的重新读取这个变量的值,而不是使用保存在寄存器里的备份</p>
+<ul>
+<li>并行设备的硬件寄存器(如状态寄存器)</li>
+<li>一个中断服务子程序中会访问到的非自动变量</li>
+<li>多线程应用中被几个任务共享的变量</li>
+</ul>
+</li>
+</ol>
+<h4 id="C-面向对象"><a href="#C-面向对象" class="headerlink" title="C++面向对象"></a>C++面向对象</h4><ol>
+<li><p>面向对象的概念</p>
+<p>面向对象是按照人们认识客观世界的系统思维方式, 采用基于对象(实体)的概念建立模型,模拟客观世界分析,设计,实现软件的办法, 包括类,对象,消息以及类的特性等方面的内容</p>
+</li>
+<li><p><code>class</code>和<code>struct</code>有什么区别?</p>
+<p>这里的区别分两种情况: <code>C</code>语言的<code>struct</code>和<code>C++</code>的<code>class</code>的区别, <code>C++</code>中的<code>struct和class</code>的区别</p>
+<ul>
+<li><p><code>C</code>中的<code>struct</code>只能定义成员变量, 不能定义成员函数</p>
+</li>
+<li><p>在<code>C++</code>中的<code>struct</code>扩充了<code>C</code>的<code>struct</code>功能, 拥有构造函数和成员函数,还拥有<code>class</code>的其他特性, 如继承,虚函数等.</p>
+<p><code>struct</code>中默认成员访问权限是<code>public</code>的, 默认继承是<code>public</code>继承, 不能表示模板类型</p>
+<p><code>class</code>中默认成员访问权限是<code>private</code>的, 默认继承是<code>private</code>继承, 可以表示模板类型</p>
+</li>
+</ul>
+</li>
+<li><p>类成员的初始化</p>
+<p>初始化时与声明先后顺序一致</p>
+</li>
+<li><p>与全局对象相比, 使用静态数据成员有什么优势?</p>
+<ul>
+<li>静态数据成员不会和其他全局命名冲突</li>
+<li>使用静态数据成员可以使用<code>private</code>隐藏信息, 全局对象不能</li>
+</ul>
+</li>
+<li><p>哪种情况只能用<code>intialization list</code>(初始化表), 而不能用<code>assignment</code>(赋值)?</p>
+<p>对于类中有<code>const</code>和<code>reference</code>(引用)类型成员变量, 只能够用初始化列表, 不能赋值</p>
+<p>还有一种情况, 类的构造函数需要调用其基类的构造函数的时候</p>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#include<bits/stdc++.h>
+using namespace std;
+class A{
+private:
+    int a;
+public:
+    A(){}
+    A(int x) : a(x) {}
+};
+class B : public A {// B是A的子类, 以public方式继承
+private:
+    int b;
+public:
+    B(int x, int y) : A(x){ // 需要初始化b, 以及父类的a
+        // a =x; // 错误, a为private, 无法在子类访问
+        // A(x); // 错误, 调用方式错误
+        b = y;
+    }
+};
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p><code>C++</code>中的空类默认会产生哪些成员函数?</p>
+<p><code>C++</code>的空类中, 默认会产生默认构造函数, 复制构造函数, 析构函数, 赋值函数以及取址运算</p>
+</li>
+<li><p>构造函数和析构函数是否可以被重载?</p>
+<p>构造函数可以被重载, 因为构造函数可以有多个, 且可以带参数</p>
+<p>析构函数不可以被重载, 因为析构函数只能有一个, 且不能带参数</p>
+</li>
+<li><p><code>C++</code>中虚析构函数的作用是什么?</p>
+<p>当父类指针指向子类对象时, 释放指针时, 只会执行父类的析构函数, 子类的内存得不到释放</p>
+<p>将父类的析构函数加上<code>virtual</code>, 就会先找到并执行子类的析构函数, 然后执行父类的析构函数,资源正常释放, 避免了内存泄漏</p>
+<p>因此, <strong>只有当一个类被用来作为基类的时候, 才会把析构函数写成虚函数</strong></p>
+</li>
+<li><p>析构函数的执行顺序</p>
+<p>析构函数的执行顺序与构造函数的执行顺序相反</p>
+<p>谁先声明, 谁后析构</p>
+<p>先析构子类,再析构父类</p>
+</li>
+<li><p>什么是复制构造函数?</p>
+<p>如果类中没有显示声明一个复制构造函数,那么编译器会制定一个函数来进行对象的复制</p>
+<p>以下三种需要复制构造函数的情况</p>
+<ul>
+<li>一个对象以值传递的方式传入函数体</li>
+<li>一个对象以值传递的方式从函数返回</li>
+<li>一个对象需要通过另外一个对象进行初始化</li>
+</ul>
+<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">class Test{
+public:
+    int a;
+    Test(int x) : a(x) {}
+    Test(Test &test){ // 复制构造函数
+        a = test.a;
+    }
+}
+void fun1(Test test){} // 值传递传入函数体
+Test fun2() { Test test; return test; } // 值传递从函数体返回
+int main(){
+    Test t1(1);
+    Test t2 = t1; // 用t1对t2做初始化
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>为什么<code>C</code>语言不支持函数重载而<code>C++</code>能支持?</p>
+<p><code>C++</code>的重载函数经过编译器处理之后, 两个函数的符号是不相同的. 这样的名字包含了函数名,函数参数,以及返回类型信息</p>
+<p><code>C</code>语言不会对函数名进行处理</p>
+</li>
+<li><p>重载和覆写有什么区别?</p>
+<p>重载是编写一个已有函数同名但是参数表不同的方法, 有如下特征</p>
+<ul>
+<li>方法名必须相同</li>
+<li>参数列表必须不相同, 与参数列表的顺序无关</li>
+<li>返回值类型可以不相同</li>
+</ul>
+<p>覆写是派生类重写基类的虚函数, 有如下特征</p>
+<ul>
+<li>只有虚方法和抽象方法才能够被覆写</li>
+<li>相同的函数名</li>
+<li>相同的参数列表</li>
+<li>相同的返回值类型</li>
+</ul>
+<p>重载是一种语法规则, 由编译器在编译阶段完成, 不属于面向对象</p>
+<p>覆写是运行阶段决定的, 是面向对象编程的重要特征</p>
+</li>
+</ol>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
