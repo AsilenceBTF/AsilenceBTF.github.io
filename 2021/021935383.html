@@ -448,7 +448,7 @@
 <p>且要注意溢出问题</p>
 </li>
 <li><p>不使用中间变量来交换<code>a,b</code>的值的方法</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void swap1(int &a, int &b){
+<pre class="line-numbers language-c++"><code class="language-c++">void swap1(int &a, int &b){
     a = a + b;
     b = a - b;
     a = a - b;
@@ -459,8 +459,7 @@ void swap2(int &a, int &b){
     b ^= a;
     a ^= b;
     // 推荐用这种方式
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><strong>C++与C有什么不同</strong></p>
 <p><code>C</code>是结构化语言, 重点在于算法和数据结构. 对语言本身, <code>C</code>是<code>C++</code>的子集. <code>C</code>程序设计首先考虑如何通过一个过程,对输入进行运算处理,得到输出. 对于<code>C++</code>,首先要考虑如何构造一个对象模型,让这个模型能够配合对应的问题, 通过获取对象的状态信息得到输出或实现控制过程</p>
@@ -473,7 +472,7 @@ void swap2(int &a, int &b){
 <p><code>C</code>是面向过程化的, 但<code>C++</code>不是完全面向对象化的. 在<code>C++</code>中也可以完全写出<code>C</code>一样过程化的程序, 所以<code>C++</code>只是拥有面向对象的特性. <code>Java</code>是真正面向对象化的</p>
 </li>
 <li><p>标准头文件的结构</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#ifndef __INCvxWorksh
+<pre class="line-numbers language-c++"><code class="language-c++">#ifndef __INCvxWorksh
 #define __INCvxWorksh // 防止头文件被重复引用
 #ifdef __cplusplus // 如果是c++文件
 extern "C"{ // 模块按照C语言编译, 解决重载名字匹配问题
@@ -481,8 +480,7 @@ extern "C"{ // 模块按照C语言编译, 解决重载名字匹配问题
 #ifdef __cplusplus
 }
 #endif
-#endif
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#endif<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>#include&lt;head.h&gt;</code> 与<code>"head.h"</code> 的区别</p>
 <p>尖括号表明这个文件是一个工程或标准头文件, 会先从预定义的目录中查找</p>
@@ -494,7 +492,7 @@ extern "C"{ // 模块按照C语言编译, 解决重载名字匹配问题
 </ol>
 <h4 id="预处理-const-static与sizeof"><a href="#预处理-const-static与sizeof" class="headerlink" title="预处理,const,static与sizeof"></a>预处理,const,static与sizeof</h4><ol>
 <li><p>宏定义的注意事项</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define SQR(x) (x*x)
+<pre class="line-numbers language-c++"><code class="language-c++">#define SQR(x) (x*x)
 int main(){
     int a, b = 3;
     a = SQR(b + 2);
@@ -504,21 +502,19 @@ int main(){
     /*为达到原来的目的可以将 SQR(x) 改成
         #define SQR(x) ((x) * (x))
     */
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>宏参数连接</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#define STR(s) #s
+<pre class="line-numbers language-c++"><code class="language-c++">#define STR(s) #s
 #define CONS(a, b) (int)(a##e##b) // 连接(a,b)变成aeb
 int main(){
     printf(STR(vck)); // 输出vck
     printf("\n");
     printf("%d\n", CONS(2, 3)); // 经过连接变成2e3, 输出2000
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>const</code> 的使用</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#include<stdio.h>
+<pre class="line-numbers language-c++"><code class="language-c++">#include<stdio.h>
 int main(){
     const int x = 1; // 如果没有初始化就是随机数且不可变
     int b = 10;
@@ -537,8 +533,7 @@ int main(){
 
     a3 = &c; // 错误,指针为常量
     *a3 = 1; // 错误,指针指向的值为常量
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>说明<code>const</code>与<code>#define</code>的特点与区别</p>
 <p><code>#define</code>只是用来做文本替换, 编译时进行替换,生命周期止于编译器,存在于程序的代码段, 实际过程只是一个常数,一个命令中的参数,没有实际存在.</p>
@@ -549,21 +544,18 @@ int main(){
 <li><p><code>const</code>用于常量,<code>const</code>常量编译器可以对其进行数据类型安全检查</p>
 </li>
 <li><p>当输入参数<strong>用户自定义类型和抽象数据类型</strong>时, 应该将<code>值传递</code>改为<code>const&amp;传递</code>, 可以提高效率</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void fun(A a); 
+<pre class="line-numbers language-c++"><code class="language-c++">void fun(A a); 
 //函数产生A类型的临时对象来复制参数a, 临时对象的构造,复制,析构过程都消耗时间.
 void fun(A const &a); 
-//使用引用传递不需要产生临时对象,提高效率.但光引用有可能改变a,所以加const
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+//使用引用传递不需要产生临时对象,提高效率.但光引用有可能改变a,所以加const<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>const</code>修饰函数的返回值,如给<strong>指针传递</strong>的函数返回值加<code>const</code>,则返回值不能被直接修改,且返回值只能被赋值给加<code>const</code>修饰的同类型指针</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const char* Getchar(void){};
+<pre class="line-numbers language-c++"><code class="language-c++">const char* Getchar(void){};
 char* ch = Getchar(); // 错误
-const char* ch = Getchar(); // 正确
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+const char* ch = Getchar(); // 正确<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>const</code>修饰类的成员函数,任何不会修改数据成员的函数都应用<code>const</code>修饰, 这样,当不小心修改了数据成员或调用了非<code>const</code>成员函数时,编译器都会报错</p>
-<pre class="line-numbers language-lang-c"><code class="language-lang-c">int GetCount(void) const;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">GetCount</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 </li>
@@ -583,7 +575,7 @@ const char* ch = Getchar(); // 正确
 <p>类的静态成员或方法不属于类的实例,在所有类的实例间共享, 调用时应用类名+操作符<code>::</code>来引用</p>
 </li>
 <li><p>使用<code>sizeof</code>计算普通变量所占空间</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">// 32为WinNT操作系统下
+<pre class="line-numbers language-c++"><code class="language-c++">// 32为WinNT操作系统下
 char str[] = "Hello";
 char *p = str;
 int n = 10;
@@ -594,8 +586,7 @@ void Func(char str[100]){
     sizeof(str); // 4, 由于数组作为参数是传址的, 所以也是4
 }
 void *p = malloc(100); //4,p指向一个100字节的堆内存
-sizeof(p);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+sizeof(p);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>使用<code>sizeof</code>计算类对象或<code>struct</code>所占空间</p>
 <p>由于需要字节对齐,所以计算时总空间需要能够<strong>被其最宽基本类型成员的大小所整除</strong></p>
@@ -674,7 +665,7 @@ sizeof(p);
 <p>但是指针不用初始化,可以为空, 可以随时指向别的对象, 所以不安全</p>
 </li>
 <li><p>一些复杂指针的声明</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//一个整形数
+<pre class="line-numbers language-c++"><code class="language-c++">//一个整形数
 int a;
 //一个指向整型数的指针
 int* a;
@@ -689,11 +680,10 @@ int (*a)[10];
 //一个指向函数的指针, 该函数有一个整型参数并返回一个整型数
 int (*a)(int);
 //一个有10个指针的数组,该指针指向一个函数,该函数有一个整型参数并返回一个整型数
-int (*a[10])(int);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+int (*a[10])(int);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>指针常量与常量指针的区别</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//指针常量 该指针指向整型且不可改变
+<pre class="line-numbers language-c++"><code class="language-c++">//指针常量 该指针指向整型且不可改变
 int* const a;
 //常量指针 该指针指向一个常量,指针可以改变,指向的值不可以
 const int* a;
@@ -701,7 +691,7 @@ int const* a;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>指针函数和函数指针的区别</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//指针函数 指一个返回值是指针的函数
+<pre class="line-numbers language-c++"><code class="language-c++">//指针函数 指一个返回值是指针的函数
 int* f(int a, int b){
 
 }
@@ -733,18 +723,17 @@ int (*p)(int, int) = max;
 </ol>
 <h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><ol>
 <li><p>编程实现<code>strcpy</code>函数</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">char* strcpy(char* strDest, char* strSrc){
+<pre class="line-numbers language-c++"><code class="language-c++">char* strcpy(char* strDest, char* strSrc){
     if((strDest == NULL) || (strSrc == NULL)){
         return NULL;
     } // 特判不合法
     char* strDestCopy = strDest;
     while((*strDest++ = *strSrc++) != '\0');
     return strDestCopy;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>编程实现<code>memcpy</code>函数</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">void* memcpy2(void* memTo, const void* memFrom, size_t size){
+<pre class="line-numbers language-c++"><code class="language-c++">void* memcpy2(void* memTo, const void* memFrom, size_t size){
     assert((memTo != NULL) && (memFrom != NULL)); // 判断合法性
     char* tempFrom = (char*) memFrom;
     char* tempTo = (char*) memTo;
@@ -752,8 +741,7 @@ int (*p)(int, int) = max;
         *tempTo++ = *tempFrom++;
     }
     return memTo;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>strcpy</code>和<code>memcpy</code>的区别</p>
 <ul>
@@ -765,15 +753,14 @@ int (*p)(int, int) = max;
 </ol>
 <h4 id="位运算与嵌入式编程"><a href="#位运算与嵌入式编程" class="headerlink" title="位运算与嵌入式编程"></a>位运算与嵌入式编程</h4><ol>
 <li><p>设置或清楚特定的位</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//清楚或设置整型的bit3
+<pre class="line-numbers language-c++"><code class="language-c++">//清楚或设置整型的bit3
 #define BIT3 (0x1 << 3)
 void set_bit3_1(int &a){ // 置1
     a |= BIT3; 
 }
 void set_bit3_0(int &a){ // 置0
     a &= ~BIT3;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>隐式类型转换</p>
 <ul>
@@ -791,11 +778,10 @@ void set_bit3_0(int &a){ // 置0
 <li><p>显示类型转换: 列举并解释<code>C++</code>中的4种运算符转化以及他们的不同点</p>
 <ul>
 <li><p><code>const_cast</code>操作符:  用来修改类型的<code>const</code>或<code>volatile</code>属性</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">const int constant = 21;
+<pre class="line-numbers language-c++"><code class="language-c++">const int constant = 21;
 const int* const_p = &constant; // 常量指针
 int* modifier = const_cast<int*>(const_p); // 将常量指针转化为普通指针
-*modifier = 7; //成功修改constant的值
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+*modifier = 7; //成功修改constant的值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>dynamic_cast</code>操作符:  转换类型必须是类的指针,类的引用或者<code>void*</code></p>
 <p>适用于当无法使用<code>virtual</code>函数的时候</p>
@@ -811,15 +797,14 @@ int* modifier = const_cast<int*>(const_p); // 将常量指针转化为普通指�
 </ul>
 </li>
 <li><p>如何写死循环? (这我可是一把好手0.0)</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">//
+<pre class="line-numbers language-c++"><code class="language-c++">//
 while(1) {}
 //
 for(;;){}
 //
 Loop:
 ...
-goto Loop;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+goto Loop;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>关键字<code>volatile</code>有什么作用?</p>
 <p>一个定义为<code>volatile</code>的变量可能会被意想不到的改变,这样,编译器就不会去假设这个变量的值了. 准确的说,就是优化器在用到这个变量时必须每次都小心的重新读取这个变量的值,而不是使用保存在寄存器里的备份</p>
@@ -857,7 +842,7 @@ goto Loop;
 <li><p>哪种情况只能用<code>intialization list</code>(初始化表), 而不能用<code>assignment</code>(赋值)?</p>
 <p>对于类中有<code>const</code>和<code>reference</code>(引用)类型成员变量, 只能够用初始化列表, 不能赋值</p>
 <p>还有一种情况, 类的构造函数需要调用其基类的构造函数的时候</p>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">#include<bits/stdc++.h>
+<pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
 using namespace std;
 class A{
 private:
@@ -875,8 +860,7 @@ public:
         // A(x); // 错误, 调用方式错误
         b = y;
     }
-};
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>C++</code>中的空类默认会产生哪些成员函数?</p>
 <p><code>C++</code>的空类中, 默认会产生默认构造函数, 复制构造函数, 析构函数, 赋值函数以及取址运算</p>
@@ -903,7 +887,7 @@ public:
 <li>一个对象以值传递的方式从函数返回</li>
 <li>一个对象需要通过另外一个对象进行初始化</li>
 </ul>
-<pre class="line-numbers language-lang-c++"><code class="language-lang-c++">class Test{
+<pre class="line-numbers language-c++"><code class="language-c++">class Test{
 public:
     int a;
     Test(int x) : a(x) {}
@@ -916,8 +900,7 @@ Test fun2() { Test test; return test; } // 值传递从函数体返回
 int main(){
     Test t1(1);
     Test t2 = t1; // 用t1对t2做初始化
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>为什么<code>C</code>语言不支持函数重载而<code>C++</code>能支持?</p>
 <p><code>C++</code>的重载函数经过编译器处理之后, 两个函数的符号是不相同的. 这样的名字包含了函数名,函数参数,以及返回类型信息</p>
@@ -941,7 +924,275 @@ int main(){
 <p>覆写是运行阶段决定的, 是面向对象编程的重要特征</p>
 </li>
 </ol>
-<script>
+<h4 id="C-继承和多态"><a href="#C-继承和多态" class="headerlink" title="C++继承和多态"></a>C++继承和多态</h4><ol>
+<li><p>继承的三种关系: <code>public,protected,private</code></p>
+<p>无论是哪种继承方式,基类的<code>private</code>成员总是无法从子类访问</p>
+<p>无论是哪种继承方式, 在<strong>派生类内部</strong>总是可以访问基类的<code>public,protected</code>成员</p>
+<p>仅当<code>public</code>派生时, <strong>派生类对象</strong>对基类中的<code>public</code>成员有可访问/可修改权</p>
+<ul>
+<li><code>public</code> 继承不改变基类成员的访问权限</li>
+<li><code>protected</code>继承将基类中<code>public</code>成员变为子类的<code>protected</code>成员, 其他成员的访问权限不变</li>
+<li><code>private</code>使得基类中所有成员在子类中权限变成<code>private</code></li>
+</ul>
+</li>
+<li><p><code>C++</code>为什么定义<code>public,protected,private</code>三种权限?</p>
+<p>有些我们需要对外面看的,也就是对外接口,那么就使用<code>public</code>. 如果我们不想让别人知道内部的实现细节,那么就是<code>private</code>. 如果不想让别人知道, 想让自己的孩子知道, 那么就可以作为<code>protected</code></p>
+</li>
+<li><p>什么是多态?</p>
+<ul>
+<li>编译时的多态: 通过重载来实现</li>
+<li>运行时的多态: 通过虚成员来实现</li>
+</ul>
+</li>
+<li><p>为什么需要多继承? 它的优缺点是什么?</p>
+<p>一些事物往往会拥有两个或多个以上事物的属性, 为了解决这个问题,<code>C++</code>引入多重继承的概念</p>
+<p>多重继承的优点是对象可以调用多个基类中的接口</p>
+<p>多重继承的缺点是容易出现继承向上的二义性</p>
+</li>
+<li><p>如何消除二义性?</p>
+<p>使用虚继承</p>
+</li>
+<li><p>为什么要引入抽象基类和纯虚函数?</p>
+<p><strong>纯虚函数</strong>在基类中是没有定义的, 必须在子类中加以实现</p>
+<p>如果基类含有一个或多个纯虚函数,那么就属于<strong>抽象基类</strong></p>
+<ul>
+<li>为了方便使用多态特性</li>
+<li>很多情况下,基类本身生成对象不合理. 例如,动物作为一个基类可以派生老虎,狮子, 但动物本身生成对象不合理,抽象对象不能被实例化,它定义的纯虚函数相当于接口</li>
+</ul>
+</li>
+<li><p>虚函数和纯虚函数有什么区别?</p>
+<ul>
+<li><p>类里如果声明了虚函数,这个函数是实现的(哪怕是空实现),它的作用就是为了能让这个函数在它的子类里面可以被覆盖,从而实现多态. 纯虚函数只是一个接口,一个声明,要留到子类才能实现</p>
+</li>
+<li><p>虚函数在子类可以不重载; 但纯虚函数必须在子类去实现</p>
+</li>
+<li><p>虚函数的类用于<code>"实作继承"</code>, 也就是说继承接口的同时也继承了父亲的实现</p>
+<p>纯虚函数的类用于<code>"介面继承"</code>,即纯虚函数关注的是接口的统一性,实现由子类完成</p>
+</li>
+<li><p>带纯虚数的类叫做抽象基类, 只有被继承,重写虚函数后才能使用</p>
+</li>
+</ul>
+</li>
+<li><p>什么是<code>COM</code>?</p>
+<p><code>COM</code>即组件对象模型, 它定义了一种二进制标准,使得任何编程语言存取它所编写的模块</p>
+</li>
+</ol>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><ol>
+<li><p>插入排序</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+void print(int* a, int n){
+    for(int i = 0; i < n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void insert_sort(int* a, int n){
+    for(int i = 1; i < n; ++i){
+        int temp = a[i];
+        int idx = i - 1;
+        while(idx >= 0 && a[idx] > temp) {
+            a[idx + 1] = a[idx];
+            --idx;
+        }
+        a[idx + 1] = temp;
+    }
+}
+int main(){
+    int a[] = {3, 4, 2, 6, 5, 7};
+    cout << "before insert sort: ";
+    print(a, 6);
+    insert_sort(a, 6);
+    cout << "after insert sort: ";
+    print(a, 6);
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>希尔排序</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+void print(int* a, int n){
+    for(int i = 0; i < n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void shell_sort(int* a, int n){
+    for(int i = n / 2; i > 0; i /= 2){
+        for(int j = i; j < n; ++j){
+            int idx = j - i, temp = a[j];
+            while(idx >= 0 && a[idx] > temp){
+                a[idx + i] = a[idx];
+                idx -= i;
+            }
+            a[idx + i] = temp;
+        }
+    }
+}
+int main(){
+    int a[] = {4, 3, 5, 1, 6, 2};
+    int n = 6;
+    cout << "before shell_sort :";
+    print(a, n);
+    cout << "afters shell_sort :";
+    shell_sort(a, n);
+    print(a, n);
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>冒泡排序</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+void print(int* a, int n){
+    for(int i = 0; i < n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void bubble_sort(int* a, int n){
+    for(int i = 0; i < n; ++i){
+        int change = 0;
+        for(int j = n - 2; j >= i; --j){
+            if(a[j + 1] < a[j]){
+                a[j + 1] ^= a[j];
+                a[j] ^= a[j + 1];
+                a[j + 1] ^= a[j];
+                change = 1;
+            }
+        }
+        if(!change) return;
+    }
+}
+int main(){
+    int a[] = {4, 3, 6, 5, 2, 1};
+    int n = 6;
+    cout << "before bubble_sort : ";
+    print(a, n);
+    bubble_sort(a, n);
+    cout << "after bubble_sort : ";
+    print(a, n);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>快速排序</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+void print(int *a, int n){
+    for(int i = 0; i < n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void quick_sort(int *a, int l, int r){
+    if(l >= r) return;
+    int key = a[l];
+    int i = l, j = r;
+    while(i < j){
+        while(i < j && a[j] >= key) --j;
+        if(i < j)
+            a[i++] = a[j];
+        while(i < j && a[i] <= key) ++i;
+        if(i < j)
+            a[j--] = a[i];
+    }
+    a[i] = key;
+    quick_sort(a, l, i - 1);
+    quick_sort(a, i + 1, r);
+}
+int main(){
+
+    int a[] = {4, 3, 6, 5, 2, 1};
+    int n = 6;
+    cout << "before quick_sort : ";
+    print(a, n);
+    quick_sort(a, 0, n - 1);
+    cout << "after quick_sort : ";
+    print(a, n);
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>选择排序</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+void print(int *a, int n){
+    for(int i = 0; i < n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void select_sort(int *a, int n){
+    for(int i = 0; i < n - 1; ++i){
+        int idx = i;
+        for(int j = i + 1; j < n; ++j){
+            if(a[j] < a[idx]){
+                idx = j;
+            }
+        }
+        if(idx != i){
+            a[idx] ^= a[i];
+            a[i] ^= a[idx];
+            a[idx] ^= a[i];
+        }
+    }
+}
+int main(){
+    int a[] = {4, 3, 6, 5, 2, 1};
+    int n = 6;
+    cout << "before select_sort : ";
+    print(a, n);
+    select_sort(a, n);
+    cout << "after select_sort : ";
+    print(a, n);
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>归并排序</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+void swap(int *a, int *b){
+    *a ^= *b;
+    *b ^= *a;
+    *a ^= *b;
+}
+void print(int *a, int n){
+    for(int i = 0; i < n; ++i){
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+void Merge(int *a, int *b, int l, int r){
+    int lend = l + r >> 1;
+    int rend = r;
+    int lpos = l, rpos = lend + 1, idx = 0;
+    while(lpos <= lend && rpos <= rend){
+        if(a[lpos] <= a[rpos])
+            b[idx++] = a[lpos++];
+        else
+            b[idx++] = a[rpos++];
+    }
+    while(lpos <= lend)
+        b[idx++] = a[lpos++];
+    while(rpos <= rend)
+        b[idx++] = a[rpos++];
+    for(int i = l, j = 0; i <= r; ++i){
+        a[i] = b[j++];
+    }
+}
+void merge_sort(int *a, int *b, int l, int r){
+    if(l >= r) return;
+    int mid = l + r >> 1;
+    merge_sort(a, b, l, mid);
+    merge_sort(a, b, mid + 1, r);
+    Merge(a, b, l, r);
+}
+int main(){
+    int a[] = {4, 3, 6, 5, 2, 1};
+    int n = 6;
+    cout << "before merge_sort : ";
+    print(a, n);
+    int *b = NULL;
+    b = new int[n];
+    merge_sort(a, b, 0, n - 1);
+    delete []b;
+    cout << "after merge_sort : ";
+    print(a, n);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h4 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h4><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
