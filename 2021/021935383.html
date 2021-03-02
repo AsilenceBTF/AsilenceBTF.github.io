@@ -1192,7 +1192,92 @@ int main(){
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ol>
-<h4 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h4><script>
+<h4 id="泛型编程"><a href="#泛型编程" class="headerlink" title="泛型编程"></a>泛型编程</h4><ol>
+<li><p>函数模板和类模板</p>
+<pre class="line-numbers language-c++"><code class="language-c++">
+template <class T1, class T2>
+class Point_T{
+public:
+        T1 a; T2 b;
+        Point_T() : a(0), b(0){}
+        Point_T(T1 x, T2 y) : a(x), b(y) {}
+        Point_T<T1, T2> operator = (const Point_T<T1, T2> &pt); // 重载赋值 函数
+        Point_T<T1, T2> operator + (const Point_T<T1, T2> &pt); //重载+
+};
+
+template <class T1, class T2>
+Point_T<T1, T2> Point_T<T1, T2> :: operator=(const Point_T<T1, T2> &pt){
+        this->a = pt.a;
+        this->b = pt.b;
+        return *this;
+}
+template <class T1, class T2>
+Point_T<T1, T2> Point_T<T1, T2> :: operator+(const Point_T<T1, T2> &pt){
+        return Point_T(a + pt.a, b + pt.b);
+}
+template <class T1, class T2>
+ostream& operator << (ostream& out,const Point_T<T1, T2> &pt){
+        cout << "(" << pt.a << ", ";
+        cout << pt.b << ")";
+        return out;
+}
+int main(){
+        Point_T<int,int> intPt1(1, 2);
+        Point_T<int,int> intPt2(1, 2);
+        Point_T<float,float> floatPt1(1.0, 2.0);
+        Point_T<float,float> floatPt2(1.0, 2.0);
+
+        Point_T<int, int> inttol;
+        Point_T<float, float> floattol;
+        inttol = intPt1 + intPt2;
+        floattol = floatPt1 + floatPt2;
+        //cout << inttol << endl;
+        //cout << floattol << endl;
+        cout << "intPt1 = " << intPt1 << ", intPt2 = " << intPt2 << endl;
+        cout << "inttol = " << intPt1 + intPt2 << endl;
+        cout << "floatPt1 = " << floatPt1 << ", floatPt2 = " << floatPt2 << endl;
+        cout << "floattol = " << floattol << endl;
+        return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>函数模板是一种抽象的函数定义, 他代表一类同构函数. 类模板是一种更高层次的抽象的类定义</p>
+<p>函数模板的实例化在编译阶段完成, 而类模板的实例化需由程序员在程序中指定</p>
+</li>
+<li><p>使用模板有什么缺点? 如何避免</p>
+<p>不正当的使用模板会导致代码膨胀, 影响程序的运行效率</p>
+<p>解决办法: 把<code>C++</code>模板中与参数无关的代码分离出来</p>
+</li>
+</ol>
+<h4 id="STL标准模板库"><a href="#STL标准模板库" class="headerlink" title="STL标准模板库"></a>STL标准模板库</h4><ul>
+<li><code>STL</code>序列容器: <code>vector, string, deque, list</code></li>
+<li><code>STL</code>关联容器: <code>set, multiset, map, multimap</code></li>
+<li><code>STL</code>适配容器: <code>stack, queue, priority_queue</code></li>
+</ul>
+<ol>
+<li><p>概念</p>
+<p><code>STL</code>,即标准模板库 , 是一个高效的<code>C++</code>程序库, 它是最新的<code>C++</code>标准函数库中的一个子集, 包括容器,算法, 迭代器组件</p>
+</li>
+<li><p><code>STL</code>如何实现<code>vector</code></p>
+<p><code>vector</code>内部是使用动态数组的方式实现的. 如果动态数组的内存不够, 就申请内存, 一般</p>
+<p>是当前大小的两倍, 然后把原数组的内容拷贝过去. 申请内存是<code>1-&gt;2-&gt;4-&gt;8...</code></p>
+</li>
+<li><p><code>map</code>内部是怎么实现的?</p>
+<p>底层是红黑树</p>
+</li>
+<li><p><code>map</code>和<code>hashmap</code>有什么区别?</p>
+<ul>
+<li><code>map</code>是红黑树, <code>hashmap</code>是哈希表</li>
+<li><code>map</code>可以自动按照键值排序, <code>hashmap</code>的各项操作平均时间复杂度接近常数</li>
+<li><code>map</code>是标准的一部分, 而<code>hashmap</code>不是</li>
+</ul>
+</li>
+<li><p><code>vector</code>中的<code>erase</code>和<code>algorithm</code>中的<code>remove</code>有什么区别?</p>
+<ul>
+<li><code>vector</code>中<code>erase</code>是真正删除了元素,迭代器不能访问了</li>
+<li><code>algorithm</code>中的<code>remove</code>只是简单的把要删除的元素移到了容器最后面, 迭代器还是可以访问的, 因为<code>algorithm</code>通过迭代器操作, 不知道容器的内部结构, 所以无法做到真正的删除</li>
+</ul>
+</li>
+</ol>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
